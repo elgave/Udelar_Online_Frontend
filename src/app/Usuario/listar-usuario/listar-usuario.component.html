@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h3>Usuarios</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">Cedula</th>
+                        <th class="text-center">IdFacultad</th>
+                        <th class="text-center">Tipo</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Correo</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios"  class="text-center">
+                        <td>{{usuario.cedula}}</td>
+                        <td>{{usuario.idFacultad}}</td>
+                        <td>{{usuario.tipo}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.apellido}}</td>
+                        <td>{{usuario.correo}}</td>
+                        <td>
+                            <button (click)="Editar(usuario)" class="btn btn-warning">Editar</button>
+                            <button (click)="Delete(usuario)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <button (click)= "Nuevo()"  class="btn btn-info" style="margin-left:10px;">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>

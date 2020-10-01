@@ -1,0 +1,43 @@
+
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Agregar Usuario</h3>
+            </div>
+            <div class="card-body">
+                <form action="" #formularioRegistro="ngForm">
+                    <div class="form-group">
+                        <label for="">Cedula:</label>
+                        <input type="text"  class="form-control" id="cedula" [(ngModel)]="usuario.cedula" name="cedula" required #cedula="ngModel">
+                        <div *ngIf = "cedula.invalid &&  (cedula.dirty || cedula.touched)" class="alert alert-danger">
+                            <div *ngIf="cedula.errors.required">
+                                La Cedula es requerida.
+                            </div>
+                        </div>
+                        <label for="">IdFacultad:</label>
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.idFacultad" name="idFacultad">
+                        <label for="">Tipo:</label>
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.tipo" name="tipo">
+                        <label for="">Nombre:</label>
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.nombre" name="nombre">
+                        <label for="">Apellido:</label>
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.apellido" name="apellido">
+                        <label for="">Correo:</label>
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.correo" name="correo">
+                        <label for="">Contraseña:</label>
+                        <input type="password"  class="form-control" id="contrasena" required minlength="4" 
+                        [(ngModel)]="usuario.contrasena" name="contrasena" #contrasena="ngModel">
+                        <div *ngIf = "contrasena.invalid &&  (contrasena.dirty || contrasena.touched)" class="alert alert-danger">
+                            <div *ngIf="contrasena.errors.required">
+                                La Contraseña es requerida.
+                            </div>
+                            <div *ngIf="contrasena.errors.minlength">
+                                La Contraseña debe tener minimo 4.
+                            </div>
+                        </div>
+                    </div>
+                    <button (click)="Guardar(usuario)" class="btn btn-danger" [disabled]="!formularioRegistro.form.valid">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,22 @@
+<div class="container col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3>Modificar Usuario</h3>
+        </div>
+        <div class="card-body">
+            <form action="">
+                <div class="form-group">
+                    <label for="">Nombre:</label>
+                    <input type="text"  class="form-control" [(ngModel)]="usuario.nombre" name="nombre">
+                    <label for="">Apellido:</label>
+                    <input type="text"  class="form-control" [(ngModel)]="usuario.apellido" name="apellido">
+                    <label for="">Correo:</label>
+                    <input type="text"  class="form-control" [(ngModel)]="usuario.correo" name="correo">
+                    <label for="">Contraseña:</label>
+                    <input type="text"  class="form-control" [(ngModel)]="usuario.contrasena" name="contrasena">
+                </div>
+                <button (click)="Actualizar(usuario)" class="btn btn-danger">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
