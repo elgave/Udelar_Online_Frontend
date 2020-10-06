@@ -13,9 +13,12 @@ import { AddCursoComponent } from './Curso/add-curso/add-curso.component';
 import { EditCursoComponent } from './Curso/edit-curso/edit-curso.component';
 import { ListarCursoComponent } from './Curso/listar-curso/listar-curso.component';
 import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   {path:'listarFacultades',component:ListarComponent},
   {path:'addFacultad',component:AddComponent},
   {path:'editFacultad',component:EditComponent},
@@ -28,8 +31,22 @@ const routes: Routes = [
   {path:'listarCursos',component:ListarCursoComponent},
   {path:'addCurso',component:AddCursoComponent},
   {path:'editCurso',component:EditCursoComponent},
-  {path:'listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent}
+  {path:'listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent},
+  { path: '**', component: HomeComponent },
 ];
+
+/*
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'altaFacultad', component: AltaFacultadesComponent },
+  { path: 'altaCurso', component: AltaCursosComponent },
+  { path: 'altaUsuarios', component: AltaUsuariosComponent },
+  { path: 'listarUsuarios', component: ListarUsuariosComponent},
+  { path: 'listarFacultades', component: ListarFacultadesComponent},
+  { path: 'listarCursos', component: ListarCursosComponent},
+  { path: 'inscripciones', component: InscripcionesComponent},
+  { path: '**', component: HomeComponent },
+*/ 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

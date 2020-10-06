@@ -18,7 +18,9 @@ import { EditUsuarioComponent } from './Usuario/edit-usuario/edit-usuario.compon
 import { ListarCursoComponent } from './Curso/listar-curso/listar-curso.component';
 import { AddCursoComponent } from './Curso/add-curso/add-curso.component';
 import { EditCursoComponent } from './Curso/edit-curso/edit-curso.component';
-import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component'
+import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/header/header.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad
     ListarCursoComponent,
     AddCursoComponent,
     EditCursoComponent,
-    UsuariosXFacultadReporteComponent
+    UsuariosXFacultadReporteComponent,
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
