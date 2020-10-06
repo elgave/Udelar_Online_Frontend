@@ -20,7 +20,8 @@ import { AddCursoComponent } from './Curso/add-curso/add-curso.component';
 import { EditCursoComponent } from './Curso/edit-curso/edit-curso.component';
 import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
 import { HomeComponent } from './components/home/home.component';
-import { HeaderComponent } from './components/header/header.component'
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/usuarios/login/login.component'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HeaderComponent } from './components/header/header.component'
     EditCursoComponent,
     UsuariosXFacultadReporteComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

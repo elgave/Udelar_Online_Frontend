@@ -14,6 +14,7 @@ import { EditCursoComponent } from './Curso/edit-curso/edit-curso.component';
 import { ListarCursoComponent } from './Curso/listar-curso/listar-curso.component';
 import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/usuarios/login/login.component';
 
 
 const routes: Routes = [
@@ -32,21 +33,11 @@ const routes: Routes = [
   {path:'addCurso',component:AddCursoComponent},
   {path:'editCurso',component:EditCursoComponent},
   {path:'listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent},
-  { path: '**', component: HomeComponent },
+  {path:'login', component:LoginComponent},
+  { path: '**', component: HomeComponent }
 ];
 
-/*
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'altaFacultad', component: AltaFacultadesComponent },
-  { path: 'altaCurso', component: AltaCursosComponent },
-  { path: 'altaUsuarios', component: AltaUsuariosComponent },
-  { path: 'listarUsuarios', component: ListarUsuariosComponent},
-  { path: 'listarFacultades', component: ListarFacultadesComponent},
-  { path: 'listarCursos', component: ListarCursosComponent},
-  { path: 'inscripciones', component: InscripcionesComponent},
-  { path: '**', component: HomeComponent },
-*/ 
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
