@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Curso } from '../Modelo/Curso';
+import { Usuario } from '../Modelo/Usuario';
+import { Matricula } from '../Modelo/Matricula';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +28,8 @@ export class CursoServiceService {
   }
   deleteCurso(curso:Curso){
     return this.http.delete<Curso>(this.Url+"/"+curso.id);
+  }
+  matricularse(matricula:Matricula){
+    return this.http.post<boolean>(this.Url+"/matricularse",matricula);
   }
 }
