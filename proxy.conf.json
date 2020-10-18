@@ -1,5 +1,5 @@
 {
-    "/entregaindividualapi/*":{
+    "/api/*":{
         "target": "http://localhost:54403",
         "secure":false,
         "logLevel": "debug"

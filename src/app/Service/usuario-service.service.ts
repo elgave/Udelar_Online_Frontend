@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Usuario } from '../Modelo/Usuario';
+import { Response } from '../Modelo/Response';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +10,21 @@ export class UsuarioServiceService {
 
   constructor(private http:HttpClient) { }
 
-  Url='/entregaindividualapi/usuario';
+  Url='http://localhost:54403/api/usuario';
 
   getUsuarios(){
-    return this.http.get<Usuario[]>(this.Url);
+    return this.http.get<Response<Usuario[]>>(this.Url);
   }
   createUsuario(usuario:Usuario){
-    return this.http.post<Usuario>(this.Url, usuario);
+    return this.http.post<Response<Usuario[]>>(this.Url, usuario);
   }
   getUsuarioId(cedula:String,idFacultad:number,tipo:String){
-    return this.http.get<Usuario>(this.Url+"/"+cedula+"/"+idFacultad+"/"+tipo);
+    return this.http.get<Response<Usuario>>(this.Url+"/"+cedula+"/"+idFacultad);
   }
-
   updateUsuario(usuario:Usuario){
-     return this.http.put<Usuario>(this.Url+"/",usuario);
+     return this.http.put<Response<Usuario>>(this.Url+"/",usuario);
   }
   deleteUsuario(usuario:Usuario){
-    return this.http.delete<Usuario>(this.Url+"/"+usuario.cedula+"/"+usuario.idFacultad+"/"+usuario.tipo);
+    return this.http.delete<Response<Usuario[]>>(this.Url+"/"+usuario.cedula+"/"+usuario.facultadId);
   }
 }
