@@ -18,8 +18,8 @@ export class UsuarioServiceService {
   createUsuario(usuario:Usuario){
     return this.http.post<Response<Usuario[]>>(this.Url, usuario);
   }
-  getUsuarioId(cedula:String,idFacultad:number,tipo:String){
-    return this.http.get<Response<Usuario>>(this.Url+"/"+cedula+"/"+idFacultad);
+  getUsuarioId(cedula:String,facultadId:number,tipo:String){
+    return this.http.get<Response<Usuario>>(this.Url+"/"+cedula+"/"+facultadId);
   }
   updateUsuario(usuario:Usuario){
      return this.http.put<Response<Usuario>>(this.Url+"/",usuario);
