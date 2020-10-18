@@ -23,14 +23,14 @@ export class EditUsuarioComponent implements OnInit {
     var tipo = localStorage.getItem("tipo");
     this.service.getUsuarioId(cedula,+idFacultad,tipo)
     .subscribe(data=>{
-      this.usuario=data;
+      this.usuario=data.data;
     })
   }
 
   Actualizar(usuario: Usuario){
     this.service.updateUsuario(usuario)
     .subscribe(data=>{
-      this.usuario = data;
+      this.usuario = data.data;
       alert("Se actualizo con Exito...!!!");
       this.router.navigate(["listarUsuarios"]);
     })

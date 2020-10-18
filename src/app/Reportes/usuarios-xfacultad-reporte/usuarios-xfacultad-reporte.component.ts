@@ -16,7 +16,7 @@ export class UsuariosXFacultadReporteComponent implements OnInit {
   ngOnInit() {
     this.service.getUsuariosXFacultad()
     .subscribe(data=>{
-      this.usuariosXFacultad=data;
+      this.usuariosXFacultad=data.data;
     })
   }
 

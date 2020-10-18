@@ -21,7 +21,7 @@ export class EditCursoComponent implements OnInit {
     let id= localStorage.getItem("id");
     this.service.getCursoId(+id)
     .subscribe(data=>{
-      this.curso=data;
+      this.curso=data.data;
     })
   }
 
@@ -29,7 +29,7 @@ export class EditCursoComponent implements OnInit {
     curso.cantCreditos = parseInt(curso.cantCreditos.toString())
     this.service.updateCurso(curso)
     .subscribe(data=>{
-      this.curso = data;
+      this.curso = data.data;
       alert("Se actualizo con Exito...!!!");
       this.router.navigate(["listarCursos"]);
     })

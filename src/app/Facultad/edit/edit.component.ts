@@ -21,14 +21,14 @@ export class EditComponent implements OnInit {
     let id= localStorage.getItem("id");
     this.service.getFacultadId(+id)
     .subscribe(data=>{
-      this.facultad=data;
+      this.facultad=data.data;
     })
   }
 
   Actualizar(facultad:Facultad){
     this.service.updateFacultad(facultad)
     .subscribe(data=>{
-      this.facultad = data;
+      this.facultad = data.data;
       alert("Se actualizo con Exito...!!!");
       this.router.navigate(["listar"]);
     })

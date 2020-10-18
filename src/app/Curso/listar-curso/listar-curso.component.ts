@@ -19,7 +19,7 @@ export class ListarCursoComponent implements OnInit {
   ngOnInit() {
     this.service.getCursos()
     .subscribe(data=>{
-      this.cursos=data;
+      this.cursos=data.data;
     })
   }
 

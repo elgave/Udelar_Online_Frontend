@@ -20,7 +20,7 @@ export class AddComponent implements OnInit {
   Guardar(facultad:Facultad){
     this.service.createFacultad(this.facultad)
     .subscribe(data=>{
-      alert("Se Agrego con Exito...!!");
+      alert(`Se Agrego con Exito!`);
       this.router.navigate(["listarFacultades"]);
     })
   }

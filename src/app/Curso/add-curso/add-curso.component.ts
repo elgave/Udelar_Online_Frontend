@@ -19,6 +19,9 @@ export class AddCursoComponent implements OnInit {
   Guardar(curso:Curso){
 
     curso.cantCreditos = parseInt(curso.cantCreditos.toString())
+    curso.facultadId = parseInt(curso.facultadId.toString())
+    curso.carreraId = parseInt(curso.carreraId.toString())
+    console.log(curso)
     this.service.createCurso(this.curso)
     .subscribe(data=>{
       alert("Se Agrego con Exito...!!");

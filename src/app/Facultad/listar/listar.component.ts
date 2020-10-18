@@ -15,7 +15,7 @@ export class ListarComponent implements OnInit {
   ngOnInit() {
     this.service.getFacultades()
     .subscribe(data=>{
-      this.facultades=data;
+      this.facultades=data.data;
     })
   }
 

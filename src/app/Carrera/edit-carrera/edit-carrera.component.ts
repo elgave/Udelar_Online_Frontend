@@ -21,14 +21,14 @@ export class EditCarreraComponent implements OnInit {
     let id= localStorage.getItem("id");
     this.service.getCarreraId(+id)
     .subscribe(data=>{
-      this.carrera=data;
+      this.carrera=data.data;
     })
   }
 
   Actualizar(carrera: Carrera){
     this.service.updateCarrera(carrera)
     .subscribe(data=>{
-      this.carrera = data;
+      this.carrera = data.data;
       alert("Se actualizo con Exito...!!!");
       this.router.navigate(["listarCarreras"]);
     })

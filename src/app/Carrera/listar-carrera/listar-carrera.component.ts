@@ -16,7 +16,7 @@ export class ListarCarreraComponent implements OnInit {
   ngOnInit() {
     this.service.getCarreras()
     .subscribe(data=>{
-      this.carreras=data;
+      this.carreras=data.data;
     })
   }
 

@@ -16,14 +16,13 @@ export class ListarUsuarioComponent implements OnInit {
   ngOnInit() {
     this.service.getUsuarios()
     .subscribe(data=>{
-      this.usuarios=data;
+      this.usuarios=data.data;
     })
   }
 
   Editar(usuario:Usuario):void{
     localStorage.setItem("cedula",usuario.cedula.toString());
-    localStorage.setItem("idFacultad",usuario.idFacultad.toString());
-    localStorage.setItem("tipo",usuario.tipo.toString());
+    localStorage.setItem("idFacultad",usuario.facultadId.toString());
     this.router.navigate(["editUsuario"]);
 
   }
