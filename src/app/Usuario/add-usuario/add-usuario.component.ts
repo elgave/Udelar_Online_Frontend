@@ -18,7 +18,7 @@ export class AddUsuarioComponent implements OnInit {
 
   Guardar(usuario:Usuario){
 
-    usuario.idFacultad = parseInt(usuario.idFacultad.toString())
+    usuario.facultadId = parseInt(usuario.facultadId.toString())
     this.service.createUsuario(this.usuario)
     .subscribe(data=>{
       alert("Se Agrego con Exito...!!");

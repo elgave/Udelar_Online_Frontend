@@ -22,8 +22,7 @@ export class ListarUsuarioComponent implements OnInit {
 
   Editar(usuario:Usuario):void{
     localStorage.setItem("cedula",usuario.cedula.toString());
-    localStorage.setItem("idFacultad",usuario.idFacultad.toString());
-    localStorage.setItem("tipo",usuario.tipo.toString());
+    localStorage.setItem("facultadId",usuario.facultadId.toString());
     this.router.navigate(["editUsuario"]);
 
   }

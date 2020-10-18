@@ -1,7 +1,6 @@
 export class Usuario {
     cedula: String;
-    idFacultad: number;
-    tipo:String;
+    facultadId: number;
     nombre:String;
     apellido:String;
     correo:String;

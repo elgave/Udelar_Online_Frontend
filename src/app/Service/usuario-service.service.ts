@@ -17,14 +17,14 @@ export class UsuarioServiceService {
   createUsuario(usuario:Usuario){
     return this.http.post<Usuario>(this.Url, usuario);
   }
-  getUsuarioId(cedula:String,idFacultad:number,tipo:String){
-    return this.http.get<Usuario>(this.Url+"/"+cedula+"/"+idFacultad+"/"+tipo);
+  getUsuarioId(cedula:String,facultadId:number){
+    return this.http.get<Usuario>(this.Url+"/"+cedula+"/"+facultadId);
   }
 
   updateUsuario(usuario:Usuario){
      return this.http.put<Usuario>(this.Url+"/",usuario);
   }
   deleteUsuario(usuario:Usuario){
-    return this.http.delete<Usuario>(this.Url+"/"+usuario.cedula+"/"+usuario.idFacultad+"/"+usuario.tipo);
+    return this.http.delete<Usuario>(this.Url+"/"+usuario.cedula+"/"+usuario.facultadId);
   }
 }

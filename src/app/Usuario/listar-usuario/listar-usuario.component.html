@@ -8,8 +8,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">Cedula</th>
-                        <th class="text-center">IdFacultad</th>
-                        <th class="text-center">Tipo</th>
+                        <th class="text-center">FacultadId</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Apellido</th>
                         <th class="text-center">Correo</th>
@@ -19,8 +18,7 @@
                 <tbody>
                     <tr *ngFor="let usuario of usuarios"  class="text-center">
                         <td>{{usuario.cedula}}</td>
-                        <td>{{usuario.idFacultad}}</td>
-                        <td>{{usuario.tipo}}</td>
+                        <td>{{usuario.facultadId}}</td>
                         <td>{{usuario.nombre}}</td>
                         <td>{{usuario.apellido}}</td>
                         <td>{{usuario.correo}}</td>

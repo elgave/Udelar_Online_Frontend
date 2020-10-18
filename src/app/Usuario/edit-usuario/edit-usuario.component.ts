@@ -19,9 +19,8 @@ export class EditUsuarioComponent implements OnInit {
 
   Editar(){
     var cedula= localStorage.getItem("cedula");
-    let idFacultad = localStorage.getItem("idFacultad");
-    var tipo = localStorage.getItem("tipo");
-    this.service.getUsuarioId(cedula,+idFacultad,tipo)
+    let facultadId = localStorage.getItem("facultadId");
+    this.service.getUsuarioId(cedula,+facultadId)
     .subscribe(data=>{
       this.usuario=data;
     })
