@@ -1,4 +1,4 @@
-<form [formGroup] = "formLogin" (ngSubmit)= "Login()">
+<!--<form [formGroup]="formLogin" (ngSubmit)="Login()">
     <div>
         <label>Cedula</label>
         <input type="text" formControlName="cedula">
@@ -8,9 +8,64 @@
         <input type="password" formControlName="password">
     </div>
     <div>
-        <button [disabled]= "!formLogin.valid" type="submit">
+        <button [disabled]="!formLogin.valid" type="submit">
             Iniciar Sesion 
         </button>
     </div>
 
-</form>
+</form>-->
+
+<!-- Material form login -->
+<br>
+<div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Iniciar Sesion</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+
+        <!-- Form -->
+        <form [formGroup]="formLogin" (ngSubmit)="Login()" class="text-center" style="color: #757575;" action="#!">
+
+            <!-- Email -->
+            <div class="md-form">
+                <input type="text" formControlName="cedula" class="form-control">
+                <label for="materialLoginFormEmail">Cedula</label>
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+                <input type="password" formControlName="password" class="form-control">
+                <label for="materialLoginFormPassword">Contrtaseña</label>
+            </div>
+
+            <!--<div class="d-flex justify-content-around">
+                <div>
+                      
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
+                        <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
+                    </div>
+                </div>
+                <div>
+                    
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>-->
+
+            <!-- Sign in button -->
+            <button [disabled]="!formLogin.valid" type="submit" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">Iniciar Sesion</button>
+
+
+
+
+
+        </form>
+        <!-- Form -->
+
+    </div>
+
+</div>
+<!-- Material form login -->
