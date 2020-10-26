@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ListarComponent } from './Facultad/listar/listar.component';
 import { AddComponent } from './Facultad/add/add.component';
 import { EditComponent } from './Facultad/edit/edit.component';
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {ServiceService} from '../app/Service/service.service'
 import {HttpClientModule} from '@angular/common/http';
 import { AddCarreraComponent } from './Carrera/add-carrera/add-carrera.component';
@@ -21,7 +21,8 @@ import { EditCursoComponent } from './Curso/edit-curso/edit-curso.component';
 import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LoginComponent } from './components/usuarios/login/login.component'
+import { LoginComponent } from './components/usuarios/login/login.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 
 @NgModule({
   declarations: [
@@ -41,13 +42,15 @@ import { LoginComponent } from './components/usuarios/login/login.component'
     UsuariosXFacultadReporteComponent,
     HomeComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]

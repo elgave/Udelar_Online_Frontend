@@ -15,10 +15,11 @@ import { ListarCursoComponent } from './Curso/listar-curso/listar-curso.componen
 import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/usuarios/login/login.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   {path:'listarFacultades',component:ListarComponent},
   {path:'addFacultad',component:AddComponent},
@@ -34,7 +35,7 @@ const routes: Routes = [
   {path:'editCurso',component:EditCursoComponent},
   {path:'listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent},
   {path:'login', component:LoginComponent},
-  { path: '**', component: HomeComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 

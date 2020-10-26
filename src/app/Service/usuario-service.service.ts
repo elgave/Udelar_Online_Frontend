@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Usuario } from '../Modelo/Usuario';
 import { Response } from '../Modelo/Response';
 
@@ -13,7 +13,18 @@ export class UsuarioServiceService {
   Url='http://localhost:54403/api/usuario';
 
   getUsuarios(){
-    return this.http.get<Response<Usuario[]>>(this.Url);
+
+    let httpHeaders: HttpHeaders = new  HttpHeaders();
+    const token = sessionStorage.getItem('token');
+    console.log('get token', token); 
+
+    httpHeaders = httpHeaders.append('Authorization', 'Bearer ' + token);
+
+
+    return this.http.get<Response<Usuario[]>>(this.Url,{
+      headers: httpHeaders,
+      observe: 'response'
+    });
   }
   createUsuario(usuario:Usuario){
     return this.http.post<Response<Usuario[]>>(this.Url, usuario);

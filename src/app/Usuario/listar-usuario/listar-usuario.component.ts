@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/Modelo/Usuario';
 import { UsuarioServiceService } from 'src/app/Service/usuario-service.service';
 import { Router} from '@angular/router'
+import { HttpHeaders } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-listar-usuario',
   templateUrl: './listar-usuario.component.html',
   styleUrls: ['./listar-usuario.component.css']
 })
-export class ListarUsuarioComponent implements OnInit {
+export class ListarUsuarioComponent implements OnInit, OnDestroy {
 
   usuarios:Usuario[];
+  subRef$: Subscription;
   constructor(private service:UsuarioServiceService,private router:Router) { }
 
   ngOnInit() {
-    this.service.getUsuarios()
+    this.subRef$ =  this.service.getUsuarios()
     .subscribe(data=>{
-      this.usuarios=data.data;
-    })
+      this.usuarios=data.body.data;
+    },
+      err => {
+        console.log('Error al listar los usuarios', err);
+      });
   }
 
   Editar(usuario:Usuario):void{
@@ -35,6 +41,12 @@ export class ListarUsuarioComponent implements OnInit {
   }
   Nuevo(){
     this.router.navigate(["addUsuario"]);
+  }
+
+  ngOnDestroy(){
+    if(this.subRef$){
+      this.subRef$.unsubscribe();
+    }
   }
 
 }
