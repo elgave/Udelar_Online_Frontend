@@ -3,22 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListarComponent } from './Facultad/listar/listar.component';
-import { AddComponent } from './Facultad/add/add.component';
-import { EditComponent } from './Facultad/edit/edit.component';
+import { ListarComponent } from './UdelarComponentes/Facultad/listar/listar.component';
+import { AddComponent } from './UdelarComponentes/Facultad/add/add.component';
+import { EditComponent } from './UdelarComponentes/Facultad/edit/edit.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {ServiceService} from '../app/Service/service.service'
+import {FacultadService} from './Service/facultad.service'
 import {HttpClientModule} from '@angular/common/http';
-import { AddCarreraComponent } from './Carrera/add-carrera/add-carrera.component';
-import { ListarCarreraComponent } from './Carrera/listar-carrera/listar-carrera.component';
-import { EditCarreraComponent } from './Carrera/edit-carrera/edit-carrera.component';
-import { AddUsuarioComponent } from './Usuario/add-usuario/add-usuario.component';
-import { ListarUsuarioComponent } from './Usuario/listar-usuario/listar-usuario.component';
-import { EditUsuarioComponent } from './Usuario/edit-usuario/edit-usuario.component';
-import { ListarCursoComponent } from './Curso/listar-curso/listar-curso.component';
-import { AddCursoComponent } from './Curso/add-curso/add-curso.component';
-import { EditCursoComponent } from './Curso/edit-curso/edit-curso.component';
-import { UsuariosXFacultadReporteComponent } from './Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
+import { AddCarreraComponent } from './UdelarComponentes/Carrera/add-carrera/add-carrera.component';
+import { ListarCarreraComponent } from './UdelarComponentes/Carrera/listar-carrera/listar-carrera.component';
+import { EditCarreraComponent } from './UdelarComponentes/Carrera/edit-carrera/edit-carrera.component';
+import { AddUsuarioComponent } from './UdelarComponentes/Usuario/add-usuario/add-usuario.component';
+import { ListarUsuarioComponent } from './UdelarComponentes/Usuario/listar-usuario/listar-usuario.component';
+import { EditUsuarioComponent } from './UdelarComponentes/Usuario/edit-usuario/edit-usuario.component';
+import { ListarCursoComponent } from './UdelarComponentes/Curso/listar-curso/listar-curso.component';
+import { AddCursoComponent } from './UdelarComponentes/Curso/add-curso/add-curso.component';
+import { EditCursoComponent } from './UdelarComponentes/Curso/edit-curso/edit-curso.component';
+import { UsuariosXFacultadReporteComponent } from './ModuloUdelar/Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/usuarios/login/login.component';
@@ -52,7 +52,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ServiceService],
+  providers: [FacultadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
