@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { ListarComponent } from './UdelarComponentes/Facultad/listar/listar.component';
 import { AddComponent } from './UdelarComponentes/Facultad/add/add.component';
 import { EditComponent } from './UdelarComponentes/Facultad/edit/edit.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {FacultadService} from './Service/facultad.service'
-import {HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FacultadService } from './Service/facultad.service'
+import { HttpClientModule } from '@angular/common/http';
 import { AddCarreraComponent } from './UdelarComponentes/Carrera/add-carrera/add-carrera.component';
 import { ListarCarreraComponent } from './UdelarComponentes/Carrera/listar-carrera/listar-carrera.component';
 import { EditCarreraComponent } from './UdelarComponentes/Carrera/edit-carrera/edit-carrera.component';
@@ -23,6 +23,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/usuarios/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
+import { MainFacultadComponent } from './components/facultad/main/main.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     HomeComponent,
     HeaderComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MainFacultadComponent
   ],
   imports: [
     BrowserModule,

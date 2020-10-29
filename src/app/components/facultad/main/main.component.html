@@ -1,0 +1,24 @@
+<head>
+
+</head>
+<body>
+  <div class="col">
+    <div class="card mt-2">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 style="background-color: #{{facultad.color}}">###################################</h2>
+            <h1>{{facultad.nombre}}</h1>
+            <p>{{facultad.color}}</p>
+            <p>{{facultad.url}}</p>
+            <p>{{facultad.id}}</p>
+            <h2>LOGUEADO COMO: {{rol}}</h2>
+            <div *ngIf="rol == 'estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
+            <div *ngIf="rol == 'docente'"><h3>Esto sólo se ve como docente</h3></div>
+            <div *ngIf="rol == 'administrador'"><h3>Esto sólo se ve como administrador</h3></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

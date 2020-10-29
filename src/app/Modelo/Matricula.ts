@@ -1,7 +1,7 @@
 export class Matricula {
-    cedula: String;
+    cedula: string;
     idFacultad: number;
-    tipo:String;
+    tipo:string;
     idCurso: number;
     
     Matricula(){}

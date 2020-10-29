@@ -1,7 +1,11 @@
+import { Curso } from './Curso';
+
 export class Facultad {
     id: number;
-    nombre: String;
-
+    nombre: string;
+    cursos: Array<Curso>;
+    url: string;
+    color: string;
     Facultad(){}
 }
 

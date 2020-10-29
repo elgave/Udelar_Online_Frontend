@@ -1,1 +1,25 @@
-<p>home works!</p>
+<head>
+
+</head>
+<body>
+  <div class="col">
+    <div class="card mt-2">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-group mt-1">
+              <li *ngFor="let facultad of facultades" class="list-group-item list-group-item-action mt-1">
+                <div (click)="redirect(facultad)">
+                  <span class="badge badge-dark mr-2"> {{facultad.id}}</span>
+                  <span>{{facultad.nombre}}</span>
+                  <span style="float: right">https://supercoolcustomURLfromANTEL/facultad/{{facultad.url}}
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

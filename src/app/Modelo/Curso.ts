@@ -1,6 +1,6 @@
 export class Curso {
     id: number;
-    nombre: String;
+    nombre: string;
     cantCreditos:number;
     facultadId: number;
     carreraId: number;

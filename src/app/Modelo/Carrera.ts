@@ -1,6 +1,6 @@
 export class Carrera {
     id: number;
-    nombre: String;
+    nombre: string;
     idFacultad:number;
     
     Carrera(){}

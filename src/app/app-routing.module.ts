@@ -16,11 +16,17 @@ import { UsuariosXFacultadReporteComponent } from './ModuloUdelar/Reportes/usuar
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/usuarios/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MainFacultadComponent } from './components/facultad/main/main.component';
 
 
 const routes: Routes = [
-  {path: '', component: LoginComponent },
-  {path: 'home', component: HomeComponent },
+  //! {path: 'home', component: EstudianteHome },
+  //! {path: 'docente/home', component: DocenteHome },
+  //! {path: 'backoffice/home', component: BackoffiHome },
+  //! {path: '', component: ListaFacultades },
+  {path: 'facultad/:fUrl', component: MainFacultadComponent},
+  //{path: 'login', component: LoginComponent },
+  {path: '', component: HomeComponent },
   {path: 'listarFacultades',component:ListarComponent},
   {path: 'addFacultad',component:AddComponent},
   {path: 'editFacultad',component:EditComponent},
@@ -34,7 +40,7 @@ const routes: Routes = [
   {path: 'addCurso',component:AddCursoComponent},
   {path: 'editCurso',component:EditCursoComponent},
   {path: 'listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent},
-  {path: 'login', component:LoginComponent},
+  {path: 'login/:fUrl', component:LoginComponent},
   {path: '**', component: PageNotFoundComponent }
 ];
 

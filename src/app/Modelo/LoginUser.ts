@@ -1,6 +1,7 @@
 export class LoginUser {
-    cedula: String;
-    password: String;
+    cedula: string;
+    password: string;
+    facultadid: number;
     
     LoginUser(){}
 }

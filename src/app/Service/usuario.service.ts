@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Usuario } from '../Modelo/Usuario';
 import { Response } from '../Modelo/Response';
 
@@ -29,7 +29,7 @@ export class UsuarioService {
   createUsuario(usuario:Usuario){
     return this.http.post<Response<Usuario[]>>(this.Url, usuario);
   }
-  getUsuarioId(cedula:String,facultadId:number/*,tipo:String*/){
+  getUsuarioId(cedula:string,facultadId:number/*,tipo:string*/){
     return this.http.get<Response<Usuario>>(this.Url+"/"+cedula+"/"+facultadId);
   }
   updateUsuario(usuario:Usuario){

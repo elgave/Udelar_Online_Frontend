@@ -8,6 +8,10 @@
                 <div class="form-group">
                     <label for="">Nombre:</label>
                     <input type="text"  class="form-control" [(ngModel)]="facultad.nombre" name="nombre">
+                    <label for="">Color:</label>
+                    <input type="text"  class="form-control" [(ngModel)]="facultad.color" name="color">
+                    <label for="">URL:</label>
+                    <input type="text"  class="form-control" [(ngModel)]="facultad.url" name="url">
                 </div>
                 <button (click)="Guardar(facultad)" class="btn btn-danger">Guardar</button>
             </form>

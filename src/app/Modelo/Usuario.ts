@@ -1,10 +1,15 @@
+import { Curso } from './Curso';
+import { Rol } from './Rol';
+
 export class Usuario {
-    cedula: String;
+    cedula: string;
     facultadId: number;
-    nombre:String;
-    apellido:String;
-    correo:String;
-    contrasena:String;
-    
+    nombre:string;
+    apellido:string;
+    correo:string;
+    contrasena:string;
+    cursos: Curso[];
+    roles: Rol[];
+
     Usuario(){}
 }

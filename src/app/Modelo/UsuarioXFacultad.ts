@@ -1,6 +1,6 @@
 export class UsuarioXFacultad {
     idFacultad: number;
-    nombreFacultad: String;
+    nombreFacultad: string;
     cantUsuarios:number;
 
     UsuarioXFacultad(){}
