@@ -8,7 +8,7 @@ import { Facultad } from './Modelo/Facultad';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'EntregaIndividual';
+  title = 'dotnet-frontend';
   
   
   constructor(private router:Router){}
