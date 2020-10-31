@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddCarreraComponent } from './add-carrera.component';
+import { FacultadFooterComponent } from './footer.component';
 
-describe('AddCarreraComponent', () => {
-  let component: AddCarreraComponent;
-  let fixture: ComponentFixture<AddCarreraComponent>;
+describe('FacultadFooterComponent', () => {
+  let component: FacultadFooterComponent;
+  let fixture: ComponentFixture<FacultadFooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddCarreraComponent ]
+      declarations: [ FacultadFooterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddCarreraComponent);
+    fixture = TestBed.createComponent(FacultadFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

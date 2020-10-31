@@ -9,9 +9,6 @@ import { EditComponent } from './UdelarComponentes/Facultad/edit/edit.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FacultadService } from './Service/facultad.service'
 import { HttpClientModule } from '@angular/common/http';
-import { AddCarreraComponent } from './UdelarComponentes/Carrera/add-carrera/add-carrera.component';
-import { ListarCarreraComponent } from './UdelarComponentes/Carrera/listar-carrera/listar-carrera.component';
-import { EditCarreraComponent } from './UdelarComponentes/Carrera/edit-carrera/edit-carrera.component';
 import { AddUsuarioComponent } from './UdelarComponentes/Usuario/add-usuario/add-usuario.component';
 import { ListarUsuarioComponent } from './UdelarComponentes/Usuario/listar-usuario/listar-usuario.component';
 import { EditUsuarioComponent } from './UdelarComponentes/Usuario/edit-usuario/edit-usuario.component';
@@ -21,6 +18,9 @@ import { EditCursoComponent } from './UdelarComponentes/Curso/edit-curso/edit-cu
 import { UsuariosXFacultadReporteComponent } from './ModuloUdelar/Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FacultadHeaderComponent } from './components/facultad/header/facultadheader.component';
+import { FacultadFooterComponent } from './components/facultad/footer/footer.component';
+import { FacultadSidebarComponent } from './components/facultad/sidebar/sidebar.component';
 import { LoginComponent } from './components/usuarios/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { MainFacultadComponent } from './components/facultad/main/main.component';
@@ -31,9 +31,6 @@ import { MainFacultadComponent } from './components/facultad/main/main.component
     ListarComponent,
     AddComponent,
     EditComponent,
-    AddCarreraComponent,
-    ListarCarreraComponent,
-    EditCarreraComponent,
     AddUsuarioComponent,
     ListarUsuarioComponent,
     EditUsuarioComponent,
@@ -42,10 +39,13 @@ import { MainFacultadComponent } from './components/facultad/main/main.component
     EditCursoComponent,
     UsuariosXFacultadReporteComponent,
     HomeComponent,
-    HeaderComponent,
     LoginComponent,
     PageNotFoundComponent,
-    MainFacultadComponent
+    MainFacultadComponent,
+    HeaderComponent,
+    FacultadHeaderComponent,
+    FacultadFooterComponent,
+    FacultadSidebarComponent
   ],
   imports: [
     BrowserModule,

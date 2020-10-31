@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditCarreraComponent } from './edit-carrera.component';
+import { FacultadHeaderComponent } from './facultadheader.component';
 
-describe('EditCarreraComponent', () => {
-  let component: EditCarreraComponent;
-  let fixture: ComponentFixture<EditCarreraComponent>;
+describe('FacultadHeaderComponent', () => {
+  let component: FacultadHeaderComponent;
+  let fixture: ComponentFixture<FacultadHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditCarreraComponent ]
+      declarations: [ FacultadHeaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditCarreraComponent);
+    fixture = TestBed.createComponent(FacultadHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

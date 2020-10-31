@@ -1,42 +1,42 @@
 <!-- Material form login -->
 <br>
-<div class="card">
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <div class="card mt-5" style="width: 40%;">
 
-    <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Iniciar Sesion</strong>
-    </h5>
+        <h5 class="card-header bg-dark white-text text-center py-4">
+            <strong>Iniciar Sesion</strong>
+        </h5>
 
-    <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
 
-        <!-- Form -->
-        <form [formGroup]="formLogin" (ngSubmit)="Login()" class="text-center" style="color: #757575;" action="#!">
-            <!-- Email -->
-            <div *ngIf="usuario==null" class="md-form">
-                <input type="text" formControlName="cedula" class="form-control">
-                <label for="materialLoginFormEmail">Cedula</label>
-            </div>
+            <!-- Form -->
+            <form [formGroup]="formLogin" (ngSubmit)="Login()" class="text-center" style="color: #757575;" action="#!">
+                <!-- Email -->
+                <div *ngIf="usuario==null" class="md-form">
+                    <input type="text" formControlName="cedula" class="form-control">
+                    <label for="materialLoginFormEmail">Cedula</label>
+                    <span class="error" [hidden]="!formLogin.controls.cedula.getError('incorrect')">Usuario no existe</span>
+                </div>
 
-            <!-- Password -->
-            <div *ngIf="usuario!=null" class="md-form">
-                <input type="password" formControlName="password" class="form-control">
-                <label for="materialLoginFormPassword">Contraseña</label>
-            </div>
+                <!-- Password -->
+                <div *ngIf="usuario!=null" class="md-form">
+                    <input type="password" formControlName="password" class="form-control">
+                    <label for="materialLoginFormPassword">Contraseña</label>
+                    <span class="error" [hidden]="!formLogin.controls.password.getError('incorrect')">Contraseña Incorrecta</span>
+                </div>
 
-            <div *ngIf="usuario!=null" class="md-form">
-                <select [(ngModel)]="rol" placeholder="Rol" class="form-control" formControlName="rol" id="rol">
-                    <option *ngFor="let r of usuario.roles" [value]="r.descripcion">{{r.descripcion}}</option>
-                </select>
-            </div>
+                <div *ngIf="usuario!=null" class="md-form">
+                    <select [(ngModel)]="rol" placeholder="Rol" class="form-control" formControlName="rol" id="rol">
+                        <option *ngFor="let r of usuario.roles" [value]="r.descripcion">{{r.descripcion}}</option>
+                    </select>
+                </div>
 
-            <!-- Sign in button -->
-            <button *ngIf="usuario==null" [disabled]="!formLogin.controls['cedula'].valid" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" (click)="loadUser()">Continuar</button>
-            <button *ngIf="usuario!=null" [disabled]="!formLogin.valid" type="submit" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">Iniciar Sesion</button>
-
-        </form>
-        <!-- Form -->
-
+                <!-- Sign in button -->
+                <button *ngIf="usuario==null" [disabled]="!formLogin.controls['cedula'].valid" class="btn btn-outline-dark btn-rounded btn-block my-4 waves-effect z-depth-0" (click)="loadUser()">Continuar</button>
+                <button *ngIf="usuario!=null" [disabled]="!formLogin.valid" type="submit" class="btn btn-outline-dark btn-rounded btn-block my-4 waves-effect z-depth-0">Iniciar Sesion</button>
+            </form>
+        </div>
     </div>
-
 </div>
 <!-- Material form login -->

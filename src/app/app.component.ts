@@ -16,9 +16,7 @@ export class AppComponent {
   ListarFacultades(){
     this.router.navigate(["listarFacultades"]);
   }
-  ListarCarreras(){
-    this.router.navigate(["listarCarreras"]);
-  }
+
   ListarUsuarios(){
     this.router.navigate(["listarUsuarios"]);
   }

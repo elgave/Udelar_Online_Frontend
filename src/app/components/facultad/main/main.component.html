@@ -1,17 +1,38 @@
-<head>
-
-</head>
+<head></head>
 <body>
-  <div class="col">
-    <div class="card mt-2">
+  <app-facultadheader id="header"></app-facultadheader>
+  <!-- sidebar. mover a facultad/sidebar (app-facultadsidebar) si se vuelve mas compleja-->
+  <div class="sidebar" style="border-color: #{{facultad.color}};">
+    <div class="card">
+      <div class="card-body" id="sidebarbody">
+        <div class="topdiv">
+          <h3>Cursos</h3>
+        </div>
+        <div *ngFor="let curso of facultad.cursos">
+          <div class="cursolink">
+            <a href="facultad/{{facultad.url}}/curso/{{curso.id}}">{{curso.nombre}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- contenido de la pagina principal. Le meteria comunicaciones por facultad, y algun texto de bienvenida o algo. para rellenar. -->
+  <main class="main">
+    <div class="card">
       <div class="card-body">
-        <div class="row">
+        <div *ngIf='isCurso' class="row">
           <div class="col-md-12">
-            <h2 style="background-color: #{{facultad.color}}">###################################</h2>
-            <h1>{{facultad.nombre}}</h1>
-            <p>{{facultad.color}}</p>
-            <p>{{facultad.url}}</p>
-            <p>{{facultad.id}}</p>
+            <h1>{{curso.nombre}}</h1>
+            <p>{{curso.cantCreditos}}</p>
+            <p>{{curso.facultadId}}</p>
+            <p>{{curso.id}}</p>
+          </div>
+        </div>
+        <div *ngIf='!isCurso' class="row">
+          <div class="col-md-12">
+            <h1>Bienvenido a {{facultad.nombre}}</h1>
+            <h2>Novedades:</h2>
             <h2>LOGUEADO COMO: {{rol}}</h2>
             <div *ngIf="rol == 'estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
             <div *ngIf="rol == 'docente'"><h3>Esto sólo se ve como docente</h3></div>
@@ -20,5 +41,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
+
+  <!-- footer simplisimo -->
+  <footer id="footer">
+    <app-facultadfooter></app-facultadfooter>
+  </footer>
 </body>

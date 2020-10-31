@@ -11,7 +11,8 @@ import { Usuario } from 'src/app/Modelo/Usuario';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent implements OnInit, OnDestroy{
@@ -39,17 +40,25 @@ export class LoginComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    if (sessionStorage.getItem('token')) this.router.navigateByUrl(`facultad/${sessionStorage.getItem('facultadUrl')}`)
+    if (sessionStorage.getItem('token')) this.router.navigateByUrl(`facultad/${sessionStorage.getItem('facultadUrl')}`);
     this.sub2 = this.http.get<Response<Array<Facultad>>>('http://localhost:54403/api/facultad')
       .subscribe(r => {
-        this.facultad = r.data.find(f => f.url = this.fUrl);
+        this.facultad = r.data.find(f => f.url == this.fUrl);
+        console.log(this.fUrl)
+        console.log(this.facultad)
       });
   }
 
   loadUser() {
+    console.log(`http://localhost:54403/api/usuario/${this.formLogin.value.cedula}/${this.facultad.id}`)
     this.sub3 = this.http.get<Response<Usuario>>(`http://localhost:54403/api/usuario/${this.formLogin.value.cedula}/${this.facultad.id}`)
       .subscribe(r => {
-        if (r.data != null) this.usuario = r.data;
+        if (r.data != null) {
+          this.usuario = r.data;
+          console.log(r.data);
+        } else {
+          this.formLogin.controls['cedula'].setErrors({'incorrect': true});
+        }
       });
   }
 
@@ -66,30 +75,16 @@ export class LoginComponent implements OnInit, OnDestroy{
             console.log('token', token);
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('facultadUrl', this.fUrl);
+            sessionStorage.setItem('facultadNombre', this.facultad.nombre);
             sessionStorage.setItem('facultadId', this.facultad.id.toString());
             this.rol = this.formLogin.value.rol;
             sessionStorage.setItem('rol', this.rol);
+            sessionStorage.setItem('mainColor', this.facultad.color);
+            sessionStorage.setItem('lightness', this.getLighness(this.facultad.color) ? 'light' : 'dark');
             this.router.navigateByUrl(`facultad/${this.fUrl}`);
-            console.log(this.rol);
-            console.log(this.rol);
-            console.log(this.rol);
-            console.log(this.rol);
-            console.log(this.rol);
-            console.log(this.rol);
-            console.log(this.rol);
-            //! sessionStorage.setItem('rol', rol.descripcion)
-            // switch (rol.descripcion) {
-            //   case 'administrador':
-            //     this.router.navigate(["adminHome"]);
-            //   break;
-            //   case 'docente':
-            //     this.router.navigate(["docenteHome"]);
-            //   break;
-            //   case 'estudiante':
-            //     this.router.navigate(["estudianteHome"]);
-            //   break;
-            // }
           }
+        } else {
+          this.formLogin.controls['password'].setErrors({'incorrect': true});
         }
       }, err => {
         console.log('Error en el login', err); 
@@ -102,5 +97,30 @@ export class LoginComponent implements OnInit, OnDestroy{
       this.sub2.unsubscribe();
       this.sub3.unsubscribe();
     }
+  }
+
+  getLighness(hexCode){
+    var rgb = hexCode.split(/(?=(?:..)*$)/);
+    let r = parseInt(rgb[0], 16);
+    let g = parseInt(rgb[1], 16);
+    let b = parseInt(rgb[2], 16);
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if (max == min) {
+      h = s = 0;
+    } else {
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch(max){
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+    }
+    //return [h, s, l];
+    if (l > 0.6) return true; else return false;
   }
 }

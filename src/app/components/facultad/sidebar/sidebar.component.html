@@ -1,0 +1,15 @@
+<!-- The sidebar -->
+<div>
+  <div class="card">
+    <div class="card-body">
+      <div class="topdiv">
+        <h3>Cursos</h3>
+      </div>
+      <div *ngFor="let curso of facultad.cursos">
+        <div class="cursolink">
+          <a href="facultad/{{facultad.url}}/curso/{{curso.id}}">{{curso.nombre}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

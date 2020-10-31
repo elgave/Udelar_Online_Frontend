@@ -1,0 +1,74 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color-dark">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand"><img src="assets/udelar.png"
+            class="img-fluid" alt="Responsive image" style="width: 80px"></a>
+    <!-- <a class="navbar-brand" href="#">Navbar</a>-->
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
+                <span class="sr-only">(current)</span>
+            </li>
+
+
+
+
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facultades</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/addFacultad']" routerLinkActive="router-link-active">Registrar</a>
+                    <a class="dropdown-item" [routerLink]="['/listarFacultades']" routerLinkActive="router-link-active">Listado de Facultades</a>
+                    <a class="dropdown-item" [routerLink]="['/editFacultad']" routerLinkActive="router-link-active">Editar</a>
+                </div>
+            </li>
+
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cursos</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/addCurso']" routerLinkActive="active">Registrar</a>
+                    <a class="dropdown-item" [routerLink]="['/listarCursos']" routerLinkActive="router-link-active">Listado de Cursos</a>
+                    <a class="dropdown-item" [routerLink]="['/editCurso']">Editar</a>
+                </div>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/addUsuario']" routerLinkActive="router-link-active">Registrarse</a>
+                    <a class="dropdown-item" [routerLink]="['/listarUsuarios']" routerLinkActive="router-link-active">Listado de Usuarios</a>
+                    <a class="dropdown-item" [routerLink]="['/editUsuario']" routerLinkActive="router-link-active">Editar</a>
+                </div>
+            </li>
+
+        </ul>
+        <!-- Links -->
+        <button type="button" class="btn btn-danger" style="float: right" (click)="logout()" [routerLink]="['/']">
+            Log out
+        </button>
+
+        <form class="form-inline">
+            <div class="md-form my-0">
+
+                <a href="" [routerLink]="['/login']" routerLinkActive="router-link-active"><i class="fas fa-user-alt white-text" ></i></a>
+            </div>
+        </form>
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->

@@ -3,9 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListarComponent } from './UdelarComponentes/Facultad/listar/listar.component';
 import { AddComponent } from './UdelarComponentes/Facultad/add/add.component';
 import { EditComponent } from './UdelarComponentes/Facultad/edit/edit.component';
-import { ListarCarreraComponent } from './UdelarComponentes/Carrera/listar-carrera/listar-carrera.component';
-import { AddCarreraComponent } from './UdelarComponentes/Carrera/add-carrera/add-carrera.component';
-import { EditCarreraComponent } from './UdelarComponentes/Carrera/edit-carrera/edit-carrera.component';
 import { ListarUsuarioComponent } from './UdelarComponentes/Usuario/listar-usuario/listar-usuario.component';
 import { AddUsuarioComponent } from './UdelarComponentes/Usuario/add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './UdelarComponentes/Usuario/edit-usuario/edit-usuario.component';
@@ -25,14 +22,10 @@ const routes: Routes = [
   //! {path: 'backoffice/home', component: BackoffiHome },
   //! {path: '', component: ListaFacultades },
   {path: 'facultad/:fUrl', component: MainFacultadComponent},
-  //{path: 'login', component: LoginComponent },
-  {path: '', component: HomeComponent },
+  {path: 'facultad/:fUrl/curso/:cursoId', component: MainFacultadComponent},
   {path: 'listarFacultades',component:ListarComponent},
   {path: 'addFacultad',component:AddComponent},
   {path: 'editFacultad',component:EditComponent},
-  {path: 'listarCarreras',component:ListarCarreraComponent},
-  {path: 'addCarrera',component:AddCarreraComponent},
-  {path: 'editCarrera',component:EditCarreraComponent},
   {path: 'listarUsuarios',component:ListarUsuarioComponent},
   {path: 'addUsuario',component:AddUsuarioComponent},
   {path: 'editUsuario',component:EditUsuarioComponent},
@@ -41,6 +34,7 @@ const routes: Routes = [
   {path: 'editCurso',component:EditCursoComponent},
   {path: 'listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent},
   {path: 'login/:fUrl', component:LoginComponent},
+  {path: '', component: HomeComponent },
   {path: '**', component: PageNotFoundComponent }
 ];
 
