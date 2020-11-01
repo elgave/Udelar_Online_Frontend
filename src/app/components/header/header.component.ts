@@ -14,8 +14,7 @@ export class HeaderComponent implements OnInit {
     this.textColor = sessionStorage.getItem('lightness') == 'light' ? 'black':'white';
   }
 
-  logout() {
-    sessionStorage.clear();
-    this.router.navigateByUrl('/');
+  gestion() {
+    this.router.navigateByUrl(`/gestion`);
   }
 }

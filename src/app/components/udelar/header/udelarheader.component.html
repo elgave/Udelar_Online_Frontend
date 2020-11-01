@@ -16,15 +16,6 @@
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
-                <span class="sr-only">(current)</span>
-            </li>
-
-
-
-
-
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facultades</a>
@@ -34,9 +25,6 @@
                     <a class="dropdown-item" [routerLink]="['/editFacultad']" routerLinkActive="router-link-active">Editar</a>
                 </div>
             </li>
-
-
-
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cursos</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
@@ -54,19 +42,11 @@
                     <a class="dropdown-item" [routerLink]="['/editUsuario']" routerLinkActive="router-link-active">Editar</a>
                 </div>
             </li>
-
         </ul>
         <!-- Links -->
         <button type="button" class="btn btn-danger" style="float: right" (click)="logout()" [routerLink]="['/']">
-            Log out
+            Salir
         </button>
-
-        <form class="form-inline">
-            <div class="md-form my-0">
-
-                <a href="" [routerLink]="['/login']" routerLinkActive="router-link-active"><i class="fas fa-user-alt white-text" ></i></a>
-            </div>
-        </form>
     </div>
     <!-- Collapsible content -->
 

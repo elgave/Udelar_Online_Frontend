@@ -6,6 +6,7 @@ export class Facultad {
     cursos: Array<Curso>;
     url: string;
     color: string;
+    icono: string;
     Facultad(){}
 }
 

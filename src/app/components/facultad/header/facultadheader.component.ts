@@ -21,7 +21,7 @@ export class FacultadHeaderComponent implements OnInit {
   }
 
   home() {
-    this.router.navigateByUrl(`/facultad/${this.fUrl}`)
+    this.router.navigateByUrl(`/facultad/${this.fUrl}`);
   }
 
   logout() {

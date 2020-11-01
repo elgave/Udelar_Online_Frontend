@@ -14,6 +14,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/usuarios/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MainFacultadComponent } from './components/facultad/main/main.component';
+import { GestionComponent } from './components/udelar/gestion.component';
+import { AdminLoginComponent } from './components/udelar/login/login.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,8 @@ const routes: Routes = [
   //! {path: 'docente/home', component: DocenteHome },
   //! {path: 'backoffice/home', component: BackoffiHome },
   //! {path: '', component: ListaFacultades },
+  {path: 'gestion', component: GestionComponent},
+  {path: 'gestion/login', component: AdminLoginComponent},
   {path: 'facultad/:fUrl', component: MainFacultadComponent},
   {path: 'facultad/:fUrl/curso/:cursoId', component: MainFacultadComponent},
   {path: 'listarFacultades',component:ListarComponent},

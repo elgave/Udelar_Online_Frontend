@@ -27,15 +27,15 @@ export class UsuarioService {
     });
   }
   createUsuario(usuario:Usuario){
-    return this.http.post<Response<Usuario[]>>(this.Url, usuario);
+    return this.http.post<Response<Usuario[]>>(this.Url, usuario, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
   }
   getUsuarioId(cedula:string,facultadId:number/*,tipo:string*/){
     return this.http.get<Response<Usuario>>(this.Url+"/"+cedula+"/"+facultadId);
   }
   updateUsuario(usuario:Usuario){
-     return this.http.put<Response<Usuario>>(this.Url+"/",usuario);
+     return this.http.put<Response<Usuario>>(this.Url+"/",usuario, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
   }
   deleteUsuario(usuario:Usuario){
-    return this.http.delete<Response<Usuario[]>>(this.Url+"/"+usuario.cedula+"/"+usuario.facultadId);
+    return this.http.delete<Response<Usuario[]>>(this.Url+"/"+usuario.cedula+"/"+usuario.facultadId, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
   }
 }

@@ -12,8 +12,9 @@
                     <input type="text"  class="form-control" [(ngModel)]="facultad.color" name="color">
                     <label for="">URL:</label>
                     <input type="text"  class="form-control" [(ngModel)]="facultad.url" name="url">
+                    <input type="file" #file placeholder="Subir Icono" (change)="subirIcono(file.files)">
                 </div>
-                <button (click)="Guardar(facultad)" class="btn btn-danger">Guardar</button>
+                <button (click)="Guardar()" class="btn btn-danger">Guardar</button>
             </form>
         </div>
     </div>

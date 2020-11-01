@@ -24,11 +24,17 @@ import { FacultadSidebarComponent } from './components/facultad/sidebar/sidebar.
 import { LoginComponent } from './components/usuarios/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { MainFacultadComponent } from './components/facultad/main/main.component';
+import { GestionComponent } from './components/udelar/gestion.component';
+import { UdelarHeaderComponent } from './components/udelar/header/udelarheader.component';
+import { AdminLoginComponent } from './components/udelar/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListarComponent,
+    GestionComponent,
+    UdelarHeaderComponent,
+    AdminLoginComponent,
     AddComponent,
     EditComponent,
     AddUsuarioComponent,

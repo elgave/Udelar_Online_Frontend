@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-udelarheader',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './udelarheader.component.html',
+  styleUrls: ['./udelarheader.component.css']
 })
 export class UdelarHeaderComponent implements OnInit {
   constructor(private router: Router) { }
