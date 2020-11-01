@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacultadService } from 'src/app/Service/facultad.service';
 import { Facultad } from 'src/app/Modelo/Facultad';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
@@ -9,11 +10,18 @@ import { Facultad } from 'src/app/Modelo/Facultad';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-
   facultad:Facultad = new Facultad();
-  constructor(private router:Router,private service:FacultadService) { }
+  constructor(private router:Router,private service:FacultadService, private fb: FormBuilder) { }
+
+  facultadForm = this.fb.group({
+    nombre: ["", Validators.required],
+    color: ["", Validators.required],
+    url: ["", Validators.required]
+  });
+ 
 
   ngOnInit(): void {
+    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
     this.Editar();
   }
 
@@ -26,11 +34,12 @@ export class EditComponent implements OnInit {
   }
 
   Actualizar(facultad:Facultad){
+    console.log(this.facultad.color)
     this.service.updateFacultad(facultad)
     .subscribe(data=>{
       this.facultad = data.data;
-      alert("Se actualizo con Exito...!!!");
-      this.router.navigate(["listar"]);
+      alert("Se actualizo con éxito.");
+      this.router.navigate(["listarFacultades"]);
     })
   }
 

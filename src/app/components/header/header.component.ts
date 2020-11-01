@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Facultad } from 'src/app/Modelo/Facultad';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   textColor: string;
+  facultad: Facultad;
   constructor(private router: Router) { }
 
   ngOnInit(): void {

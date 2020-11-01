@@ -1,21 +1,25 @@
+<app-udelarheader></app-udelarheader>
 <div class="container col-md-6">
     <div class="card">
         <div class="card-header">
             <h3>Agregar Curso</h3>
         </div>
         <div class="card-body">
-            <form action="">
+            <form [formGroup]="cursoForm">
                 <div class="form-group">
                     <label for="">Nombre:</label>
-                    <input type="text"  class="form-control" [(ngModel)]="curso.nombre" name="nombre">
+                    <input type="text"  class="form-control" [(ngModel)]="curso.nombre" name="nombre" [ngClass]="{'is-invalid':cursoForm.get('nombre').errors && cursoForm.get('nombre').touched}" formControlName="nombre">
                     
                     <label for="">Cantidad de creditos:</label>
-                    <input type="text"  class="form-control" [(ngModel)]="curso.cantCreditos" name="cantCreditos">
+                    <input type="number"  class="form-control" [(ngModel)]="curso.cantCreditos" name="cantCreditos" [ngClass]="{'is-invalid':(cursoForm.get('creditos').errors && cursoForm.get('creditos').touched) || cursoForm.get('creditos').value<1}" formControlName="creditos" required maxlength=2>
 
-                    <label for="">ID de Facultad:</label>
-                    <input type="text"  class="form-control" [(ngModel)]="curso.facultadId" name="facultadId">                    
+                    <label for="">Facultad:</label>
+                    <select [(ngModel)]="curso.facultadId" [ngClass]="{'is-invalid':cursoForm.get('facultadid').errors && cursoForm.get('facultadid').touched}" placeholder="ID facultad" class="form-control"
+                      formControlName="facultadid" id="fid">
+                      <option *ngFor="let fac of facultades" [value]="fac.id">{{fac.nombre}}</option>
+                    </select>
                 </div>
-                <button (click)="Guardar(curso)" class="btn btn-danger">Guardar</button>
+                <button (click)="Guardar(curso)" [disabled]="cursoForm.invalid" class="btn btn-danger">Guardar</button>
             </form>
         </div>
     </div>

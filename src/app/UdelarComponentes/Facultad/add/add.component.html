@@ -1,21 +1,32 @@
-<div class="container col-md-6">
+<app-udelarheader></app-udelarheader>
+<div class="container col-md-6" style="margin-top: 20px;">
     <div class="card">
         <div class="card-header">
             <h3>Agregar Facultad</h3>
         </div>
         <div class="card-body">
-            <form action="">
-                <div class="form-group">
-                    <label for="">Nombre:</label>
-                    <input type="text"  class="form-control" [(ngModel)]="facultad.nombre" name="nombre">
-                    <label for="">Color:</label>
-                    <input type="text"  class="form-control" [(ngModel)]="facultad.color" name="color">
-                    <label for="">URL:</label>
-                    <input type="text"  class="form-control" [(ngModel)]="facultad.url" name="url">
+            <form [formGroup]="facultadForm">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" [(ngModel)]="facultad.nombre" [ngClass]="{'is-invalid':facultadForm.get('nombre').errors && facultadForm.get('nombre').touched}" placeholder="Nombre"
+                        class="form-control" formControlName="nombre" id="fnombre" required minlength=8 required maxlength=40>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" [(ngModel)]="facultad.url" [ngClass]="{'is-invalid':facultadForm.get('url').errors && facultadForm.get('url').touched}" placeholder="URL"
+                        class="form-control" formControlName="url" id="url" required minlength=2 required maxlength=10>
+                    </div>
+                    <div class="form-group">
+                      <input type="color" [(ngModel)]="facultad.color" [ngClass]="{'is-invalid':facultadForm.get('color').errors && facultadForm.get('color').touched}" placeholder="Color" class="form-control"
+                        formControlName="color" id="color">
+                    </div>
                     <input type="file" #file placeholder="Subir Icono" (change)="subirIcono(file.files)">
+                    <button (click)="Guardar()" [disabled]="facultadForm.invalid" class="btn btn-dark" style="margin-top: 10px;">
+                      Agregar
+                    </button>
+                  </div>
                 </div>
-                <button (click)="Guardar()" class="btn btn-danger">Guardar</button>
-            </form>
+              </form>
         </div>
     </div>
 </div>

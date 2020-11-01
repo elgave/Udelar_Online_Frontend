@@ -1,40 +1,37 @@
-
+<app-udelarheader></app-udelarheader>
     <div class="container col-md-6">
         <div class="card">
             <div class="card-header">
                 <h3>Agregar Usuario</h3>
             </div>
             <div class="card-body">
-                <form action="" #formularioRegistro="ngForm">
+                <form [formGroup]="userForm">
                     <div class="form-group">
                         <label for="">Cedula:</label>
-                        <input type="text"  class="form-control" id="cedula" [(ngModel)]="usuario.cedula" name="cedula" required #cedula="ngModel">
-                        <div *ngIf = "cedula.invalid &&  (cedula.dirty || cedula.touched)" class="alert alert-danger">
-                            <div *ngIf="cedula.errors.required">
-                                La Cedula es requerida.
-                            </div>
-                        </div>
-                        <label for="">IdFacultad:</label>
-                        <input type="text"  class="form-control" [(ngModel)]="usuario.facultadId" name="facultadId">
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.cedula" name="cedula" [ngClass]="{'is-invalid':userForm.get('cedula').errors && userForm.get('cedula').touched}" formControlName="cedula">
+                        <label for="">Facultad:</label>
+                        <select [(ngModel)]="usuario.facultadId" [ngClass]="{'is-invalid':userForm.get('facultadid').errors && userForm.get('facultadid').touched}" placeholder="ID facultad" class="form-control"
+                            formControlName="facultadid" id="fid">
+                            <option *ngFor="let fac of facultades" [value]="fac.id">{{fac.nombre}}</option>
+                        </select>
                         <label for="">Nombre:</label>
-                        <input type="text"  class="form-control" [(ngModel)]="usuario.nombre" name="nombre">
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.nombre" name="nombre" [ngClass]="{'is-invalid':userForm.get('nombre').errors && userForm.get('nombre').touched}" formControlName="nombre">
                         <label for="">Apellido:</label>
-                        <input type="text"  class="form-control" [(ngModel)]="usuario.apellido" name="apellido">
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.apellido" name="apellido" [ngClass]="{'is-invalid':userForm.get('apellido').errors && userForm.get('apellido').touched}" formControlName="apellido">
                         <label for="">Correo:</label>
-                        <input type="text"  class="form-control" [(ngModel)]="usuario.correo" name="correo">
+                        <input type="text"  class="form-control" [(ngModel)]="usuario.correo" name="mail" [ngClass]="{'is-invalid':userForm.get('mail').errors && userForm.get('mail').touched}" formControlName="mail">
                         <label for="">Contraseña:</label>
-                        <input type="password"  class="form-control" id="contrasena" required minlength="4" 
-                        [(ngModel)]="usuario.contrasena" name="contrasena" #contrasena="ngModel">
-                        <div *ngIf = "contrasena.invalid &&  (contrasena.dirty || contrasena.touched)" class="alert alert-danger">
-                            <div *ngIf="contrasena.errors.required">
+                        <input type="password"  class="form-control" [(ngModel)]="usuario.contrasena" name="password" [ngClass]="{'is-invalid':userForm.get('password').errors && userForm.get('password').touched}" formControlName="password" required minlength=6>
+                        <div *ngIf = "userForm.get('password').invalid &&  (userForm.get('password').dirty || userForm.get('password').touched)" class="alert alert-danger">
+                            <div *ngIf="userForm.get('password').errors.required">
                                 La Contraseña es requerida.
                             </div>
-                            <div *ngIf="contrasena.errors.minlength">
-                                La Contraseña debe tener minimo 4.
+                            <div *ngIf="userForm.get('password').errors.minlength">
+                                La Contraseña debe tener minimo 6 caracteres.
                             </div>
                         </div>
                     </div>
-                    <button (click)="Guardar(usuario)" class="btn btn-danger" [disabled]="!formularioRegistro.form.valid">Guardar</button>
+                    <button (click)="Guardar(usuario)" class="btn btn-danger" [disabled]="userForm.invalid">Guardar</button>
                 </form>
             </div>
         </div>

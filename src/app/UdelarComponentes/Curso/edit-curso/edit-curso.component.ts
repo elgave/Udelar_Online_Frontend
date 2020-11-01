@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Curso } from 'src/app/Modelo/Curso';
 import {Router} from '@angular/router'
 import { CursoService } from 'src/app/Service/curso.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-curso',
@@ -11,10 +12,16 @@ import { CursoService } from 'src/app/Service/curso.service';
 export class EditCursoComponent implements OnInit {
 
   curso:Curso = new Curso();
-  constructor(private router:Router,private service:CursoService) { }
+  constructor(private router:Router,private service:CursoService, private fb: FormBuilder) { }
+
+  cursoForm = this.fb.group({
+    nombre: ["", Validators.required],
+    creditos: ["", Validators.required]
+  });
 
   ngOnInit(): void {
     this.Editar();
+    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
   }
 
   Editar(){
@@ -30,7 +37,7 @@ export class EditCursoComponent implements OnInit {
     this.service.updateCurso(curso)
     .subscribe(data=>{
       this.curso = data.data;
-      alert("Se actualizo con Exito...!!!");
+      alert("Se actualizo con éxito.");
       this.router.navigate(["listarCursos"]);
     })
   }

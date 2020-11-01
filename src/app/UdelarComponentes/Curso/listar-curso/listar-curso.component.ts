@@ -17,6 +17,7 @@ export class ListarCursoComponent implements OnInit {
   matricula:Matricula = new Matricula();
 
   ngOnInit() {
+    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
     this.service.getCursos()
     .subscribe(data=>{
       this.cursos=data.data;
@@ -32,30 +33,10 @@ export class ListarCursoComponent implements OnInit {
     this.service.deleteCurso(curso)
     .subscribe(data=>{
       this.cursos = this.cursos.filter(c=> c!==curso);
-      alert("Curso eliminado con exito");
+      alert("Curso eliminado con éxito.");
     })
   }
   Nuevo(){
     this.router.navigate(["addCurso"]);
   }
-
-  Matricularse(){
-
-    this.matricula.cedula = '51159355'
-    this.matricula.idFacultad = 1;
-    this.matricula.tipo = 'ADM';
-    this.matricula.idCurso = 1;
-
-
-    this.service.matricularse(this.matricula)
-    .subscribe(data=>{
-      if (data){
-      alert("Se matriculo con exito");
-      }
-      else
-      alert("No se pudo matricular");
-
-    })
-  }
-
 }

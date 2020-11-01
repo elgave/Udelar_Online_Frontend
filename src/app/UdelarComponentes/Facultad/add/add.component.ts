@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacultadService } from 'src/app/Service/facultad.service';
-import { FactoryOrValue } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { Facultad } from 'src/app/Modelo/Facultad';
-import { Response } from 'src/app/Modelo/Response';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add',
@@ -12,15 +11,23 @@ import { Response } from 'src/app/Modelo/Response';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  progress: number;
-  icono: FormData;
-  constructor(private router:Router,private service:FacultadService, private http:HttpClient) { }
- 
   facultad:Facultad = new Facultad();
+  icono: FormData;
+  constructor(private router:Router,private service:FacultadService, private http:HttpClient, private fb: FormBuilder) { }
+  
+  facultadForm = this.fb.group({
+    nombre: ["", Validators.required],
+    color: ["", Validators.required],
+    url: ["", Validators.required],
+    icono: ["", Validators.required]
+  });
+ 
   ngOnInit(): void {
+    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
   }
 
   subirIcono(files) {
+    this.facultadForm.controls['icono'].setErrors(null);
     let icono = <File>files[0];
     this.icono = new FormData();
     this.icono.append('icono', icono);
@@ -30,11 +37,11 @@ export class AddComponent implements OnInit {
   }
 
   Guardar(){
+    //this.facultad.color = this.facultad.color.substr(1,6);
     this.service.createFacultad(this.facultad, this.icono)
     .subscribe(data=>{
-      alert(`Se Agrego con Exito!`);
+      alert(`Se Agrego con éxito.`);
       this.router.navigate(["listarFacultades"]);
     })
   }
-
 }

@@ -1,13 +1,22 @@
-<div class="container col-md-6">
+<app-udelarheader></app-udelarheader>
+<div class="container col-md-6" style="margin-top: 20px;">
     <div class="card">
         <div class="card-header">
             <h3>Modificar Facultad</h3>
         </div>
         <div class="card-body">
-            <form action="">
+            <form [formGroup]="facultadForm">
                 <div class="form-group">
                     <label for="">Nombre:</label>
-                    <input type="text"  class="form-control" [(ngModel)]="facultad.nombre" name="nombre">
+                    <input type="text" class="form-control" [(ngModel)]="facultad.nombre" name="nombre" formControlName="nombre" [ngClass]="{'is-invalid':facultadForm.get('nombre').errors && facultadForm.get('nombre').touched}" required minlength=8 required maxlength=40>
+                </div>
+                <div class="form-group">
+                    <label for="">URL:</label>
+                    <input type="text" class="form-control" [(ngModel)]="facultad.url" name="url" formControlName="url" [ngClass]="{'is-invalid':facultadForm.get('url').errors && facultadForm.get('url').touched}" required minlength=2 required maxlength=10>
+                </div>
+                <div class="form-group">
+                    <label for="">Color:</label>
+                    <input type="color" class="form-control" [(ngModel)]="facultad.color" name="color" formControlName="color" [ngClass]="{'is-invalid':facultadForm.get('color').errors && facultadForm.get('color').touched}">
                 </div>
                 <button (click)="Actualizar(facultad)" class="btn btn-danger">Actualizar</button>
             </form>

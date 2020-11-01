@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy{
             this.rol = this.formLogin.value.rol;
             sessionStorage.setItem('rol', this.rol);
             sessionStorage.setItem('mainColor', this.facultad.color);
-            sessionStorage.setItem('lightness', this.getLighness(this.facultad.color) ? 'light' : 'dark');
+            sessionStorage.setItem('lightness', this.getLighness(this.facultad.color.substr(1,6)) ? 'light' : 'dark');
             this.router.navigateByUrl(`facultad/${this.fUrl}`);
           }
         } else {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'
-import {Usuario} from 'src/app/Modelo/Usuario'
+import { Router } from '@angular/router'
+import { Usuario } from 'src/app/Modelo/Usuario'
 import { UsuarioService } from 'src/app/Service/usuario.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-usuario',
@@ -11,9 +12,17 @@ import { UsuarioService } from 'src/app/Service/usuario.service';
 export class EditUsuarioComponent implements OnInit {
 
   usuario:Usuario = new Usuario();
-  constructor(private router:Router,private service:UsuarioService) { }
+  constructor(private router:Router,private service:UsuarioService, private fb: FormBuilder) { }
+
+  userForm = this.fb.group({
+    nombre: ["", Validators.required],
+    apellido: ["", Validators.required],
+    mail: ["", Validators.required],
+    password: ["", Validators.required]
+  });
 
   ngOnInit(): void {
+    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
     this.Editar();
   }
 
@@ -30,7 +39,7 @@ export class EditUsuarioComponent implements OnInit {
     this.service.updateUsuario(usuario)
     .subscribe(data=>{
       this.usuario = data.data;
-      alert("Se actualizo con Exito...!!!");
+      alert("Se actualizo con éxito.");
       this.router.navigate(["listarUsuarios"]);
     })
   }

@@ -17,6 +17,7 @@ export class ListarUsuarioComponent implements OnInit, OnDestroy {
   constructor(private service:UsuarioService,private router:Router) { }
 
   ngOnInit() {
+    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
     this.subRef$ =  this.service.getUsuarios()
     .subscribe(data=>{
       this.usuarios=data.body.data;
@@ -36,7 +37,7 @@ export class ListarUsuarioComponent implements OnInit, OnDestroy {
     this.service.deleteUsuario(usuario)
     .subscribe(data=>{
       this.usuarios = this.usuarios.filter(u=> u!==usuario);
-      alert("Usuario eliminado con exito");
+      alert("Usuario eliminado con éxito.");
     })
   }
   Nuevo(){

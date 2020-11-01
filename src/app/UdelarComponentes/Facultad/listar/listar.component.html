@@ -1,31 +1,38 @@
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h3>Facultades</h3>
-        </div>
-        <div class="card-body">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th class="text-center">Id</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let facultad of facultades"  class="text-center">
-                        <td>{{facultad.id}}</td>
-                        <td>{{facultad.nombre}}</td>
-                        <td>
-                            <button (click)="Editar(facultad)" class="btn btn-warning">Editar</button>
-                            <button (click)="Delete(facultad)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <button (click)= "Nuevo()"  class="btn btn-info" style="margin-left:10px;">Agregar</button>
-            </div>
-        </div>
+<app-udelarheader></app-udelarheader>
+<div class="container" style="margin-top: 20px;">
+  <div class="card">
+    <div class="card-header">
+      <h3>Facultades</h3>
     </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">URL</th>
+            <th class="text-center">Color</th>
+            <th class="text-center">Icono</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let facultad of facultades"  class="text-center">
+            <td>{{facultad.id}}</td>
+            <td>{{facultad.nombre}}</td>
+            <td>{{facultad.url}}</td>
+            <td><svg width="20" height="20"><rect width="30" height="30" style="fill:{{facultad.color}};stroke-width:3;stroke:rgb(0,0,0)" /></svg></td>
+            <td><img src="{{currentEnv.s3url}}/facultadIcon/{{facultad.url}}.png" alt="No Icon" style="width: 80px"></td>
+            <td>
+              <button (click)="Editar(facultad)" class="btn btn-warning">Editar</button>
+              <button (click)="Delete(facultad)" class="btn btn-danger" style="margin-left: 10px;">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <button (click)= "Nuevo()"  class="btn btn-info" style="margin-left:10px;">Agregar</button>
+      </div>
+    </div>
+  </div>
 </div>
