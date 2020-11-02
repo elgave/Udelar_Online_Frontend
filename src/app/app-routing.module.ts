@@ -19,10 +19,6 @@ import { AdminLoginComponent } from './components/udelar/login/login.component';
 
 
 const routes: Routes = [
-  //! {path: 'home', component: EstudianteHome },
-  //! {path: 'docente/home', component: DocenteHome },
-  //! {path: 'backoffice/home', component: BackoffiHome },
-  //! {path: '', component: ListaFacultades },
   {path: 'gestion', component: GestionComponent},
   {path: 'gestion/login', component: AdminLoginComponent},
   {path: 'facultad/:fUrl', component: MainFacultadComponent},

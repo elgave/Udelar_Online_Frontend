@@ -23,9 +23,6 @@ export class LoginComponent implements OnInit, OnDestroy{
   facultad: Facultad = null;
   rol: string = null;
 
-  subRef$: Subscription;
-  sub2: Subscription;
-  sub3: Subscription;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -41,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     if (sessionStorage.getItem('token')) this.router.navigateByUrl(`facultad/${sessionStorage.getItem('facultadUrl')}`);
-    this.sub2 = this.http.get<Response<Array<Facultad>>>('http://localhost:54403/api/facultad')
+    this.http.get<Response<Array<Facultad>>>('http://localhost:54403/api/facultad')
       .subscribe(r => {
         this.facultad = r.data.find(f => f.url == this.fUrl);
         console.log(this.fUrl)
@@ -51,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   loadUser() {
     console.log(`http://localhost:54403/api/usuario/${this.formLogin.value.cedula}/${this.facultad.id}`)
-    this.sub3 = this.http.get<Response<Usuario>>(`http://localhost:54403/api/usuario/${this.formLogin.value.cedula}/${this.facultad.id}`)
+    this.http.get<Response<Usuario>>(`http://localhost:54403/api/usuario/${this.formLogin.value.cedula}/${this.facultad.id}`)
       .subscribe(r => {
         if (r.data != null) {
           this.usuario = r.data;
@@ -67,7 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     this.usuarioLogin.password = this.formLogin.value.password;
     this.usuarioLogin.facultadid = this.facultad.id;
     
-    this.subRef$ = this.http.post<Response<string>>('http://localhost:54403/api/usuario/login', this.usuarioLogin)
+    this.http.post<Response<string>>('http://localhost:54403/api/usuario/login', this.usuarioLogin)
       .subscribe(res => {
         if (res.data != null) {
           const token  = res.data;
@@ -78,6 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy{
             sessionStorage.setItem('facultadNombre', this.facultad.nombre);
             sessionStorage.setItem('facultadId', this.facultad.id.toString());
             this.rol = this.formLogin.value.rol;
+            sessionStorage.setItem('cedula', this.usuarioLogin.cedula);
             sessionStorage.setItem('rol', this.rol);
             sessionStorage.setItem('mainColor', this.facultad.color);
             sessionStorage.setItem('lightness', this.getLighness(this.facultad.color.substr(1,6)) ? 'light' : 'dark');
@@ -89,14 +87,6 @@ export class LoginComponent implements OnInit, OnDestroy{
       }, err => {
         console.log('Error en el login', err); 
       });
-  }
-
-  ngOnDestroy(){
-    if (this.subRef$){
-      this.subRef$.unsubscribe(); 
-      this.sub2.unsubscribe();
-      this.sub3.unsubscribe();
-    }
   }
 
   getLighness(hexCode){
@@ -123,4 +113,6 @@ export class LoginComponent implements OnInit, OnDestroy{
     //return [h, s, l];
     if (l > 0.6) return true; else return false;
   }
+
+  ngOnDestroy() {}
 }

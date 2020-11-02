@@ -30,8 +30,23 @@
                                 La Contraseña debe tener minimo 6 caracteres.
                             </div>
                         </div>
+                        <br>
+                        <table style="width: 100%;">
+                            <tr>
+                                <th style="width: 33%;">Administrador</th>
+                                <th style="width: 33%;">Docente</th>
+                                <th style="width: 33%;">Estudiante</th>
+                            </tr>
+                            <tr>
+                                <td style="width: 33%;"><input type="checkbox" id="rol1" class="form-control" [(ngModel)]="rol1" name="rol1" formControlName="roles"></td>
+                                <td style="width: 33%;"><input type="checkbox" id="rol2" class="form-control" [(ngModel)]="rol2" name="rol2" formControlName="roles"></td>
+                                <td style="width: 33%;"><input type="checkbox" id="rol3" class="form-control" [(ngModel)]="rol3" name="rol3" formControlName="roles"></td>
+                            </tr>
+                        </table>
+                       
+
                     </div>
-                    <button (click)="Guardar(usuario)" class="btn btn-danger" [disabled]="userForm.invalid">Guardar</button>
+                    <button (click)="Guardar(usuario)" class="btn btn-danger" [disabled]="userForm.invalid || !rol1&&!rol2&&!rol3">Guardar</button>
                 </form>
             </div>
         </div>

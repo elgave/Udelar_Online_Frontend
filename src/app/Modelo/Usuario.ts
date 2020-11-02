@@ -10,6 +10,4 @@ export class Usuario {
     contrasena:string;
     cursos: Curso[];
     roles: Rol[];
-
-    Usuario(){}
 }

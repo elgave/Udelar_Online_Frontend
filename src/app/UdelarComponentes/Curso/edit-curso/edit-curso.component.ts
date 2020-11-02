@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from 'src/app/Modelo/Curso';
-import {Router} from '@angular/router'
+import { Usuario } from 'src/app/Modelo/Usuario';
+import { Router } from '@angular/router'
 import { CursoService } from 'src/app/Service/curso.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { FacultadService } from 'src/app/Service/facultad.service';
 
 @Component({
   selector: 'app-edit-curso',
@@ -12,11 +14,18 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class EditCursoComponent implements OnInit {
 
   curso:Curso = new Curso();
-  constructor(private router:Router,private service:CursoService, private fb: FormBuilder) { }
+  docente:Usuario;
+  docenteid:string;
+  docentes:Array<Usuario>;
+  constructor(private router:Router,private service:CursoService, private fb: FormBuilder, private fs: FacultadService) { }
 
   cursoForm = this.fb.group({
     nombre: ["", Validators.required],
     creditos: ["", Validators.required]
+  });
+
+  docenteForm = this.fb.group({
+    docente: ["", Validators.required]
   });
 
   ngOnInit(): void {
@@ -29,7 +38,8 @@ export class EditCursoComponent implements OnInit {
     this.service.getCursoId(+id)
     .subscribe(data=>{
       this.curso=data.data;
-    })
+      this.fs.getFacultadId(this.curso.facultadId).subscribe(r => this.docentes = r.data.usuarios.filter(u => u.roles.find(rol => rol.descripcion == 'docente')));
+    });
   }
 
   Actualizar(curso: Curso){
@@ -42,4 +52,8 @@ export class EditCursoComponent implements OnInit {
     })
   }
 
+  AgregarDocente() {
+    this.docente = this.docentes.find(d => d.cedula = this.docenteid);
+    this.service.agregarDocente(this.curso.id, this.docente).subscribe(r=>alert(`Docente ${this.docente.nombre} agregado al curso ${r.data.nombre}`));
+  }
 }

@@ -1,50 +1,52 @@
 <head></head>
 <body>
-  <app-facultadheader id="header"></app-facultadheader>
-  <!-- sidebar. mover a facultad/sidebar (app-facultadsidebar) si se vuelve mas compleja-->
-  <div class="sidebar" style="border-color: {{facultad.color}};">
-    <div class="card">
-      <div class="card-body" id="sidebarbody">
-        <div class="topdiv">
-          <h3>Cursos</h3>
-        </div>
-        <div *ngFor="let curso of facultad.cursos">
-          <div class="cursolink">
-            <a href="facultad/{{facultad.url}}/curso/{{curso.id}}">{{curso.nombre}}</a>
-          </div>
-        </div>
-      </div>
+  <div id="loadingScreen" *ngIf='!ready'>
+    <h1 id="loadingText">CARGANDO</h1>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img style="width: 300px" src="assets/loading.gif" alt="loading">
     </div>
   </div>
-
-  <!-- contenido de la pagina principal. Le meteria comunicaciones por facultad, y algun texto de bienvenida o algo. para rellenar. -->
-  <main class="main">
-    <div class="card">
-      <div class="card-body">
-        <div *ngIf='isCurso' class="row">
-          <div class="col-md-12">
-            <h1>{{curso.nombre}}</h1>
-            <p>{{curso.cantCreditos}}</p>
-            <p>{{curso.facultadId}}</p>
-            <p>{{curso.id}}</p>
+  <div *ngIf='ready'>
+    <app-facultadheader id="header"></app-facultadheader>
+    <!-- sidebar. mover a facultad/sidebar (app-facultadsidebar) si se vuelve mas compleja-->
+    <div class="sidebar" style="border-color: {{facultad.color}};">
+      <div class="card">
+        <div class="card-body" id="sidebarbody">
+          <div class="topdiv">
+            <h3>Cursos</h3>
           </div>
-        </div>
-        <div *ngIf='!isCurso' class="row">
-          <div class="col-md-12">
-            <h1>Bienvenido a {{facultad.nombre}}</h1>
-            <h2>Novedades:</h2>
-            <h2>LOGUEADO COMO: {{rol}}</h2>
-            <div *ngIf="rol == 'estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
-            <div *ngIf="rol == 'docente'"><h3>Esto sólo se ve como docente</h3></div>
-            <div *ngIf="rol == 'administrador'"><h3>Esto sólo se ve como administrador</h3></div>
+          <div *ngFor="let curso of facultad.cursos">
+            <div class="cursolink">
+              <a href="facultad/{{facultad.url}}/curso/{{curso.id}}">{{curso.nombre}}</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </main>
+    <!-- contenido de la pagina principal. Le meteria comunicaciones por facultad, y algun texto de bienvenida o algo. para rellenar. -->
+    <main class="main">
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf='isCurso' class="row">
+            <app-curso></app-curso>
+          </div>
+          <div *ngIf='!isCurso' class="row">
+            <div class="col-md-12">
+              <h1>Bienvenido a {{facultad.nombre}}</h1>
+              <h3>Identificado como: {{rol}}</h3>
+              <h2>Novedades:</h2>
+              <div *ngIf="rol == 'estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
+              <div *ngIf="rol == 'docente'"><h3>Esto sólo se ve como docente</h3></div>
+              <div *ngIf="rol == 'administrador'"><h3>Esto sólo se ve como administrador</h3></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-  <!-- footer simplisimo -->
-  <footer id="footer">
-    <app-facultadfooter></app-facultadfooter>
-  </footer>
+    <!-- footer simplisimo -->
+    <footer id="footer">
+      <app-facultadfooter></app-facultadfooter>
+    </footer>
+  </div>
 </body>

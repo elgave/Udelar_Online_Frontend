@@ -6,4 +6,5 @@ export class Curso {
     cantCreditos:number;
     facultadId: number;
     usuarios: Array<Usuario>;
+    docentes: Array<Usuario>;
 }

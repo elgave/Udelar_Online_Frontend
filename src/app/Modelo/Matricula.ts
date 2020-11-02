@@ -3,6 +3,4 @@ export class Matricula {
     idFacultad: number;
     tipo:string;
     idCurso: number;
-    
-    Matricula(){}
 }

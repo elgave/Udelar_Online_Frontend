@@ -1,4 +1,5 @@
 import { Curso } from './Curso';
+import { Usuario } from './Usuario';
 
 export class Facultad {
     id: number;
@@ -7,6 +8,6 @@ export class Facultad {
     url: string;
     color: string;
     icono: string;
-    Facultad(){}
+    usuarios: Array<Usuario>;
 }
 

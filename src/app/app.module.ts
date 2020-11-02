@@ -27,6 +27,7 @@ import { MainFacultadComponent } from './components/facultad/main/main.component
 import { GestionComponent } from './components/udelar/gestion.component';
 import { UdelarHeaderComponent } from './components/udelar/header/udelarheader.component';
 import { AdminLoginComponent } from './components/udelar/login/login.component';
+import { CursoComponent } from './components/facultad/curso/curso.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AdminLoginComponent } from './components/udelar/login/login.component';
     HeaderComponent,
     FacultadHeaderComponent,
     FacultadFooterComponent,
-    FacultadSidebarComponent
+    FacultadSidebarComponent,
+    CursoComponent
   ],
   imports: [
     BrowserModule,

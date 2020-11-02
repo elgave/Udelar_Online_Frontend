@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/Service/usuario.service';
 import { Usuario } from 'src/app/Modelo/Usuario'
 import { FacultadService } from 'src/app/Service/facultad.service';
 import { Facultad } from 'src/app/Modelo/Facultad';
+import { Rol } from 'src/app/Modelo/Rol';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -17,6 +18,9 @@ export class AddUsuarioComponent implements OnInit {
  
   facultades: Array<Facultad>;
   usuario:Usuario = new Usuario();
+  rol1: boolean = false;
+  rol2: boolean = false;
+  rol3: boolean = false;
 
   userForm = this.fb.group({
     nombre: ["", Validators.required],
@@ -24,7 +28,8 @@ export class AddUsuarioComponent implements OnInit {
     cedula: ["", Validators.required],
     mail: ["", Validators.required],
     password: ["", Validators.required],
-    facultadid: ["", Validators.required]
+    facultadid: ["", Validators.required],
+    roles: []
   });
 
   ngOnInit(): void {
@@ -33,11 +38,16 @@ export class AddUsuarioComponent implements OnInit {
   }
 
   Guardar(usuario:Usuario){
+    usuario.roles = [];
+    if (this.rol1) usuario.roles.push({descripcion: 'administrador'});
+    if (this.rol2) usuario.roles.push({descripcion: 'docente'});
+    if (this.rol3) usuario.roles.push({descripcion: 'estudiante'});
+
     usuario.facultadId = parseInt(usuario.facultadId.toString())
     this.service.createUsuario(this.usuario)
     .subscribe(data=>{
-      alert("Se Agrego con éxito.");
-      this.router.navigate(["listarUsuarios"]);
+     alert("Se Agrego con éxito.");
+     this.router.navigate(["listarUsuarios"]);
     })
   }
 }
