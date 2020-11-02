@@ -41,7 +41,7 @@ export class AddComponent implements OnInit {
     this.service.createFacultad(this.facultad, this.icono)
     .subscribe(data=>{
       alert(`Se Agrego con éxito.`);
-      this.router.navigate(["listarFacultades"]);
+      this.router.navigate(["gestion/listarFacultades"]);
     })
   }
 }

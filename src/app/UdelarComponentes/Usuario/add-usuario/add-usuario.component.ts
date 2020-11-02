@@ -47,7 +47,7 @@ export class AddUsuarioComponent implements OnInit {
     this.service.createUsuario(this.usuario)
     .subscribe(data=>{
      alert("Se Agrego con éxito.");
-     this.router.navigate(["listarUsuarios"]);
+     this.router.navigate(["gestion/listarUsuarios"]);
     })
   }
 }

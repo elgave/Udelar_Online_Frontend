@@ -40,7 +40,7 @@ export class EditUsuarioComponent implements OnInit {
     .subscribe(data=>{
       this.usuario = data.data;
       alert("Se actualizo con éxito.");
-      this.router.navigate(["listarUsuarios"]);
+      this.router.navigate(["gestion/listarUsuarios"]);
     })
   }
 }

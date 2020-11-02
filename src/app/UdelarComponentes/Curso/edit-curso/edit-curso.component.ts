@@ -48,7 +48,7 @@ export class EditCursoComponent implements OnInit {
     .subscribe(data=>{
       this.curso = data.data;
       alert("Se actualizo con éxito.");
-      this.router.navigate(["listarCursos"]);
+      this.router.navigate(["gestion/listarCursos"]);
     })
   }
 

@@ -35,7 +35,7 @@ export class AddCursoComponent implements OnInit {
     this.service.createCurso(this.curso)
     .subscribe(data=>{
       alert("Se Agrego con éxito.");
-      this.router.navigate(["listarCursos"]);
+      this.router.navigate(["gestion/listarCursos"]);
     })
   }
 }
