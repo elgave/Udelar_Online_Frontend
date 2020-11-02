@@ -1,0 +1,16 @@
+#loadingScreen {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+}
+
+#loadingText {
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
+  color: white;
+}

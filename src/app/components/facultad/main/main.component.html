@@ -1,11 +1,6 @@
 <head></head>
 <body>
-  <div id="loadingScreen" *ngIf='!ready'>
-    <h1 id="loadingText">CARGANDO</h1>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img style="width: 300px" src="assets/loading.gif" alt="loading">
-    </div>
-  </div>
+  <app-loading *ngIf='!ready'></app-loading>
   <div *ngIf='ready'>
     <app-facultadheader id="header"></app-facultadheader>
     <!-- sidebar. mover a facultad/sidebar (app-facultadsidebar) si se vuelve mas compleja-->

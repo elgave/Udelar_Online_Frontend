@@ -16,23 +16,30 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MainFacultadComponent } from './components/facultad/main/main.component';
 import { GestionComponent } from './components/udelar/gestion.component';
 import { AdminLoginComponent } from './components/udelar/login/login.component';
-
+import { ReporteFacultades } from './components/udelar/reportes/facultades/facultades.component';
+import { ReporteCursos } from './components/udelar/reportes/cursos/cursos.component';
+import { ReporteEstFacultades } from './components/udelar/reportes/est-facultades/est-facultades.component';
+import { ReporteEstCursos } from './components/udelar/reportes/est-cursos/est-cursos.component';
 
 const routes: Routes = [
   {path: 'gestion', component: GestionComponent},
   {path: 'gestion/login', component: AdminLoginComponent},
   {path: 'facultad/:fUrl', component: MainFacultadComponent},
   {path: 'facultad/:fUrl/curso/:cursoId', component: MainFacultadComponent},
-  {path: 'listarFacultades',component:ListarComponent},
-  {path: 'addFacultad',component:AddComponent},
-  {path: 'editFacultad',component:EditComponent},
-  {path: 'listarUsuarios',component:ListarUsuarioComponent},
-  {path: 'addUsuario',component:AddUsuarioComponent},
-  {path: 'editUsuario',component:EditUsuarioComponent},
-  {path: 'listarCursos',component:ListarCursoComponent},
-  {path: 'addCurso',component:AddCursoComponent},
-  {path: 'editCurso',component:EditCursoComponent},
-  {path: 'listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent},
+  {path: 'gestion/listarFacultades',component:ListarComponent},
+  {path: 'gestion/addFacultad',component:AddComponent},
+  {path: 'gestion/editFacultad',component:EditComponent},
+  {path: 'gestion/listarUsuarios',component:ListarUsuarioComponent},
+  {path: 'gestion/addUsuario',component:AddUsuarioComponent},
+  {path: 'gestion/editUsuario',component:EditUsuarioComponent},
+  {path: 'gestion/listarCursos',component:ListarCursoComponent},
+  {path: 'gestion/addCurso',component:AddCursoComponent},
+  {path: 'gestion/editCurso',component:EditCursoComponent},
+  {path: 'gestion/reportes/facultades', component:ReporteFacultades},
+  {path: 'gestion/reportes/cursos', component:ReporteCursos},
+  {path: 'gestion/reportes/estFacultades', component:ReporteEstFacultades},
+  {path: 'gestion/reportes/estCursos', component:ReporteEstCursos},
+  {path: 'gestion/listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent},
   {path: 'login/:fUrl', component:LoginComponent},
   {path: '', component: HomeComponent },
   {path: '**', component: PageNotFoundComponent }

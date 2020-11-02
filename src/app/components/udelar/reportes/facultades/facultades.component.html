@@ -1,0 +1,33 @@
+<app-loading *ngIf='!ready'></app-loading>
+<div *ngIf='ready'>
+<app-udelarheader></app-udelarheader>
+<div class="container" style="margin-top: 20px;">
+  <div class="card">
+    <div class="card-header">
+      <h3>Listado de facultades</h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">URL</th>
+            <th class="text-center">Color</th>
+            <th class="text-center">Icono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let facultad of facultades"  class="text-center">
+            <td>{{facultad.id}}</td>
+            <td>{{facultad.nombre}}</td>
+            <td>{{facultad.url}}</td>
+            <td><svg width="20" height="20"><rect width="30" height="30" style="fill:{{facultad.color}};stroke-width:3;stroke:rgb(0,0,0)" /></svg></td>
+            <td><img src="{{currentEnv.s3url}}/facultadIcon/{{facultad.url}}.png" alt="No Icon" style="width: 80px"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>

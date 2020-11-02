@@ -28,6 +28,12 @@ import { GestionComponent } from './components/udelar/gestion.component';
 import { UdelarHeaderComponent } from './components/udelar/header/udelarheader.component';
 import { AdminLoginComponent } from './components/udelar/login/login.component';
 import { CursoComponent } from './components/facultad/curso/curso.component';
+import { ReporteFacultades } from './components/udelar/reportes/facultades/facultades.component';
+import { ReporteCursos } from './components/udelar/reportes/cursos/cursos.component';
+import { ReporteEstFacultades } from './components/udelar/reportes/est-facultades/est-facultades.component';
+import { ReporteEstCursos } from './components/udelar/reportes/est-cursos/est-cursos.component';
+import { LoadingComponent } from './components/loading/loading.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +59,12 @@ import { CursoComponent } from './components/facultad/curso/curso.component';
     FacultadHeaderComponent,
     FacultadFooterComponent,
     FacultadSidebarComponent,
-    CursoComponent
+    CursoComponent,
+    ReporteFacultades,
+    ReporteCursos,
+    ReporteEstFacultades,
+    ReporteEstCursos,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

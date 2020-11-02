@@ -1,0 +1,34 @@
+<app-loading *ngIf='!ready'></app-loading>
+<div *ngIf='ready'>
+  <app-udelarheader></app-udelarheader>
+  <div class="container" style="margin-top: 20px; width: 80%">
+    <div class="card">
+      <div class="card-header">
+        <h3>Listado de cursos por facultad</h3>
+      </div>
+      <div class="card-body">
+
+        <div *ngFor="let facultad of facultades"> 
+          <h3>{{facultad.nombre}}</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-left">Id</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-right">Créditos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let curso of facultad.cursos"  class="text-center">
+                <td class="text-left">{{curso.id}}</td>
+                <td class="text-center">{{curso.nombre}}</td>
+                <td class="text-right">{{curso.cantCreditos}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>

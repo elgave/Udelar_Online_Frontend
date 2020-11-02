@@ -20,23 +20,32 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Facultades</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" [routerLink]="['/addFacultad']" routerLinkActive="router-link-active">Registrar</a>
-                    <a class="dropdown-item" [routerLink]="['/listarFacultades']" routerLinkActive="router-link-active">Listado de Facultades</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/addFacultad']" routerLinkActive="router-link-active">Registrar</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/listarFacultades']" routerLinkActive="router-link-active">Listado de Facultades</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cursos</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" [routerLink]="['/addCurso']" routerLinkActive="active">Registrar</a>
-                    <a class="dropdown-item" [routerLink]="['/listarCursos']" routerLinkActive="router-link-active">Listado de Cursos</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/addCurso']" routerLinkActive="active">Registrar</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/listarCursos']" routerLinkActive="router-link-active">Listado de Cursos</a>
                 </div>
             </li>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" [routerLink]="['/addUsuario']" routerLinkActive="router-link-active">Registrarse</a>
-                    <a class="dropdown-item" [routerLink]="['/listarUsuarios']" routerLinkActive="router-link-active">Listado de Usuarios</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/addUsuario']" routerLinkActive="router-link-active">Registrarse</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/listarUsuarios']" routerLinkActive="router-link-active">Listado de Usuarios</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reportes</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="['/gestion/reportes/facultades']" routerLinkActive="router-link-active">Listado de facultades</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/reportes/cursos']" routerLinkActive="router-link-active">Listado de cursos por facultades</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/reportes/estCursos']" routerLinkActive="router-link-active">Estadística de cursos</a>
+                    <a class="dropdown-item" [routerLink]="['/gestion/reportes/estFacultades']" routerLinkActive="router-link-active">Estadística de facultades</a>
                 </div>
             </li>
         </ul>

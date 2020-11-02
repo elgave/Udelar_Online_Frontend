@@ -11,9 +11,14 @@ import { FacultadService } from 'src/app/Service/facultad.service';
 })
 export class HomeComponent implements OnInit {
   facultades: Array<Facultad>;
+  ready: boolean;
 
   constructor(private http: HttpClient, private router: Router, private fs: FacultadService) {
-    this.fs.getFacultades().subscribe(r => this.facultades = r.data);
+    this.ready = false;
+    this.fs.getFacultades().subscribe(r => {
+      this.facultades = r.data;
+      this.ready = true;
+    });
   }  
 
   ngOnInit(): void {
