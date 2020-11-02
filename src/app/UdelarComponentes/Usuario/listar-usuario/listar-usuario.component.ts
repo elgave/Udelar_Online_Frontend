@@ -30,7 +30,7 @@ export class ListarUsuarioComponent implements OnInit, OnDestroy {
   Editar(usuario:Usuario):void{
     localStorage.setItem("cedula",usuario.cedula.toString());
     localStorage.setItem("facultadId",usuario.facultadId.toString());
-    this.router.navigate(["editUsuario"]);
+    this.router.navigate(["gestion/editUsuario"]);
 
   }
   Delete(usuario:Usuario){
@@ -41,7 +41,7 @@ export class ListarUsuarioComponent implements OnInit, OnDestroy {
     })
   }
   Nuevo(){
-    this.router.navigate(["addUsuario"]);
+    this.router.navigate(["gestion/addUsuario"]);
   }
 
   ngOnDestroy(){

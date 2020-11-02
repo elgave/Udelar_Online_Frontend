@@ -26,7 +26,7 @@ export class ListarCursoComponent implements OnInit {
 
   Editar(curso:Curso):void{
     localStorage.setItem("id",curso.id.toString());
-    this.router.navigate(["editCurso"]);
+    this.router.navigate(["gestion/editCurso"]);
 
   }
   Delete(curso:Curso){
@@ -37,6 +37,6 @@ export class ListarCursoComponent implements OnInit {
     })
   }
   Nuevo(){
-    this.router.navigate(["addCurso"]);
+    this.router.navigate(["gestion/addCurso"]);
   }
 }
