@@ -1,4 +1,5 @@
 import { Usuario } from './Usuario';
+import { Seccion } from './Seccion';
 
 export class Curso {
     id: number;
@@ -7,4 +8,5 @@ export class Curso {
     facultadId: number;
     usuarios: Array<Usuario>;
     docentes: Array<Usuario>;
+    secciones: Array<Seccion>;
 }
