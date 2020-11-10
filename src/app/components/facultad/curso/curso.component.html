@@ -1,10 +1,21 @@
-<div class="row">
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-10">
+<div class="row" style="margin-left: 30px;">
+  <div>
     <h1>{{curso.nombre}}</h1>
     <p>{{curso.cantCreditos}}</p>
     <p>{{curso.facultadId}}</p>
     <p>{{curso.id}}</p>
+    <h4>Docentes:</h4>
+    <div *ngFor="let docente of curso.docentes">
+      <p>{{docente.nombre}} {{docente.apellido}}</p>
+    </div>
+    <div *ngFor="let seccion of curso.secciones">
+      <div>
+        <h2>{{seccion.titulo}}</h2>
+          <div *ngFor="let componente of seccion.componentes">
+            <h3>{{componente.nombre}}</h3>
+            <p>{{componente.tipo}}</p>
+          </div>
+      </div>
+    </div>
   </div>
 </div>

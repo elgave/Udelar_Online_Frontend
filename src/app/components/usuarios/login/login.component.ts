@@ -2,12 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { Subscription } from 'rxjs';
 import { Facultad } from 'src/app/Modelo/Facultad';
 import { LoginUser } from 'src/app/Modelo/LoginUser';
-import { Response } from 'src/app/Modelo/Response';
 import { Usuario } from 'src/app/Modelo/Usuario';
+import { FacultadService } from 'src/app/Service/facultad.service';
+import { UsuarioService } from 'src/app/Service/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   constructor(
     private formBuilder: FormBuilder,
+    private fs: FacultadService,
+    private us: UsuarioService,
     private http: HttpClient,
     private router:  Router,
     private route: ActivatedRoute
@@ -38,21 +39,17 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     if (sessionStorage.getItem('token')) this.router.navigateByUrl(`facultad/${sessionStorage.getItem('facultadUrl')}`);
-    this.http.get<Response<Array<Facultad>>>('http://localhost:54403/api/facultad')
+    this.fs.getFacultades()
       .subscribe(r => {
         this.facultad = r.data.find(f => f.url == this.fUrl);
-        console.log(this.fUrl)
-        console.log(this.facultad)
       });
   }
 
   loadUser() {
-    console.log(`http://localhost:54403/api/usuario/${this.formLogin.value.cedula}/${this.facultad.id}`)
-    this.http.get<Response<Usuario>>(`http://localhost:54403/api/usuario/${this.formLogin.value.cedula}/${this.facultad.id}`)
+    this.us.getUsuarioId(this.formLogin.value.cedula, this.facultad.id)
       .subscribe(r => {
         if (r.data != null) {
           this.usuario = r.data;
-          console.log(r.data);
         } else {
           this.formLogin.controls['cedula'].setErrors({'incorrect': true});
         }
@@ -64,7 +61,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     this.usuarioLogin.password = this.formLogin.value.password;
     this.usuarioLogin.facultadid = this.facultad.id;
     
-    this.http.post<Response<string>>('http://localhost:54403/api/usuario/login', this.usuarioLogin)
+    this.us.login(this.usuarioLogin)
       .subscribe(res => {
         if (res.data != null) {
           const token  = res.data;

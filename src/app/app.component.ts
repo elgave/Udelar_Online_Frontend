@@ -9,14 +9,13 @@ import { Facultad } from './Modelo/Facultad';
 })
 export class AppComponent {
   title = 'dotnet-frontend';
-  
+  facultad = sessionStorage.getItem('facultadId');
   
   constructor(private router:Router){}
 
   ListarFacultades(){
     this.router.navigate(["listarFacultades"]);
   }
-
   ListarUsuarios(){
     this.router.navigate(["listarUsuarios"]);
   }
@@ -25,5 +24,9 @@ export class AppComponent {
   }
   ListarUsuariosXFacultad(){
     this.router.navigate(["listarUsuariosXFacultad"]);
+  }
+
+  ngOnInit() {
+    this.facultad = sessionStorage.getItem('facultadId');
   }
 }

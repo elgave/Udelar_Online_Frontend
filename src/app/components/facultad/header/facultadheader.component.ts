@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as env from 'src/env';
 import { FacultadService } from 'src/app/Service/facultad.service'
 import { Facultad } from 'src/app/Modelo/Facultad';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-facultadheader',
@@ -11,7 +12,7 @@ import { Facultad } from 'src/app/Modelo/Facultad';
 })
 export class FacultadHeaderComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private fs: FacultadService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private fs: FacultadService, private location: Location) { }
   textColor: string;
   mainColor: string;
   facultad: Facultad;
@@ -27,7 +28,7 @@ export class FacultadHeaderComponent implements OnInit {
   }
 
   home() {
-    this.router.navigateByUrl(`/facultad/${this.fUrl}`);
+    this.location.go(`/facultad/${this.fUrl}`);
   }
 
   logout() {

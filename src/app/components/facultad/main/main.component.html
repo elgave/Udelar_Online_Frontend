@@ -1,7 +1,8 @@
 <head></head>
+<app-loading *ngIf='!ready' style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index:998;"></app-loading>
 <body>
-  <app-loading *ngIf='!ready'></app-loading>
-  <div *ngIf='ready'>
+  
+  <div>
     <app-facultadheader id="header"></app-facultadheader>
     <!-- sidebar. mover a facultad/sidebar (app-facultadsidebar) si se vuelve mas compleja-->
     <div class="sidebar" style="border-color: {{facultad.color}};">
@@ -12,7 +13,7 @@
           </div>
           <div *ngFor="let curso of facultad.cursos">
             <div class="cursolink">
-              <a href="facultad/{{facultad.url}}/curso/{{curso.id}}">{{curso.nombre}}</a>
+              <a routerLink="/facultad/{{facultad.url}}/curso/{{curso.id}}" (click)="change(curso.id)">{{curso.nombre}}</a>
             </div>
           </div>
         </div>
@@ -23,7 +24,7 @@
       <div class="card">
         <div class="card-body">
           <div *ngIf='isCurso' class="row">
-            <app-curso></app-curso>
+            <app-curso [cursoId]="cursoId" ></app-curso>
           </div>
           <div *ngIf='!isCurso' class="row">
             <div class="col-md-12">

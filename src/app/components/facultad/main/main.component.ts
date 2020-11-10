@@ -1,10 +1,9 @@
 import { FacultadService } from 'src/app/Service/facultad.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Response } from 'src/app/Modelo/Response';
 import { Facultad } from 'src/app/Modelo/Facultad';
 import { Curso } from 'src/app/Modelo/Curso';
-import { Usuario } from 'src/app/Modelo/Usuario';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +17,10 @@ export class MainFacultadComponent implements OnInit {
   isCurso: boolean;
   curso: Curso;
   ready: boolean;
+  property: string;
+  cursoId: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private fs: FacultadService) { }  
+  constructor(private router: Router, private route: ActivatedRoute, private fs: FacultadService, private scroll: ViewportScroller) { }  
 
   ngOnInit(): void {
     this.ready = false;
@@ -33,13 +34,16 @@ export class MainFacultadComponent implements OnInit {
       }
       if (this.route.snapshot.paramMap.get('cursoId')) {
         this.isCurso = true;
-        this.curso = this.facultad.cursos.find(c => c.id == parseInt(this.route.snapshot.paramMap.get('cursoId')));
       } else {
         this.isCurso = false;
-        this.curso = {id: 999, nombre: 'placeholder', facultadId: 999, cantCreditos: 999, usuarios: [], docentes: []};
       }
       this.ready = true;
     });
     this.rol = sessionStorage.getItem('rol');
+  }
+
+  change(cursoId) {
+    this.cursoId = cursoId;
+    this.scroll.scrollToPosition([0,0]);
   }
 }

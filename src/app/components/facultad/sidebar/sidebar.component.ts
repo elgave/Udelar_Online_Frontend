@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Response } from 'src/app/Modelo/Response';
 import { Facultad } from 'src/app/Modelo/Facultad';
+import { FacultadService } from 'src/app/Service/facultad.service';
 
 @Component({
   selector: 'app-facultadsidebar',
@@ -11,11 +12,11 @@ import { Facultad } from 'src/app/Modelo/Facultad';
 })
 export class FacultadSidebarComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private fs: FacultadService) { }
   facultad: Facultad;
 
   ngOnInit(): void {
-    this.http.get<Response<Facultad>>(`http://localhost:54403/api/facultad/${sessionStorage.getItem('facultadId')}`).subscribe(data => {
+    this.fs.getFacultadId(parseInt(sessionStorage.getItem('facultadId'))).subscribe(data => {
       this.facultad = data.data;
       this.facultad.cursos.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
     });

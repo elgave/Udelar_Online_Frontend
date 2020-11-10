@@ -1,13 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { Subscription } from 'rxjs';
-import { Facultad } from 'src/app/Modelo/Facultad';
-import { LoginUser } from 'src/app/Modelo/LoginUser';
-import { Response } from 'src/app/Modelo/Response';
-import { Usuario } from 'src/app/Modelo/Usuario';
+import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/Service/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -17,15 +11,14 @@ import { Usuario } from 'src/app/Modelo/Usuario';
 
 export class AdminLoginComponent implements OnInit, OnDestroy{
   formLogin: FormGroup;
-  subRef$: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private router:  Router,
+    private us: UsuarioService
   ) {
 
-    this.formLogin = formBuilder.group({
+    this.formLogin = this.formBuilder.group({
       id: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -36,8 +29,8 @@ export class AdminLoginComponent implements OnInit, OnDestroy{
   }
 
   Login() {
-    let usuarioLogin = { id: this.formLogin.value.id, password: this.formLogin.value.password }    
-    this.subRef$ = this.http.post<Response<string>>('http://localhost:54403/api/udelaradmin/login', usuarioLogin)
+    let usuarioLogin = { id: this.formLogin.value.id, password: this.formLogin.value.password };
+    this.us.adminLogin(usuarioLogin)
       .subscribe(res => {
         if (res.data != null) {
           sessionStorage.setItem('admintoken', res.data);
@@ -51,8 +44,5 @@ export class AdminLoginComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(){
-    if (this.subRef$){
-      this.subRef$.unsubscribe(); 
-    }
   }
 }
