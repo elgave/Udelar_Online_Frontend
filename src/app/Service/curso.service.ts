@@ -4,15 +4,15 @@ import { Curso } from '../Modelo/Curso';
 import { Usuario } from '../Modelo/Usuario';
 import { Matricula } from '../Modelo/Matricula';
 import { Response } from '../Modelo/Response';
+import * as env from 'src/env';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CursoService {
-
   constructor(private http:HttpClient) { }
 
-  Url='http://localhost:54403/api/curso';
+  Url=`${env.apiurl}/api/curso`;
 
   getCursos(){
     return this.http.get<Response<Curso[]>>(this.Url);

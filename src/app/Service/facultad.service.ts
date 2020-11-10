@@ -3,16 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Facultad } from "../Modelo/Facultad";
 import { UsuarioXFacultad } from '../Modelo/UsuarioXFacultad';
 import { Response } from '../Modelo/Response';
+import * as env from 'src/env';
+
 @Injectable({
   providedIn: 'root'
 })
 export class FacultadService {
-
-
   constructor(private http:HttpClient) { }
 
-  Url='http://localhost:54403/api/facultad';
-  Url2='http://localhost:54403/api/files';
+  Url=`${env.apiurl}/api/facultad`;
 
   getFacultades(){
     return this.http.get<Response<Facultad[]>>(this.Url);
