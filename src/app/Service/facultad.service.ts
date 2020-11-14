@@ -17,8 +17,8 @@ export class FacultadService {
     return this.http.get<Response<Facultad[]>>(this.Url);
   }
 
-  createFacultad(facultad:Facultad, icono:FormData){
-    return this.http.post<Response<Facultad>>(this.Url, icono, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+  createFacultad(datos:FormData){
+    return this.http.post<Response<Facultad>>(this.Url, datos, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
   }
   getFacultadId(id:number){
     return this.http.get<Response<Facultad>>(this.Url+'/'+id);

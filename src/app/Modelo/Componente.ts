@@ -9,6 +9,7 @@ export class Componente {
   tipo:string;
   indice:number;
   archivo:Archivo;
+  texto:string;
   ContenedorTarea:ContenedorTarea;
   Comunicado:Comunicado;
 }

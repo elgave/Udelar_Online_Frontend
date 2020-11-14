@@ -44,7 +44,7 @@ export class AddUsuarioComponent implements OnInit {
     if (this.rol3) usuario.roles.push({descripcion: 'estudiante'});
 
     usuario.facultadId = parseInt(usuario.facultadId.toString())
-    this.service.createUsuario(this.usuario)
+    this.service.createUsuario(usuario)
     .subscribe(data=>{
      alert("Se Agrego con éxito.");
      this.router.navigate(["gestion/listarUsuarios"]);

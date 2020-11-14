@@ -38,7 +38,7 @@ export class AddComponent implements OnInit {
 
   Guardar(){
     //this.facultad.color = this.facultad.color.substr(1,6);
-    this.service.createFacultad(this.facultad, this.icono)
+    this.service.createFacultad(this.icono)
     .subscribe(data=>{
       alert(`Se Agrego con éxito.`);
       this.router.navigate(["gestion/listarFacultades"]);
