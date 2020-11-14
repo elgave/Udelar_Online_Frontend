@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as env from 'src/env';
 import { FacultadService } from 'src/app/Service/facultad.service'
@@ -15,7 +15,6 @@ export class FacultadHeaderComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private fs: FacultadService, private location: Location) { }
   textColor: string;
   mainColor: string;
-  facultad: Facultad;
   facultadNombre: string;
   currentEnv = env;
   fUrl = this.route.snapshot.paramMap.get('fUrl');
@@ -24,7 +23,6 @@ export class FacultadHeaderComponent implements OnInit {
     this.mainColor = sessionStorage.getItem('mainColor');
     this.textColor = sessionStorage.getItem('lightness') == 'light' ? 'black':'white';
     this.facultadNombre = sessionStorage.getItem('facultadNombre');
-    this.fs.getFacultadId(parseInt(sessionStorage.getItem('facultadId'))).subscribe(r => this.facultad = r.data);
   }
 
   home() {

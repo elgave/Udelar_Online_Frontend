@@ -20,22 +20,18 @@
       </div>
     </div>
     <!-- contenido de la pagina principal. Le meteria comunicaciones por facultad, y algun texto de bienvenida o algo. para rellenar. -->
-    <main class="main">
-      <div class="card">
-        <div class="card-body">
-          <div *ngIf='isCurso' class="row">
-            <app-curso [cursoId]="cursoId" ></app-curso>
-          </div>
-          <div *ngIf='!isCurso' class="row">
-            <div class="col-md-12">
-              <h1>Bienvenido a {{facultad.nombre}}</h1>
-              <h3>Identificado como: {{rol}}</h3>
-              <h2>Novedades:</h2>
-              <div *ngIf="rol == 'estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
-              <div *ngIf="rol == 'docente'"><h3>Esto sólo se ve como docente</h3></div>
-              <div *ngIf="rol == 'administrador'"><h3>Esto sólo se ve como administrador</h3></div>
-            </div>
-          </div>
+    <main class="main" style="border-color: {{facultad.color}};">
+      <div *ngIf='isCurso'>
+        <app-curso [cursoId]="cursoId"></app-curso>
+      </div>
+      <div *ngIf='!isCurso'>
+        <div class="col-md-12">
+          <h1>Bienvenido a {{facultad.nombre}}</h1>
+          <h3>Identificado como: {{rol}}</h3>
+          <h2>Novedades:</h2>
+          <div *ngIf="rol == 'estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
+          <div *ngIf="rol == 'docente'"><h3>Esto sólo se ve como docente</h3></div>
+          <div *ngIf="rol == 'administrador'"><h3>Esto sólo se ve como administrador</h3></div>
         </div>
       </div>
     </main>
