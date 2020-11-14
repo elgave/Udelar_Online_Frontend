@@ -17,7 +17,6 @@ import { EditUsuarioComponent } from './UdelarComponentes/Usuario/edit-usuario/e
 import { ListarCursoComponent } from './UdelarComponentes/Curso/listar-curso/listar-curso.component';
 import { AddCursoComponent } from './UdelarComponentes/Curso/add-curso/add-curso.component';
 import { EditCursoComponent } from './UdelarComponentes/Curso/edit-curso/edit-curso.component';
-import { UsuariosXFacultadReporteComponent } from './ModuloUdelar/Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FacultadHeaderComponent } from './components/facultad/header/facultadheader.component';
@@ -54,7 +53,6 @@ import { AddComponenteComponent } from './components/facultad/curso/componente/a
     ListarCursoComponent,
     AddCursoComponent,
     EditCursoComponent,
-    UsuariosXFacultadReporteComponent,
     HomeComponent,
     LoginComponent,
     PageNotFoundComponent,

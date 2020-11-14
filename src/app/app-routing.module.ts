@@ -9,7 +9,6 @@ import { EditUsuarioComponent } from './UdelarComponentes/Usuario/edit-usuario/e
 import { AddCursoComponent } from './UdelarComponentes/Curso/add-curso/add-curso.component';
 import { EditCursoComponent } from './UdelarComponentes/Curso/edit-curso/edit-curso.component';
 import { ListarCursoComponent } from './UdelarComponentes/Curso/listar-curso/listar-curso.component';
-import { UsuariosXFacultadReporteComponent } from './ModuloUdelar/Reportes/usuarios-xfacultad-reporte/usuarios-xfacultad-reporte.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/usuarios/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -39,7 +38,6 @@ const routes: Routes = [
   {path: 'gestion/reportes/cursos', component:ReporteCursos},
   {path: 'gestion/reportes/estFacultades', component:ReporteEstFacultades},
   {path: 'gestion/reportes/estCursos', component:ReporteEstCursos},
-  {path: 'gestion/listarUsuariosXFacultad', component:UsuariosXFacultadReporteComponent},
   {path: 'login/:fUrl', component:LoginComponent},
   {path: '', component: HomeComponent },
   {path: '**', component: PageNotFoundComponent }
