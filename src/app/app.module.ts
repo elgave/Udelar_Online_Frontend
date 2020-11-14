@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatDialogModule } from "@angular/material/dialog";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +35,8 @@ import { ReporteCursos } from './components/udelar/reportes/cursos/cursos.compon
 import { ReporteEstFacultades } from './components/udelar/reportes/est-facultades/est-facultades.component';
 import { ReporteEstCursos } from './components/udelar/reportes/est-cursos/est-cursos.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { AddSeccionComponent } from './components/facultad/curso/seccion/add-seccion/add-seccion.component';
+import { AddComponenteComponent } from './components/facultad/curso/componente/add-componente/add-componente.component';
 
 
 @NgModule({
@@ -64,14 +68,18 @@ import { LoadingComponent } from './components/loading/loading.component';
     ReporteCursos,
     ReporteEstFacultades,
     ReporteEstCursos,
-    LoadingComponent
+    LoadingComponent,
+    AddSeccionComponent,
+    AddComponenteComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [FacultadService],
   bootstrap: [AppComponent]

@@ -1,0 +1,26 @@
+<h2 mat-dialog-title style="text-align: center;">Agregar componente</h2>
+<mat-dialog-content class="contenedor">
+  <form [formGroup]="componenteForm">
+    <div class="form-group">
+      <label for="">Nombre:</label>
+      <input type="text"  class="form-control" [(ngModel)]="componente.nombre" name="nombre" [ngClass]="{'is-invalid':componenteForm.get('nombre').errors && componenteForm.get('nombre').touched}" formControlName="nombre">
+      <label for="">Indice:</label>
+      <input type="number"  class="form-control" [(ngModel)]="componente.indice" name="indice" [ngClass]="{'is-invalid':componenteForm.get('indice').errors && componenteForm.get('indice').touched}" formControlName="indice">
+      <label>Tipo:</label>
+      <select [(ngModel)]="componente.tipo" [ngClass]="{'is-invalid':componenteForm.get('tipo').errors && componenteForm.get('tipo').touched}" placeholder="Tipo" class="form-control" formControlName="tipo" id="tipo">
+        <option value="texto">Texto</option>
+        <option value="imagen">Imagen</option>
+        <option value="archivo">Archivo</option>
+        <option value="encuesta">Encuesta</option>
+        <option value="comunicado">Comunicado</option>
+        <option value="contenedor">Contenedor tarea</option>
+      </select>
+      <br>
+      <input *ngIf="['archivo','imagen'].includes(componenteForm.get('tipo').value)" type="file" #file placeholder="Subir Archivo" (change)="subirArchivo(file.files)">
+
+      <label *ngIf="componenteForm.get('tipo').value == 'texto'">Cuerpo:</label>
+      <textarea *ngIf="componenteForm.get('tipo').value == 'texto'" type="text"  class="form-control" [(ngModel)]="componente.texto" name="texto" [ngClass]="{'is-invalid':componenteForm.get('texto').errors && componenteForm.get('texto').touched}" formControlName="texto" style="height: 100px;" minlength=50></textarea>
+    </div>
+    <button (click)="Guardar(componente)" class="btn btn-success" [disabled]="componenteForm.invalid || (componenteForm.get('tipo').value == 'texto' && componenteForm.get('texto').errors) || (['archivo','imagen'].includes(componenteForm.get('tipo').value) && componenteForm.get('file').errors)">Guardar</button>
+  </form>
+</mat-dialog-content>

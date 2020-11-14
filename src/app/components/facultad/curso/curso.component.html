@@ -1,20 +1,36 @@
-<div class="row" style="margin-left: 30px;">
+<div style="margin: 10px;">
   <div>
-    <h1>{{curso.nombre}}</h1>
-    <p>{{curso.cantCreditos}}</p>
-    <p>{{curso.facultadId}}</p>
-    <p>{{curso.id}}</p>
-    <h4>Docentes:</h4>
+    <h1 class="titulocurso">{{curso.nombre}}</h1>
+    <button *ngIf="isDocente" class="btn btn-light" style="float: right;" (click)="editCurso()">Editar</button>
+    <button *ngIf="isDocente" class="btn btn-light" style="float: right;" (click)="addSeccion()">+ Sección</button>
+    <h4 style="margin-left: 20px">Docentes:</h4>
     <div *ngFor="let docente of curso.docentes">
-      <p>{{docente.nombre}} {{docente.apellido}}</p>
+      <p style="margin-left: 30px">{{docente.nombre}} {{docente.apellido}}</p>
     </div>
-    <div *ngFor="let seccion of curso.secciones">
-      <div>
-        <h2>{{seccion.titulo}}</h2>
-          <div *ngFor="let componente of seccion.componentes">
-            <h3>{{componente.nombre}}</h3>
-            <p>{{componente.tipo}}</p>
+    <div *ngFor="let seccion of curso.secciones" class="secciones">
+      <div class="seccion">
+        <hr>
+        <h2 class="tituloseccion" *ngIf="isDocente" style="display: inline-block;">({{seccion.indice}}) {{seccion.titulo}}</h2>
+        <button *ngIf="isDocente" class="btn btn-light" style="float: right;" (click)="addComponente(seccion.id)">+ Componente</button>
+        <h2 class="tituloseccion" *ngIf="!isDocente">{{seccion.titulo}}</h2>
+        <div class="componente" *ngFor="let componente of seccion.componentes" style="margin-left: 10px;">
+          <div>
+            <h3 class="tituloComponente" *ngIf="isDocente">({{componente.indice}}) {{componente.nombre}}</h3>
+            <h3 class="tituloComponente" *ngIf="!isDocente">{{componente.nombre}}</h3>
+            <div *ngIf="componente.tipo == 'archivo'" class="componenteArchivo">
+              <img class="archivoIcon" src="assets/{{icon(componente.archivo.extension)}}">
+              <a href="{{currentEnv.s3url}}/{{componente.archivo.ubicacion}}" target="_blank" download>{{componente.archivo.nombre}}.{{componente.archivo.extension}}</a>
+            </div>
+
+            <div *ngIf="componente.tipo == 'imagen'" class="imagen">
+              <img class="componenteImagen" src="{{currentEnv.s3url}}/{{componente.archivo.ubicacion}}" alt="No image">
+            </div>
+            
+            <div *ngIf="componente.tipo == 'texto'" class="texto">
+              <pre class="componenteBody">{{componente.texto}}</pre>
+            </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
