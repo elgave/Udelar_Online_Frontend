@@ -36,6 +36,11 @@ import { ReporteEstCursos } from './components/udelar/reportes/est-cursos/est-cu
 import { LoadingComponent } from './components/loading/loading.component';
 import { AddSeccionComponent } from './components/facultad/curso/seccion/add-seccion/add-seccion.component';
 import { AddComponenteComponent } from './components/facultad/curso/componente/add-componente/add-componente.component';
+import { EditComponenteComponent } from './components/facultad/curso/componente/edit-componente/edit-componente.component';
+import { DeleteComponenteComponent } from './components/facultad/curso/componente/delete-componente/delete-componente.component';
+import { EditSeccionComponent } from './components/facultad/curso/seccion/edit-seccion/edit-seccion.component';
+import { DeleteSeccionComponent } from './components/facultad/curso/seccion/delete-seccion/delete-seccion.component';
+import { RenombrarCursoComponent } from './components/facultad/curso/editar/renombrar-curso/renombrar-curso.component';
 
 
 @NgModule({
@@ -68,7 +73,12 @@ import { AddComponenteComponent } from './components/facultad/curso/componente/a
     ReporteEstCursos,
     LoadingComponent,
     AddSeccionComponent,
-    AddComponenteComponent
+    AddComponenteComponent,
+    EditComponenteComponent,
+    DeleteComponenteComponent,
+    EditSeccionComponent,
+    DeleteSeccionComponent,
+    RenombrarCursoComponent
   ],
   imports: [
     BrowserModule,

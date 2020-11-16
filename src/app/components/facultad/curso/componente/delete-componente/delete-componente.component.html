@@ -1,0 +1,13 @@
+<h3 mat-dialog-title style="text-align: center;">¿Seguro que desea eliminar el componente "{{componenteNombre}}" de la sección "{{seccionNombre}}"? Esta acción es irreversible.</h3>
+<mat-dialog-content class="contenedor">
+  <form [formGroup]="componenteForm" style="margin-top: 40px;">
+    <div class="form-group">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="confirmar" [ngClass]="{'is-invalid':componenteForm.get('confirmar').errors && componenteForm.get('confirmar').touched}" formControlName="confirmar">
+        <label for="">Eliminar definitivamente </label>  
+      </div>
+    </div>
+    <button (click)="Guardar()" class="btn btn-danger" [disabled]="componenteForm.invalid || !componenteForm.controls['confirmar'].value">Eliminar</button>
+    <button (click)="Cerrar()" class="btn btn-dark">Cancelar</button>
+  </form>
+</mat-dialog-content>

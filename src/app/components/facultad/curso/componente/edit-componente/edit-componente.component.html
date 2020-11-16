@@ -1,0 +1,13 @@
+<h2 mat-dialog-title style="text-align: center;">Editar componente</h2>
+<mat-dialog-content class="contenedor">
+  <form [formGroup]="componenteForm">
+    <div class="form-group">
+      
+      <label for="">Titulo:</label>
+      <input type="text"  class="form-control" [(ngModel)]="componente.nombre" name="titulo" [ngClass]="{'is-invalid':componenteForm.get('titulo').errors && componenteForm.get('titulo').touched}" formControlName="titulo">
+      <label for="">Indice:</label>
+      <input type="number"  class="form-control" [(ngModel)]="componente.indice" name="indice" [ngClass]="{'is-invalid':componenteForm.get('indice').errors && componenteForm.get('indice').touched}" formControlName="indice">
+    </div>
+    <button (click)="Guardar(componente)" class="btn btn-success" [disabled]="componenteForm.invalid">Guardar</button>
+  </form>
+</mat-dialog-content>
