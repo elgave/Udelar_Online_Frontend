@@ -18,16 +18,16 @@ export class FacultadService {
   }
 
   createFacultad(datos:FormData){
-    return this.http.post<Response<Facultad>>(this.Url, datos, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+    return this.http.post<Response<Facultad>>(this.Url, datos, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   getFacultadId(id:number){
     return this.http.get<Response<Facultad>>(this.Url+'/'+id);
   }
   updateFacultad(facultad:Facultad){
-     return this.http.put<Response<Facultad>>(this.Url+'/'+facultad.id,facultad, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+     return this.http.put<Response<Facultad>>(this.Url+'/'+facultad.id,facultad, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   deleteFacultad(facultad:Facultad){
-    return this.http.delete<Response<Facultad[]>>(this.Url+'/'+facultad.id, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+    return this.http.delete<Response<Facultad[]>>(this.Url+'/'+facultad.id, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   getUsuariosXFacultad(){
     return this.http.get<Response<UsuarioXFacultad[]>>(this.Url+'/usuariosXFacultad');

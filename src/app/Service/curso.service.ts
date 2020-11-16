@@ -20,36 +20,44 @@ export class CursoService {
     return this.http.get<Response<Curso[]>>(this.Url);
   }
   createCurso(curso:Curso){
-    return this.http.post<Response<Curso[]>>(this.Url, curso, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+    return this.http.post<Response<Curso[]>>(this.Url, curso, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   getCursoId(id:number){
     return this.http.get<Response<Curso>>(`${this.Url}/${id}`);
   }
   updateCurso(curso:Curso){
-     return this.http.put<Response<Curso>>(`${this.Url}/${curso.id}`, curso, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+     return this.http.put<Response<Curso>>(`${this.Url}/${curso.id}`, curso, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   deleteCurso(curso:Curso){
-    return this.http.delete<Response<Curso[]>>(`${this.Url}/${curso.id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+    return this.http.delete<Response<Curso[]>>(`${this.Url}/${curso.id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   matricularse(matricula:Matricula){
     return this.http.post<Response<boolean>>(`${this.Url}/matricularse`,matricula, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   agregarDocente(id: number, docente: Usuario) {
-    return this.http.post<Response<Curso>>(`${this.Url}/${id}`, docente, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+    return this.http.post<Response<Curso>>(`${this.Url}/${id}`, docente, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
-  //! Autorizar luego, rol 'docente' en backend
+  renameCurso(curso:Curso) {
+    return this.http.put<Response<Curso>>(`${this.Url}/renombrar/${curso.id}`, curso, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
   addSeccion(seccion:Seccion) {
-    return this.http.post<Response<Curso>>(`${this.Url}/seccion`, seccion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.post<Response<Seccion>>(`${this.Url}/seccion`, seccion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+  editSeccion(id:number, seccion:Seccion) {
+    return this.http.put<Response<Seccion>>(`${this.Url}/seccion/${id}`, seccion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   deleteSeccion(id:number) {
-    return this.http.delete<Response<Curso[]>>(`${this.Url}/seccion/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.delete<Response<Seccion[]>>(`${this.Url}/seccion/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
-
   addComponente(componente:FormData) {
-    return this.http.post<Response<Curso>>(`${this.Url}/componente`, componente, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.post<Response<Componente>>(`${this.Url}/componente`, componente, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
+  editComponente(id:number, componente:Componente) {
+    return this.http.put<Response<Componente>>(`${this.Url}/componente/${id}`, componente, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }  
   deleteComponente(id:number) {
-    return this.http.delete<Response<Curso[]>>(`${this.Url}/componente/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.delete<Response<Componente[]>>(`${this.Url}/componente/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 }

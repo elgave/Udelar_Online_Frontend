@@ -19,7 +19,6 @@ export class UsuarioService {
 
     let httpHeaders: HttpHeaders = new  HttpHeaders();
     const token = sessionStorage.getItem('token');
-    console.log('get token', token); 
 
     httpHeaders = httpHeaders.append('Authorization', 'Bearer ' + token);
 
@@ -30,16 +29,16 @@ export class UsuarioService {
     });
   }
   createUsuario(usuario:Usuario){
-    return this.http.post<Response<Usuario[]>>(this.Url, usuario, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+    return this.http.post<Response<Usuario[]>>(this.Url, usuario, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   getUsuarioId(cedula:string,facultadId:number/*,tipo:string*/){
     return this.http.get<Response<Usuario>>(`${this.Url}/${cedula}/${facultadId}`);
   }
   updateUsuario(usuario:Usuario){
-     return this.http.put<Response<Usuario>>(this.Url, usuario, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+     return this.http.put<Response<Usuario>>(this.Url, usuario, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   deleteUsuario(usuario:Usuario){
-    return this.http.delete<Response<Usuario[]>>(`${this.Url}/${usuario.cedula}/${usuario.facultadId}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('admintoken')}`}});
+    return this.http.delete<Response<Usuario[]>>(`${this.Url}/${usuario.cedula}/${usuario.facultadId}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
   login(usuario: LoginUser) {
