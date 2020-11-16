@@ -10,13 +10,20 @@
         <div class="card-body" id="sidebarbody">
           <div class="topdiv">
             <h3 style="display: inline-block;">Cursos</h3> 
-            <button *ngIf="isEstudiante" type="button" class="btn btn-primary btn-sm" style="float: right;" (click)="toggleCursos()">{{botonTexto}}</button>
+            <button *ngIf="rol == 'estudiante'" type="button" class="btn btn-primary btn-sm" style="float: right;" (click)="toggleCursos()">{{botonTexto}}</button>
           </div>
           <div *ngFor="let curso of mostrarCursos">
             <div class="cursolink">
               <a routerLink="/facultad/{{facultad.url}}/curso/{{curso.id}}" (click)="change(curso.id)">{{curso.nombre}}</a>
             </div>
           </div>
+          <!--
+          <div *ngIf="rol != 'Estudiante'">
+            <div class="listEncuestaLink">
+              <a routerLink="/facultad/{{facultad.url}}/encuesta/{{'list'}}" (click)="change2()">{{'Encuestas'}}</a>
+            </div>
+          </div>
+          -->
         </div>
       </div>
     </div>
@@ -25,7 +32,13 @@
       <div *ngIf='isCurso'>
         <app-curso [cursoId]="cursoId"></app-curso>
       </div>
-      <div *ngIf='!isCurso'>
+      <div *ngIf='isAddEncuesta'>
+       <app-add-encuesta></app-add-encuesta>
+      </div>
+      <div *ngIf='isListEncuesta'>
+        <app-list-encuesta></app-list-encuesta>
+      </div>
+      <div *ngIf='!isCurso && !isAddEncuesta && !isListEncuesta ' >
         <div class="col-md-12">
           <h1>Bienvenido a {{facultad.nombre}}</h1>
           <h3>Identificado como: {{rol}}</h3>

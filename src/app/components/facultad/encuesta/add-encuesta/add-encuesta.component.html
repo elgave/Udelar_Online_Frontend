@@ -1,0 +1,38 @@
+<h2 mat-dialog-title style="text-align: center;">Crear Encuesta</h2>
+<mat-dialog-content class="contenedor">
+
+    <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" autocomplete="off"> 
+        <div class="col-12">
+            <input formControlName="surveyTitle" class="form-control"  placeholder="Titulo" maxlength="50" [required]="true">
+        </div>
+        <br>
+        <div formArrayName="surveyQuestions" class="poll-options">
+            <h3 class="list-title">Agregar Preguntas</h3>
+            <ol class="list-style">
+                <li *ngFor="let questionCtrl of surveyForm.get('surveyQuestions')['controls']; let i = index">
+                <br>
+                <div [formGroupName]="i">
+                    <div> 
+                        <input formControlName="questionTitle" maxlength="200" placeholder="Pregunta"[required]="true">
+                    </div>
+                    <button *ngIf="i>0" mat-mini-fab color="warn" type="button" (click)="onRemoveQuestion(i)" class="poll-remove-btn">
+                    X
+                    </button>
+                </div>
+                </li>
+            </ol>
+            <div fxLayout="row" fxLayoutAlign="end">
+            <button type="button" mat-raised-button (click)="onAddQuestion()">
+            Agregar Pregunta
+            </button>
+            </div>
+        </div>
+
+        <div class="col text-center">
+        <button class="btn btn-success"  type="submit" [disabled]="!surveyForm.valid">
+            <span>Crear nueva encuesta</span>
+        </button>
+        </div>
+    </form>
+
+</mat-dialog-content>

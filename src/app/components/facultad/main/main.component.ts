@@ -15,6 +15,8 @@ export class MainFacultadComponent implements OnInit {
   fUrl: string = this.route.snapshot.paramMap.get('fUrl');
   rol: string;
   isCurso: boolean;
+  isAddEncuesta: boolean;
+  isListEncuesta:boolean;
   curso: Curso;
   ready: boolean;
   property: string;
@@ -22,12 +24,10 @@ export class MainFacultadComponent implements OnInit {
   mostrarCursos: Curso[];
   isMisCursos: boolean;
   botonTexto: string;
-  isEstudiante: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, private fs: FacultadService, private scroll: ViewportScroller) { }  
 
   ngOnInit(): void {
-    this.isEstudiante = sessionStorage.getItem('rol') == 'estudiante';
     this.isMisCursos = false;
     this.botonTexto = "Mis cursos";
     this.ready = false;
@@ -45,6 +45,19 @@ export class MainFacultadComponent implements OnInit {
       } else {
         this.isCurso = false;
       }
+
+      if (this.route.snapshot.paramMap.get('accion') == "add"){
+        this.isAddEncuesta = true;
+      }else{
+        this.isAddEncuesta = false;
+      }
+
+      if (this.route.snapshot.paramMap.get('accion') == "list"){
+        this.isListEncuesta = true;
+      }else{
+        this.isListEncuesta = false;
+      }
+
       this.ready = true;
     });
     this.rol = sessionStorage.getItem('rol');
@@ -66,4 +79,9 @@ export class MainFacultadComponent implements OnInit {
       this.mostrarCursos = this.facultad.cursos;
     }
   }
+  /*
+  change2() {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate(["/facultad/"+sessionStorage.getItem('facultadUrl')+"/encuesta/list"]));
+  }*/
 }
