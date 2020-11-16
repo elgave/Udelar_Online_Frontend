@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    if (sessionStorage.getItem('token')) this.router.navigateByUrl(`facultad/${sessionStorage.getItem('facultadUrl')}`);
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'usuario') this.router.navigateByUrl(`facultad/${sessionStorage.getItem('facultadUrl')}`);
     this.fs.getFacultades()
       .subscribe(r => {
         this.facultad = r.data.find(f => f.url == this.fUrl);
@@ -60,14 +60,15 @@ export class LoginComponent implements OnInit, OnDestroy{
     this.usuarioLogin.cedula = this.formLogin.value.cedula;
     this.usuarioLogin.password = this.formLogin.value.password;
     this.usuarioLogin.facultadid = this.facultad.id;
+    this.usuarioLogin.rol = this.formLogin.value.rol;
     
     this.us.login(this.usuarioLogin)
       .subscribe(res => {
         if (res.data != null) {
           const token  = res.data;
           if (token != null) {
-            console.log('token', token);
             sessionStorage.setItem('token', token);
+            sessionStorage.setItem('tipoSesion', 'usuario');
             sessionStorage.setItem('facultadUrl', this.fUrl);
             sessionStorage.setItem('facultadNombre', this.facultad.nombre);
             sessionStorage.setItem('facultadId', this.facultad.id.toString());

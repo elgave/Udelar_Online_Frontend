@@ -15,7 +15,7 @@ export class ListarComponent implements OnInit {
   constructor(private service:FacultadService,private router:Router) { }
 
   ngOnInit() {
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
     this.service.getFacultades()
     .subscribe(data=>{
       this.facultades=data.data;

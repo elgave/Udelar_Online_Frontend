@@ -10,7 +10,7 @@ export class GestionComponent {
   constructor(private router:Router){}
 
   ngOnInit() {
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
   }
 
   ListarFacultades(){

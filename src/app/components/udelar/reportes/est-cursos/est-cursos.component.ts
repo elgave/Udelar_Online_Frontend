@@ -15,7 +15,7 @@ export class ReporteEstCursos implements OnInit {
   constructor(private cs: CursoService, private router:Router) { }
 
   ngOnInit(): void {
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
     this.ready = false;
     this.cs.getCursos().subscribe(r => {
       this.cursos = r.data;

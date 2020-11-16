@@ -17,7 +17,7 @@ export class ListarCursoComponent implements OnInit {
   matricula:Matricula = new Matricula();
 
   ngOnInit() {
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
     this.service.getCursos()
     .subscribe(data=>{
       this.cursos=data.data;

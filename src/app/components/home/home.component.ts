@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   }  
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('token')) this.router.navigateByUrl(`facultad/${sessionStorage.getItem('facultadUrl')}`)
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'usuario') this.router.navigateByUrl(`facultad/${sessionStorage.getItem('facultadUrl')}`)
   }
 
   redirect(facultad: Facultad) {

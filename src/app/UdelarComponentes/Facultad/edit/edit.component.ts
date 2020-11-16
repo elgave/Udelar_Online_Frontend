@@ -21,7 +21,7 @@ export class EditComponent implements OnInit {
  
 
   ngOnInit(): void {
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
     this.Editar();
   }
 
@@ -34,7 +34,6 @@ export class EditComponent implements OnInit {
   }
 
   Actualizar(facultad:Facultad){
-    console.log(this.facultad.color)
     this.service.updateFacultad(facultad)
     .subscribe(data=>{
       this.facultad = data.data;

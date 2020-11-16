@@ -17,7 +17,7 @@ export class ListarUsuarioComponent implements OnInit, OnDestroy {
   constructor(private service:UsuarioService,private router:Router) { }
 
   ngOnInit() {
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
     this.subRef$ =  this.service.getUsuarios()
     .subscribe(data=>{
       this.usuarios=data.body.data;

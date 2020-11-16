@@ -15,7 +15,7 @@ export class ReporteCursos implements OnInit {
   constructor(private fs: FacultadService, private router:Router) { }
 
   ngOnInit(): void {
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
     this.ready = false;
     this.fs.getFacultades().subscribe(r => {
       this.facultades = r.data;

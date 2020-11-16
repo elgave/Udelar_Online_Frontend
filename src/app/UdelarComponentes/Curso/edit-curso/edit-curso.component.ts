@@ -21,7 +21,8 @@ export class EditCursoComponent implements OnInit {
 
   cursoForm = this.fb.group({
     nombre: ["", Validators.required],
-    creditos: ["", Validators.required]
+    creditos: ["", Validators.required],
+    confirmar: ["", Validators.required]
   });
 
   docenteForm = this.fb.group({
@@ -30,7 +31,7 @@ export class EditCursoComponent implements OnInit {
 
   ngOnInit(): void {
     this.Editar();
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
   }
 
   Editar(){

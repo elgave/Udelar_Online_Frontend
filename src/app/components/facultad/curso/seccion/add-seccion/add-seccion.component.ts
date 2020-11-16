@@ -30,7 +30,6 @@ export class AddSeccionComponent implements OnInit {
 
   Guardar(seccion:Seccion){
     seccion.cursoId = this.cursoId;
-    console.log(seccion);
     this.cs.addSeccion(seccion)
     .subscribe(data=>{
      alert("Se Agrego con éxito.");

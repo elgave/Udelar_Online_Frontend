@@ -6,6 +6,7 @@ export class Curso {
     nombre: string;
     cantCreditos:number;
     facultadId: number;
+    confirmaBedelia: boolean;
     usuarios: Array<Usuario>;
     docentes: Array<Usuario>;
     secciones: Array<Seccion>;

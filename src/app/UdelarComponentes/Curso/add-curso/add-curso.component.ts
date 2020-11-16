@@ -19,13 +19,14 @@ export class AddCursoComponent implements OnInit {
   cursoForm = this.fb.group({
     nombre: ["", Validators.required],
     creditos: ["", Validators.required],
-    facultadid: ["", Validators.required]
+    facultadid: ["", Validators.required],
+    confirmar: ["", Validators.required]
   });
  
   curso:Curso = new Curso();
 
   ngOnInit(): void {
-    if (!sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion/login');
+    if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
     this.fs.getFacultades().subscribe(r => this.facultades = r.data);
   }
 

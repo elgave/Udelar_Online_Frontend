@@ -25,7 +25,7 @@ export class AdminLoginComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    if (sessionStorage.getItem('admintoken')) this.router.navigateByUrl('gestion');
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar') this.router.navigateByUrl('gestion');
   }
 
   Login() {
@@ -33,7 +33,8 @@ export class AdminLoginComponent implements OnInit, OnDestroy{
     this.us.adminLogin(usuarioLogin)
       .subscribe(res => {
         if (res.data != null) {
-          sessionStorage.setItem('admintoken', res.data);
+          sessionStorage.setItem('token', res.data);
+          sessionStorage.setItem('tipoSesion', 'udelar');
           this.router.navigateByUrl(`gestion`);
         } else {
           this.formLogin.controls['password'].setErrors({'incorrect': true});

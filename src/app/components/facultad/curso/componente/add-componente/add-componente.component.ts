@@ -17,16 +17,7 @@ export class AddComponenteComponent implements OnInit {
   constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<AddComponenteComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.seccionId = data.seccionId;
   }
-  /*
-  export class Componente {
-    indice:number;
-    archivo:Archivo;
-    ContenedorTarea:ContenedorTarea;
-    Comunicado:Comunicado;
-  }*/
-  
-  //! ver como mierda hicieron el agregar componente en backend. de donde mierda saca el archivo?
-  //! agregar opcion de componente de texto a backend
+
   componenteForm = this.fb.group({
     nombre: ["", Validators.required],
     tipo: ["", Validators.required],
