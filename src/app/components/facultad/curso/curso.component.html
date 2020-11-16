@@ -1,8 +1,8 @@
 <div style="margin: 10px;">
   <div>
     <h1 class="titulocurso">{{curso.nombre}}</h1>
-    <button *ngIf="isDocente" class="btn btn-light" style="float: right;" (click)="editCurso()">Editar</button>
-    <button *ngIf="isDocente" class="btn btn-light" style="float: right;" (click)="addSeccion()">+ Sección</button>
+    <button *ngIf="isDocente || isAdmin" class="botonLinkGrande" style="float: right;" (click)="editCurso(curso.id, curso.nombre)">Editar</button>
+    <button *ngIf="isDocente" class="botonLinkGrande" style="float: right;" (click)="addSeccion()">+ Sección</button>
     <h4 style="margin-left: 20px">Docentes:</h4>
     <div *ngFor="let docente of curso.docentes">
       <p style="margin-left: 30px">{{docente.nombre}} {{docente.apellido}}</p>
@@ -11,12 +11,16 @@
       <div class="seccion">
         <hr>
         <h2 class="tituloseccion" *ngIf="isDocente" style="display: inline-block;">({{seccion.indice}}) {{seccion.titulo}}</h2>
-        <button *ngIf="isDocente" class="btn btn-light" style="float: right;" (click)="addComponente(seccion.id)">+ Componente</button>
         <h2 class="tituloseccion" *ngIf="!isDocente">{{seccion.titulo}}</h2>
+        <button *ngIf="isDocente" class="botonLinkMediano" style="float: right; color:rgb(231, 18, 18);" (click)="deleteSeccion(seccion.id, seccion.titulo)">Eliminar</button>
+        <button *ngIf="isDocente" class="botonLinkMediano" style="float: right;" (click)="editSeccion(seccion.id, seccion.titulo, seccion.indice)">Editar</button>
+        <button *ngIf="isDocente" class="botonLinkMediano" style="float: right;" (click)="addComponente(seccion.id)">+ Componente</button>
         <div class="componente" *ngFor="let componente of seccion.componentes" style="margin-left: 10px;">
           <div>
-            <h3 class="tituloComponente" *ngIf="isDocente">({{componente.indice}}) {{componente.nombre}}</h3>
+            <h3 class="tituloComponente" *ngIf="isDocente" style="display: inline-block;">({{componente.indice}}) {{componente.nombre}}</h3>
             <h3 class="tituloComponente" *ngIf="!isDocente">{{componente.nombre}}</h3>
+            <button *ngIf="isDocente" class="botonLink" style="float: right; color:rgb(231, 18, 18);" (click)="deleteComponente(componente.id, seccion.titulo, componente.nombre)">Eliminar</button>
+            <button *ngIf="isDocente" class="botonLink" style="float: right;" (click)="editComponente(componente.id, componente.nombre, componente.indice)">Editar</button>
             <div *ngIf="componente.tipo == 'archivo'" class="componenteArchivo">
               <img class="archivoIcon" src="assets/{{icon(componente.archivo.extension)}}">
               <a href="{{currentEnv.s3url}}/{{componente.archivo.ubicacion}}" target="_blank" download>{{componente.archivo.nombre}}.{{componente.archivo.extension}}</a>
