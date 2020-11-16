@@ -39,7 +39,7 @@ export class EditCursoComponent implements OnInit {
     this.service.getCursoId(+id)
     .subscribe(data=>{
       this.curso=data.data;
-      this.fs.getFacultadId(this.curso.facultadId).subscribe(r => this.docentes = r.data.usuarios.filter(u => u.roles.find(rol => rol.descripcion == 'docente')));
+      this.fs.getFacultadId(this.curso.facultadId).subscribe(r => this.docentes = r.data.usuarios.filter(u => u.roles.find(rol => rol.descripcion == 'docente')).filter(u => !this.curso.docentes.some(us => us.cedula == u.cedula)));
     });
   }
 
@@ -54,7 +54,12 @@ export class EditCursoComponent implements OnInit {
   }
 
   AgregarDocente() {
-    this.docente = this.docentes.find(d => d.cedula = this.docenteid);
-    this.service.agregarDocente(this.curso.id, this.docente).subscribe(r=>alert(`Docente ${this.docente.nombre} agregado al curso ${r.data.nombre}`));
+    this.docente = this.docentes.find(d => d.cedula == this.docenteid);
+    this.service.agregarDocente(this.curso.id, this.docente)
+    .subscribe(r => {
+      alert(`Docente ${this.docente.nombre} agregado al curso ${r.data.nombre}`);
+      this.Editar();
+    });
+
   }
 }

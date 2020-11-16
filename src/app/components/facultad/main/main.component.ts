@@ -19,18 +19,26 @@ export class MainFacultadComponent implements OnInit {
   ready: boolean;
   property: string;
   cursoId: number;
+  mostrarCursos: Curso[];
+  isMisCursos: boolean;
+  botonTexto: string;
+  isEstudiante: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, private fs: FacultadService, private scroll: ViewportScroller) { }  
 
   ngOnInit(): void {
+    this.isEstudiante = sessionStorage.getItem('rol') == 'estudiante';
+    this.isMisCursos = false;
+    this.botonTexto = "Mis cursos";
     this.ready = false;
     if (!sessionStorage.getItem('rol') || !sessionStorage.getItem('token')) this.router.navigateByUrl(`login/${this.fUrl}`);
     this.fs.getFacultadId(parseInt(sessionStorage.getItem('facultadId'))).subscribe(data => {
       this.facultad = data.data;
       this.facultad.cursos.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
+      this.mostrarCursos = this.facultad.cursos;
       this.rol = sessionStorage.getItem('rol');
       if (this.rol == 'docente') {
-        this.facultad.cursos = this.facultad.cursos.filter(c => c.docentes.find(d => d.cedula == sessionStorage.getItem('cedula')));
+        this.mostrarCursos = this.facultad.cursos.filter(c => c.docentes.find(d => d.cedula == sessionStorage.getItem('cedula')));
       }
       if (this.route.snapshot.paramMap.get('cursoId')) {
         this.isCurso = true;
@@ -45,5 +53,17 @@ export class MainFacultadComponent implements OnInit {
   change(cursoId) {
     this.cursoId = cursoId;
     this.scroll.scrollToPosition([0,0]);
+  }
+
+  toggleCursos() {
+    this.isMisCursos = !this.isMisCursos;
+    if (this.isMisCursos) {
+      this.botonTexto = "Todos los cursos";
+      this.mostrarCursos = this.facultad.cursos.filter(c => c.usuarios.some(u => u.cedula == sessionStorage.getItem('cedula')));
+    }
+    else {
+      this.botonTexto = "Mis cursos";
+      this.mostrarCursos = this.facultad.cursos;
+    }
   }
 }

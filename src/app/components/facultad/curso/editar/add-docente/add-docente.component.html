@@ -1,0 +1,18 @@
+<h2 mat-dialog-title style="text-align: center;">Agregar docente a "{{curso.nombre}}"</h2>
+<mat-dialog-content class="contenedor">
+    <form [formGroup]="docenteForm">
+        <label for="">Docente:</label>
+        <select [(ngModel)]="docenteid" [ngClass]="{'is-invalid':docenteForm.get('docente').errors && docenteForm.get('docente').touched}" placeholder="Docente" class="form-control"
+            formControlName="docente" id="docente">
+            <option *ngFor="let usuario of docentes" [value]="usuario.cedula">{{usuario.nombre}} {{usuario.apellido}}</option>
+        </select>
+        <div style="margin-top:30px">
+            <button (click)="AgregarDocente()"  [disabled]="docenteForm.invalid"  class="btn btn-danger">Agregar</button>
+            <button (click)="Cerrar()" class="btn btn-dark">Cancelar</button>
+        </div>
+    </form>
+</mat-dialog-content>
+
+
+
+

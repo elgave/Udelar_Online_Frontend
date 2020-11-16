@@ -32,7 +32,7 @@ export class CursoService {
     return this.http.delete<Response<Curso[]>>(`${this.Url}/${curso.id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   matricularse(matricula:Matricula){
-    return this.http.post<Response<boolean>>(`${this.Url}/matricularse`,matricula, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.post<any>(`${this.Url}/matricularse`,matricula, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   agregarDocente(id: number, docente: Usuario) {
     return this.http.post<Response<Curso>>(`${this.Url}/${id}`, docente, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});

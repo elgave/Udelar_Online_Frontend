@@ -9,9 +9,10 @@
       <div class="card">
         <div class="card-body" id="sidebarbody">
           <div class="topdiv">
-            <h3>Cursos</h3>
+            <h3 style="display: inline-block;">Cursos</h3> 
+            <button *ngIf="isEstudiante" type="button" class="btn btn-primary btn-sm" style="float: right;" (click)="toggleCursos()">{{botonTexto}}</button>
           </div>
-          <div *ngFor="let curso of facultad.cursos">
+          <div *ngFor="let curso of mostrarCursos">
             <div class="cursolink">
               <a routerLink="/facultad/{{facultad.url}}/curso/{{curso.id}}" (click)="change(curso.id)">{{curso.nombre}}</a>
             </div>
@@ -29,9 +30,9 @@
           <h1>Bienvenido a {{facultad.nombre}}</h1>
           <h3>Identificado como: {{rol}}</h3>
           <h2>Novedades:</h2>
-          <div *ngIf="rol == 'estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
-          <div *ngIf="rol == 'docente'"><h3>Esto sólo se ve como docente</h3></div>
-          <div *ngIf="rol == 'administrador'"><h3>Esto sólo se ve como administrador</h3></div>
+          <div *ngIf="rol == 'estudiante'"><h3>Usted es estudiante</h3></div>
+          <div *ngIf="rol == 'docente'"><h3>Usted es docente</h3></div>
+          <div *ngIf="rol == 'administrador'"><h3>Usted es administrador</h3></div>
         </div>
       </div>
     </main>

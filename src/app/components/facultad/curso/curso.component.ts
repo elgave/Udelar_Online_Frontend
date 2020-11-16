@@ -12,6 +12,8 @@ import { DeleteComponenteComponent } from './componente/delete-componente/delete
 import { EditSeccionComponent } from './seccion/edit-seccion/edit-seccion.component';
 import { EditComponenteComponent } from './componente/edit-componente/edit-componente.component';
 import { RenombrarCursoComponent } from './editar/renombrar-curso/renombrar-curso.component';
+import { Matricula } from 'src/app/Modelo/Matricula';
+import { AddDocenteComponent } from './editar/add-docente/add-docente.component';
 
 @Component({
   selector: 'app-curso',
@@ -19,13 +21,13 @@ import { RenombrarCursoComponent } from './editar/renombrar-curso/renombrar-curs
   styleUrls: ['./curso.component.css']
 })
 export class CursoComponent implements OnInit {
-  facultad: Facultad;
   fUrl: string = this.route.snapshot.paramMap.get('fUrl');
   rol: string;
   isCurso: boolean;
   isDocente: boolean;
   isAdmin: boolean;
   isEstudiante: boolean;
+  isMatriculado: boolean;
   curso: Curso;
 
   @Input() cursoId: number;
@@ -35,17 +37,20 @@ export class CursoComponent implements OnInit {
   ngOnInit(): void {
     this.cs.getCursoId(parseInt(this.route.snapshot.paramMap.get('cursoId'))).subscribe(r => {
       this.curso = r.data;
+      this.isMatriculado = this.curso.usuarios.some(u => u.cedula == sessionStorage.getItem('cedula'));
       this.curso.secciones.sort((a, b) => a.indice > b.indice ? 1 : -1);
       this.curso.secciones.forEach(s => {
         s.componentes.sort((a, b) => a.indice > b.indice ? 1 : -1);
       })
     });
-    this.isAdmin = sessionStorage.getItem('rol') == 'administrador'
+    this.isAdmin = sessionStorage.getItem('rol') == 'administrador';
+    this.isEstudiante = sessionStorage.getItem('rol') == 'estudiante';
   }
 
   loadCurso() {
     this.cs.getCursoId(parseInt(this.route.snapshot.paramMap.get('cursoId'))).subscribe(r => {
       this.curso = r.data;
+      this.isMatriculado = this.curso.usuarios.some(u => u.cedula == sessionStorage.getItem('cedula'));
       this.curso.secciones.sort((a, b) => a.indice > b.indice ? 1 : -1);
       this.curso.secciones.forEach(s => {
         s.componentes.sort((a, b) => a.indice > b.indice ? 1 : -1);
@@ -133,6 +138,42 @@ export class CursoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.loadCurso();
     });
+  }
+
+  addDocente() {
+    let dialogRef = this.dialog.open(AddDocenteComponent, {
+      width: '600px',
+      height: '250px',
+      data: { curso: JSON.stringify(this.curso) }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCurso();
+    });
+  }
+
+  eliminarCurso() {
+    this.cs.deleteCurso(this.curso)
+    .subscribe(data=>{
+      alert("Curso eliminado con éxito.");
+      this.router.navigateByUrl('/');
+    })
+  }
+
+  matricularse() {
+    let matricula = new Matricula();
+    matricula.cedula = sessionStorage.getItem('cedula');
+    matricula.idCurso = this.curso.id;
+    matricula.idFacultad = this.curso.facultadId;
+    this.cs.matricularse(matricula)
+    .subscribe(data=>{
+      console.log(data.result);
+      if (data.result.data) {
+        alert("Matriculado con éxito.");
+        this.loadCurso();
+      } else {
+        alert(data.result.message);
+      }
+    })
   }
 
   icon(ext:string) {
