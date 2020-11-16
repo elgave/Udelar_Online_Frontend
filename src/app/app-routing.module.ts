@@ -25,6 +25,7 @@ const routes: Routes = [
   {path: 'gestion/login', component: AdminLoginComponent},
   {path: 'facultad/:fUrl', component: MainFacultadComponent},
   {path: 'facultad/:fUrl/curso/:cursoId', component: MainFacultadComponent},
+  {path: 'facultad/:fUrl/encuesta/:accion', component: MainFacultadComponent},
   {path: 'gestion/listarFacultades',component:ListarComponent},
   {path: 'gestion/addFacultad',component:AddComponent},
   {path: 'gestion/editFacultad',component:EditComponent},

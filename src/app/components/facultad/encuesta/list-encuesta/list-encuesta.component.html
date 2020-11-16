@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h3>Encuestas</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">Titulo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let encuesta of encuestas"  class="text-center">
+                        <td>{{encuesta.titulo}}</td>
+                        <td>
+                            <button (click)="Editar(usuario)" class="btn btn-warning">Publicar</button>
+                            <button (click)="Delete(usuario)" class="btn btn-success" style="margin-left: 10px;">Ver Respuestas</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <button (click)= "Nuevo()"  class="btn btn-info" style="margin-left:10px;">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>

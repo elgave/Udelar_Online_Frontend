@@ -41,6 +41,8 @@ import { DeleteComponenteComponent } from './components/facultad/curso/component
 import { EditSeccionComponent } from './components/facultad/curso/seccion/edit-seccion/edit-seccion.component';
 import { DeleteSeccionComponent } from './components/facultad/curso/seccion/delete-seccion/delete-seccion.component';
 import { RenombrarCursoComponent } from './components/facultad/curso/editar/renombrar-curso/renombrar-curso.component';
+import { AddEncuestaComponent } from './components/facultad/encuesta/add-encuesta/add-encuesta.component';
+import { ListEncuestaComponent } from './components/facultad/encuesta/list-encuesta/list-encuesta.component';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { RenombrarCursoComponent } from './components/facultad/curso/editar/reno
     DeleteComponenteComponent,
     EditSeccionComponent,
     DeleteSeccionComponent,
-    RenombrarCursoComponent
+    RenombrarCursoComponent,
+    AddEncuestaComponent,
+    ListEncuestaComponent
   ],
   imports: [
     BrowserModule,

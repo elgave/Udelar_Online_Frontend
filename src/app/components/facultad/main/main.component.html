@@ -16,6 +16,12 @@
               <a routerLink="/facultad/{{facultad.url}}/curso/{{curso.id}}" (click)="change(curso.id)">{{curso.nombre}}</a>
             </div>
           </div>
+          
+          <div *ngIf="rol != 'Estudiante'">
+            <div class="listEncuestaLink">
+              <a routerLink="/facultad/{{facultad.url}}/encuesta/{{'list'}}" (click)="change2()">{{'Encuestas'}}</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -24,14 +30,20 @@
       <div *ngIf='isCurso'>
         <app-curso [cursoId]="cursoId"></app-curso>
       </div>
-      <div *ngIf='!isCurso'>
+      <div *ngIf='isAddEncuesta'>
+       <app-add-encuesta></app-add-encuesta>
+      </div>
+      <div *ngIf='isListEncuesta'>
+        <app-list-encuesta></app-list-encuesta>
+      </div>
+      <div *ngIf='!isCurso && !isAddEncuesta && !isListEncuesta ' >
         <div class="col-md-12">
           <h1>Bienvenido a {{facultad.nombre}}</h1>
           <h3>Identificado como: {{rol}}</h3>
           <h2>Novedades:</h2>
-          <div *ngIf="rol == 'estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
-          <div *ngIf="rol == 'docente'"><h3>Esto sólo se ve como docente</h3></div>
-          <div *ngIf="rol == 'administrador'"><h3>Esto sólo se ve como administrador</h3></div>
+          <div *ngIf="rol == 'Estudiante'"><h3>Esto sólo se ve como estudiante</h3></div>
+          <div *ngIf="rol == 'Docente'"><h3>Esto sólo se ve como docente</h3></div>
+          <div *ngIf="rol == 'Administrador'"><h3>Esto sólo se ve como administrador</h3></div>
         </div>
       </div>
     </main>
