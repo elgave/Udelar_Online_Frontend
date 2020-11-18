@@ -31,11 +31,6 @@
               <a routerLink="/facultad/{{facultad.url}}/curso/{{curso.id}}" (click)="change(curso.id)">{{curso.nombre}}</a>
             </div>
           </div>
-          <div *ngIf="rol != 'Estudiante'">
-            <div class="listEncuestaLink">
-              <a routerLink="/facultad/{{facultad.url}}/encuesta/{{'list'}}" (click)="change2()">{{'Encuestas'}}</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
