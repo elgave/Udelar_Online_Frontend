@@ -102,7 +102,7 @@ export class MainFacultadComponent implements OnInit {
 
   gestion() {
     let dialogRef = this.dialog.open(AdminMenuComponent, {
-      width: '90%',
+      width: '1080px',
       height: '90%',
       data: { facultadId: this.facultad.id, facultad: this.facultad.nombre, facultadColor: this.facultad.color, facultadUrl: this.facultad.url }
     });
