@@ -3,6 +3,7 @@
     <!-- headbar -->
     <h1 class="titulocurso">{{curso.nombre}}</h1>
     <button *ngIf="isAdmin" class="botonLinkGrande" style="color:rgb(231, 18, 18);" (click)="eliminarCurso()">Eliminar</button>
+    <button *ngIf="isDocente || isAdmin" class="botonLinkGrande" (click)="listUsuarios()">Estudiantes</button>
     <button *ngIf="isDocente || isAdmin" class="botonLinkGrande" (click)="editCurso(curso.id, curso.nombre)">Editar</button>
     <button *ngIf="isDocente || isAdmin" class="botonLinkGrande" (click)="addDocente()">+ Docente</button>
     <button *ngIf="isDocente" class="botonLinkGrande" (click)="addSeccion()">+ Sección</button>

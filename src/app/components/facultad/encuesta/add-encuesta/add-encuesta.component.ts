@@ -45,8 +45,6 @@ export class AddEncuestaComponent implements OnInit {
   }
 
   onAddQuestion() {
-    console.log(this.surveyForm);
-   
     const surveyQuestionItem = new FormGroup({
       'questionTitle': new FormControl('', Validators.required),
       'questionGroup': new FormGroup({})
@@ -64,14 +62,11 @@ export class AddEncuestaComponent implements OnInit {
 
     (<FormArray>this.surveyForm.get('surveyQuestions')).removeAt(index);
     this.selectedOption.splice(index,1)
-    console.log(this.surveyForm);
-
   }
 
   postSurvey() {
 
     let formData = this.surveyForm.value;
-    console.log(formData);
     let Title = formData.surveyTitle;
 
     let preguntas = [];
@@ -87,8 +82,6 @@ export class AddEncuestaComponent implements OnInit {
 
       encuesta.preguntas.push(questionItem)
     });
-
-    console.log(encuesta);
 
     this.es.createEncuesta(encuesta)
     .subscribe(data=>{

@@ -50,8 +50,6 @@ export class MainFacultadComponent implements OnInit {
   loadFacultad() {
     this.fs.getFacultadId(parseInt(sessionStorage.getItem('facultadId'))).subscribe(data => {
       this.facultad = data.data;
-      console.log(data.data);
-      console.log(data.data);console.log(data.data);
       this.facultad.cursos.sort((a, b) => a.nombre > b.nombre ? 1 : -1);
       this.mostrarCursos = this.facultad.cursos;
       this.rol = sessionStorage.getItem('rol');

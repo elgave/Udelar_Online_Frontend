@@ -14,9 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddUsuarioComponent } from './UdelarComponentes/Usuario/add-usuario/add-usuario.component';
 import { ListarUsuarioComponent } from './UdelarComponentes/Usuario/listar-usuario/listar-usuario.component';
 import { EditUsuarioComponent } from './UdelarComponentes/Usuario/edit-usuario/edit-usuario.component';
-import { ListarCursoComponent } from './UdelarComponentes/Curso/listar-curso/listar-curso.component';
-import { AddCursoComponent } from './UdelarComponentes/Curso/add-curso/add-curso.component';
-import { EditCursoComponent } from './UdelarComponentes/Curso/edit-curso/edit-curso.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FacultadFooterComponent } from './components/facultad/footer/footer.component';
@@ -46,6 +43,7 @@ import { AgregarCursoComponent } from './components/facultad/curso/editar/add-cu
 import { AgregarUsuarioComponent } from './components/usuarios/agregar-usuario/agregar-usuario.component';
 import { AdminMenuComponent } from './components/facultad/admin-menu/admin-menu.component';
 import { CambiarColorComponent } from './components/facultad/admin-menu/cambiar-color/cambiar-color.component';
+import { ListUsuariosComponent } from './components/facultad/curso/list-usuarios/list-usuarios.component';
 
 
 @NgModule({
@@ -60,9 +58,6 @@ import { CambiarColorComponent } from './components/facultad/admin-menu/cambiar-
     AddUsuarioComponent,
     ListarUsuarioComponent,
     EditUsuarioComponent,
-    ListarCursoComponent,
-    AddCursoComponent,
-    EditCursoComponent,
     HomeComponent,
     LoginComponent,
     PageNotFoundComponent,
@@ -88,7 +83,8 @@ import { CambiarColorComponent } from './components/facultad/admin-menu/cambiar-
     AgregarCursoComponent,
     AgregarUsuarioComponent,
     AdminMenuComponent,
-    CambiarColorComponent
+    CambiarColorComponent,
+    ListUsuariosComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { EditComponenteComponent } from './componente/edit-componente/edit-compo
 import { RenombrarCursoComponent } from './editar/renombrar-curso/renombrar-curso.component';
 import { Matricula } from 'src/app/Modelo/Matricula';
 import { AddDocenteComponent } from './editar/add-docente/add-docente.component';
+import { ListUsuariosComponent } from './list-usuarios/list-usuarios.component';
 
 @Component({
   selector: 'app-curso',
@@ -65,7 +66,7 @@ export class CursoComponent implements OnInit {
   editCurso(cursoId: number, cursoNombre: string) {
     let dialogRef = this.dialog.open(RenombrarCursoComponent, {
       width: '540px',
-      height: '350px',
+      maxHeight: '350px',
       data: { cursoId: cursoId, cursoNombre: cursoNombre, confirmaBedelia: this.curso.confirmaBedelia, creditos: this.curso.cantCreditos, isAdmin: this.isAdmin }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -76,7 +77,7 @@ export class CursoComponent implements OnInit {
   editSeccion(seccionId: string, seccionNombre: string, indice: number) {
     let dialogRef = this.dialog.open(EditSeccionComponent, {
       width: '540px',
-      height: '350px',
+      maxHeight: '350px',
       data: { seccionId: seccionId, seccionNombre: seccionNombre, seccionIndice: indice }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -87,7 +88,7 @@ export class CursoComponent implements OnInit {
   editComponente(componenteId: string, componenteNombre: string, indice: number) {
     let dialogRef = this.dialog.open(EditComponenteComponent, {
       width: '540px',
-      height: '350px',
+      maxHeight: '350px',
       data: { componenteId: componenteId, componenteNombre: componenteNombre, componenteIndice: indice }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -98,7 +99,7 @@ export class CursoComponent implements OnInit {
   deleteSeccion(seccionId:number, seccionNombre:string) {
     let dialogRef = this.dialog.open(DeleteSeccionComponent, {
       width: '540px',
-      height: '300px',
+      maxHeight: '300px',
       data: { seccionId: seccionId, seccionNombre: seccionNombre, cursoNombre: this.curso.nombre }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -109,7 +110,7 @@ export class CursoComponent implements OnInit {
   deleteComponente(componenteId:number, seccionNombre:string, componenteNombre:string) {
     let dialogRef = this.dialog.open(DeleteComponenteComponent, {
       width: '540px',
-      height: '300px',
+      maxHeight: '300px',
       data: { componenteId: componenteId, seccionNombre: seccionNombre, componenteNombre: componenteNombre }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -120,7 +121,7 @@ export class CursoComponent implements OnInit {
   addSeccion() {
     let dialogRef = this.dialog.open(AddSeccionComponent, {
       width: '540px',
-      height: '310px',
+      maxHeight: '310px',
       data: { cursoId: this.curso.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -131,7 +132,7 @@ export class CursoComponent implements OnInit {
   addComponente(seccionId: number) {
     let dialogRef = this.dialog.open(AddComponenteComponent, {
       width: '600px',
-      height: '420px',
+      maxHeight: '420px',
       data: { seccionId: seccionId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -142,8 +143,19 @@ export class CursoComponent implements OnInit {
   addDocente() {
     let dialogRef = this.dialog.open(AddDocenteComponent, {
       width: '600px',
-      height: '250px',
+      maxHeight: '350px',
       data: { curso: JSON.stringify(this.curso) }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCurso();
+    });
+  }
+
+  listUsuarios() {
+    let dialogRef = this.dialog.open(ListUsuariosComponent, {
+      width: '600px',
+      maxHeight: '1080px',
+      data: { curso: JSON.stringify(this.curso), facultadId: this.curso.facultadId }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.loadCurso();
@@ -165,7 +177,6 @@ export class CursoComponent implements OnInit {
     matricula.idFacultad = this.curso.facultadId;
     this.cs.matricularse(matricula)
     .subscribe(data=>{
-      console.log(data.result);
       if (data.result.data) {
         alert("Matriculado con éxito.");
         this.loadCurso();

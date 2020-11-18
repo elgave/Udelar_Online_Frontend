@@ -1,0 +1,14 @@
+<h2 mat-dialog-title style="text-align: center;">Lista de usuarios matriculados</h2>
+<mat-dialog-content class="contenedor">
+  <table class="table table-hover">
+    <tbody>
+      <tr *ngFor="let u of usuarios" class="text-center">
+        <td style="padding: 5px; padding-top: 15px; font-size:large">{{u.nombre}} {{u.apellido}}</td>
+        <td style="padding: 5px">
+          <button (click)="calificar(u.cedula, cursoId, facultadId)" class="btn btn-dark" style="width: 90px; padding: 5px;">Calificar</button>
+          <button (click)="baja(u.cedula, cursoId, facultadId)" class="btn btn-danger" style="margin-left: 10px; width: 90px; padding: 5px;">Dar de baja</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-dialog-content>

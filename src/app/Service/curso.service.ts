@@ -7,6 +7,7 @@ import { Response } from '../Modelo/Response';
 import * as env from 'src/env';
 import { Seccion } from '../Modelo/Seccion';
 import { Componente } from '../Modelo/Componente';
+import { Template } from '../Modelo/Template';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,13 @@ export class CursoService {
     return this.http.delete<Response<Curso[]>>(`${this.Url}/${curso.id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
   matricularse(matricula:Matricula){
-    return this.http.post<any>(`${this.Url}/matricularse`,matricula, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.post<any>(`${this.Url}/matricula`,matricula, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
+
+  bajaMatricula(matricula:Matricula) {
+    return this.http.put<any>(`${this.Url}/matricula`,matricula, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
   agregarDocente(id: number, docente: Usuario) {
     return this.http.post<Response<Curso>>(`${this.Url}/${id}`, docente, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
@@ -59,5 +65,9 @@ export class CursoService {
   }  
   deleteComponente(id:number) {
     return this.http.delete<Response<Componente[]>>(`${this.Url}/componente/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
+  getTemplates() {
+    return this.http.get<Response<Template[]>>(`${this.Url}/template`);
   }
 }
