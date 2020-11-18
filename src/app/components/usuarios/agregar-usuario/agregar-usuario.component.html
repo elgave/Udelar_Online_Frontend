@@ -6,5 +6,5 @@
         <option *ngFor="let u of usuarios" [value]="u.cedula">{{u.nombre}} {{u.apellido}}</option>
     </select>
   </div>
-  <button (click)="Guardar()" class="btn btn-danger" [disabled]="userForm.invalid">Guardar</button>
+  <button (click)="Guardar()" class="btn btn-success" [disabled]="userForm.invalid">Guardar</button>
 </form>

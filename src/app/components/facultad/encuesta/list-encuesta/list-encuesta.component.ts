@@ -1,10 +1,7 @@
-import { Component, OnInit,Input } from '@angular/core';
-import {Encuesta} from 'src/app/Modelo/Encuesta'
+import { Component, OnInit } from '@angular/core';
+import { Encuesta } from 'src/app/Modelo/Encuesta'
 import { EncuestaService } from 'src/app/Service/encuesta.service';
-import { Router} from '@angular/router'
 import { Subscription } from 'rxjs';
-import { Facultad } from 'src/app/Modelo/Facultad';
-import { ViewportScroller } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -13,8 +10,6 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./list-encuesta.component.css']
 })
 export class ListEncuestaComponent implements OnInit {
-
-  @Input() facultad: Facultad;
   encuestas:Encuesta[];
   subRef$: Subscription;
   constructor(private service:EncuestaService, private dialogRef: MatDialogRef<ListEncuestaComponent>) { }

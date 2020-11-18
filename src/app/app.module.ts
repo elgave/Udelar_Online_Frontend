@@ -44,6 +44,8 @@ import { AgregarUsuarioComponent } from './components/usuarios/agregar-usuario/a
 import { AdminMenuComponent } from './components/facultad/admin-menu/admin-menu.component';
 import { CambiarColorComponent } from './components/facultad/admin-menu/cambiar-color/cambiar-color.component';
 import { ListUsuariosComponent } from './components/facultad/curso/list-usuarios/list-usuarios.component';
+import { EstadisticaComponent } from './components/facultad/admin-menu/estadistica/estadistica.component';
+import { InfoCursosComponent } from './components/facultad/admin-menu/info-cursos/info-cursos.component';
 
 
 @NgModule({
@@ -84,7 +86,9 @@ import { ListUsuariosComponent } from './components/facultad/curso/list-usuarios
     AgregarUsuarioComponent,
     AdminMenuComponent,
     CambiarColorComponent,
-    ListUsuariosComponent
+    ListUsuariosComponent,
+    EstadisticaComponent,
+    InfoCursosComponent
   ],
   imports: [
     BrowserModule,

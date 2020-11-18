@@ -4,5 +4,5 @@
     <label for="">Color:</label>
     <input type="color" class="form-control" [(ngModel)]="facultad.color" name="color" formControlName="color" [ngClass]="{'is-invalid':facultadForm.get('color').errors && facultadForm.get('color').touched}">
   </div>
-  <button (click)="Actualizar(facultad)" class="btn btn-danger">Actualizar</button>
+  <button (click)="Actualizar(facultad)" class="btn btn-success">Actualizar</button>
 </form>

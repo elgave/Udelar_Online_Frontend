@@ -5,6 +5,8 @@ import { AgregarCursoComponent } from '../curso/editar/add-curso/add-curso.compo
 import { AddEncuestaComponent } from '../encuesta/add-encuesta/add-encuesta.component';
 import { ListEncuestaComponent } from '../encuesta/list-encuesta/list-encuesta.component';
 import { CambiarColorComponent } from './cambiar-color/cambiar-color.component';
+import { EstadisticaComponent } from './estadistica/estadistica.component';
+import { InfoCursosComponent } from './info-cursos/info-cursos.component';
 
 @Component({
   selector: 'app-admin-menu',
@@ -30,7 +32,7 @@ export class AdminMenuComponent implements OnInit {
   configColor() {
     this.dialog.open(CambiarColorComponent, {
       width: '540px',
-      height: '200px',
+      height: '230px',
       data: { facultadId: this.facultadId, facultad: this.facultad, color: this.facultadColor }
     });
   }
@@ -38,7 +40,7 @@ export class AdminMenuComponent implements OnInit {
   addCurso() {
     this.dialog.open(AgregarCursoComponent, {
       width: '540px',
-      height: '350px',
+      height: '430px',
       data: { facultadId: this.facultadId, facultad: this.facultad }
     });
   }
@@ -46,7 +48,7 @@ export class AdminMenuComponent implements OnInit {
   addAdmin() {
     this.dialog.open(AgregarUsuarioComponent, {
       width: '540px',
-      height: '250px',
+      height: '270px',
       data: { facultadId: this.facultadId, facultad: this.facultad, rol: 'administrador', add: true }
     });
   }
@@ -54,7 +56,7 @@ export class AdminMenuComponent implements OnInit {
   addDocente() {
     this.dialog.open(AgregarUsuarioComponent, {
       width: '540px',
-      height: '250px',
+      height: '270px',
       data: { facultadId: this.facultadId, facultad: this.facultad, rol: 'docente', add: true }
     });
   }
@@ -62,7 +64,7 @@ export class AdminMenuComponent implements OnInit {
   removeAdmin() {
     this.dialog.open(AgregarUsuarioComponent, {
       width: '540px',
-      height: '250px',
+      height: '270px',
       data: { facultadId: this.facultadId, facultad: this.facultad, rol: 'administrador', add: false }
     });
   }
@@ -70,7 +72,7 @@ export class AdminMenuComponent implements OnInit {
   removeDocente() {
     this.dialog.open(AgregarUsuarioComponent, {
       width: '540px',
-      height: '250px',
+      height: '270px',
       data: { facultadId: this.facultadId, facultad: this.facultad, rol: 'docente', add: false }
     });
   }
@@ -89,8 +91,20 @@ export class AdminMenuComponent implements OnInit {
     });
   }
 
-  publicarEncuesta() {
-    
+  infoCursos() {
+    this.dialog.open(InfoCursosComponent, {
+      width: '700px',
+      maxHeight: '600px',
+      data: { facultadId: this.facultadId, facultad: this.facultad }
+    });
+  }
+
+  estadisticaCursos() {
+    this.dialog.open(EstadisticaComponent, {
+      width: '700px',
+      maxHeight: '600px',
+      data: { facultadId: this.facultadId, facultad: this.facultad }
+    });
   }
 
   Cerrar() {
