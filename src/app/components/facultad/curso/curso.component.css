@@ -66,6 +66,7 @@
 }
 
 .botonLink {
+  float: right;
   background: none!important;
   border: none;
   padding: 0!important;
@@ -77,6 +78,7 @@
 }
 
 .botonLinkMediano {
+  float: right;
   background: none!important;
   border: none;
   padding: 0!important;
@@ -90,6 +92,7 @@
 }
 
 .botonLinkGrande {
+  float: right;
   background: none!important;
   border: none;
   padding: 0!important;

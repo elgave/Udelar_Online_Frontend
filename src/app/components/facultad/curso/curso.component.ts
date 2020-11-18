@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CursoService } from 'src/app/Service/curso.service'
-import { Facultad } from 'src/app/Modelo/Facultad';
 import { Curso } from 'src/app/Modelo/Curso';
 import * as env from 'src/env';
 import { MatDialog } from "@angular/material/dialog";

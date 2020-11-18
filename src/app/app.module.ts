@@ -19,9 +19,7 @@ import { AddCursoComponent } from './UdelarComponentes/Curso/add-curso/add-curso
 import { EditCursoComponent } from './UdelarComponentes/Curso/edit-curso/edit-curso.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FacultadHeaderComponent } from './components/facultad/header/facultadheader.component';
 import { FacultadFooterComponent } from './components/facultad/footer/footer.component';
-import { FacultadSidebarComponent } from './components/facultad/sidebar/sidebar.component';
 import { LoginComponent } from './components/usuarios/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { MainFacultadComponent } from './components/facultad/main/main.component';
@@ -44,6 +42,10 @@ import { RenombrarCursoComponent } from './components/facultad/curso/editar/reno
 import { AddDocenteComponent } from './components/facultad/curso/editar/add-docente/add-docente.component';
 import { AddEncuestaComponent } from './components/facultad/encuesta/add-encuesta/add-encuesta.component';
 import { ListEncuestaComponent } from './components/facultad/encuesta/list-encuesta/list-encuesta.component';
+import { AgregarCursoComponent } from './components/facultad/curso/editar/add-curso/add-curso.component';
+import { AgregarUsuarioComponent } from './components/usuarios/agregar-usuario/agregar-usuario.component';
+import { AdminMenuComponent } from './components/facultad/admin-menu/admin-menu.component';
+import { CambiarColorComponent } from './components/facultad/admin-menu/cambiar-color/cambiar-color.component';
 
 
 @NgModule({
@@ -66,9 +68,7 @@ import { ListEncuestaComponent } from './components/facultad/encuesta/list-encue
     PageNotFoundComponent,
     MainFacultadComponent,
     HeaderComponent,
-    FacultadHeaderComponent,
     FacultadFooterComponent,
-    FacultadSidebarComponent,
     CursoComponent,
     ReporteFacultades,
     ReporteCursos,
@@ -84,7 +84,11 @@ import { ListEncuestaComponent } from './components/facultad/encuesta/list-encue
     RenombrarCursoComponent,
     AddDocenteComponent,
     AddEncuestaComponent,
-    ListEncuestaComponent
+    ListEncuestaComponent,
+    AgregarCursoComponent,
+    AgregarUsuarioComponent,
+    AdminMenuComponent,
+    CambiarColorComponent
   ],
   imports: [
     BrowserModule,

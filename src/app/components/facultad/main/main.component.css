@@ -2,13 +2,79 @@
   background-color: cornflowerblue;
 }
 
+.tituloFacultad {
+  font-weight: bold;
+  margin: 0;
+  display: inline-block;
+  font-size: xx-large;
+}
+
+.botonBorde {
+  border: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.botonLink {
+  float: right;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.botonLinkMediano {
+  float: right;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-family: arial, sans-serif;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: large;
+  margin-left: 20px;
+  margin-right: 11px;
+}
+
+.botonLinkGrande {
+  float: right;
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-family: arial, sans-serif;
+  font-size: x-large;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.botonLinkGrandeBorde {
+  float: right;
+  background: none!important;
+  border: none;
+  padding: 5px!important;
+  font-family: arial, sans-serif;
+  font-size: x-large;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-right: 30px;
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
 .main {
   border: 1px;
   border-radius: 5px;
   border-style: solid;
   z-index: 0;
   margin: 10px;
-  padding: 0;
+  padding: 20px;
   height: 100%;
   overflow: auto;
   margin-left: 2%

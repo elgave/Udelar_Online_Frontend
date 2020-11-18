@@ -1,0 +1,10 @@
+<h2 mat-dialog-title style="text-align: center;">Modificar rol de usuario</h2>
+<form [formGroup]="userForm">
+  <div class="form-group">
+    <label for="">Usuario:</label>
+    <select [(ngModel)]="usuarioId" [ngClass]="{'is-invalid':userForm.get('cedula').errors && userForm.get('cedula').touched}" placeholder="Cedula" class="form-control" formControlName="cedula" id="ced">
+        <option *ngFor="let u of usuarios" [value]="u.cedula">{{u.nombre}} {{u.apellido}}</option>
+    </select>
+  </div>
+  <button (click)="Guardar()" class="btn btn-danger" [disabled]="userForm.invalid">Guardar</button>
+</form>

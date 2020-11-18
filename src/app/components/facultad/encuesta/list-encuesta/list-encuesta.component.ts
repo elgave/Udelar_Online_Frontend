@@ -5,6 +5,7 @@ import { Router} from '@angular/router'
 import { Subscription } from 'rxjs';
 import { Facultad } from 'src/app/Modelo/Facultad';
 import { ViewportScroller } from '@angular/common';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-encuesta',
@@ -16,11 +17,10 @@ export class ListEncuestaComponent implements OnInit {
   @Input() facultad: Facultad;
   encuestas:Encuesta[];
   subRef$: Subscription;
-  constructor(private service:EncuestaService,private router:Router,private scroll: ViewportScroller) { }
+  constructor(private service:EncuestaService, private dialogRef: MatDialogRef<ListEncuestaComponent>) { }
 
   ngOnInit(): void {
-    if (!(sessionStorage.getItem('token'))) this.router.navigateByUrl('gestion/login');
-    this.subRef$ =  this.service.getencuestasXRol(sessionStorage.getItem('rol'))
+    this.service.getencuestasXRol(sessionStorage.getItem('rol'))
     .subscribe(data=>{
       this.encuestas=data.data;
     },
@@ -29,15 +29,19 @@ export class ListEncuestaComponent implements OnInit {
       });
   }
 
-  ngOnDestroy(){
-    if(this.subRef$){
-      this.subRef$.unsubscribe();
-    }
+  ver() {
+    
   }
 
-  Nuevo(){
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate(["/facultad/"+sessionStorage.getItem('facultadUrl')+"/encuesta/add"]));
+  publicar() {
+
   }
 
+  eliminar() {
+
+  }
+
+  Cerrar() {
+    this.dialogRef.close();
+  }
 }

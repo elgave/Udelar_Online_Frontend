@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit, OnDestroy{
             sessionStorage.setItem('cedula', this.usuarioLogin.cedula);
             sessionStorage.setItem('rol', this.rol);
             sessionStorage.setItem('mainColor', this.facultad.color);
-            sessionStorage.setItem('lightness', this.getLighness(this.facultad.color.substr(1,6)) ? 'light' : 'dark');
             this.router.navigateByUrl(`facultad/${this.fUrl}`);
           }
         } else {
@@ -86,31 +85,5 @@ export class LoginComponent implements OnInit, OnDestroy{
         console.log('Error en el login', err); 
       });
   }
-
-  getLighness(hexCode){
-    var rgb = hexCode.split(/(?=(?:..)*$)/);
-    let r = parseInt(rgb[0], 16);
-    let g = parseInt(rgb[1], 16);
-    let b = parseInt(rgb[2], 16);
-    r /= 255, g /= 255, b /= 255;
-    var max = Math.max(r, g, b), min = Math.min(r, g, b);
-    var h, s, l = (max + min) / 2;
-
-    if (max == min) {
-      h = s = 0;
-    } else {
-      var d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-      switch(max){
-        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-        case g: h = (b - r) / d + 2; break;
-        case b: h = (r - g) / d + 4; break;
-      }
-      h /= 6;
-    }
-    //return [h, s, l];
-    if (l > 0.6) return true; else return false;
-  }
-
   ngOnDestroy() {}
 }

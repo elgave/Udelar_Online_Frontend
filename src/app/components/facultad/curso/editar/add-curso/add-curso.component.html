@@ -1,0 +1,18 @@
+<h2 mat-dialog-title style="text-align: center;">Agregar curso a "{{facultad}}"</h2>
+<mat-dialog-content class="contenedor">
+    <form [formGroup]="cursoForm">
+        <div class="form-group">
+            <label for="">Nombre:</label>
+            <input type="text"  class="form-control" [(ngModel)]="curso.nombre" name="nombre" [ngClass]="{'is-invalid':cursoForm.get('nombre').errors && cursoForm.get('nombre').touched}" formControlName="nombre">
+            
+            <label for="">Cantidad de creditos:</label>
+            <input type="number"  class="form-control" [(ngModel)]="curso.cantCreditos" name="cantCreditos" [ngClass]="{'is-invalid':(cursoForm.get('creditos').errors && cursoForm.get('creditos').touched) || cursoForm.get('creditos').value<1}" formControlName="creditos" required maxlength=2>
+
+            <div style="margin-top:20px;" class="form-check">
+                <input type="checkbox" class="form-check-input" name="confirmar" [(ngModel)]="curso.confirmaBedelia" [ngClass]="{'is-invalid':cursoForm.get('confirmar').errors && cursoForm.get('confirmar').touched}" formControlName="confirmar">
+                <label for="">Requiere aprobación de Bedelías</label>  
+            </div>
+        </div>
+        <button (click)="Guardar(curso)" [disabled]="cursoForm.invalid" class="btn btn-danger">Guardar</button>
+    </form>
+</mat-dialog-content>
