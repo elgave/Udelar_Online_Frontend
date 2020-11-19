@@ -46,6 +46,12 @@ import { CambiarColorComponent } from './components/facultad/admin-menu/cambiar-
 import { ListUsuariosComponent } from './components/facultad/curso/list-usuarios/list-usuarios.component';
 import { EstadisticaComponent } from './components/facultad/admin-menu/estadistica/estadistica.component';
 import { InfoCursosComponent } from './components/facultad/admin-menu/info-cursos/info-cursos.component';
+import { AddTemplateComponent } from './components/facultad/admin-menu/add-template/add-template.component';
+import { AddSeccionTemplateComponent } from './components/facultad/admin-menu/add-seccion-template/add-seccion-template.component';
+import { ListSeccionTemplateComponent } from './components/facultad/admin-menu/list-seccion-template/list-seccion-template.component';
+import { ListTemplateComponent } from './components/facultad/admin-menu/list-template/list-template.component';
+import { EditTemplateComponent } from './components/facultad/admin-menu/edit-template/edit-template.component';
+import { EditSeccionTemplateComponent } from './components/facultad/admin-menu/edit-seccion-template/edit-seccion-template.component';
 
 
 @NgModule({
@@ -88,7 +94,13 @@ import { InfoCursosComponent } from './components/facultad/admin-menu/info-curso
     CambiarColorComponent,
     ListUsuariosComponent,
     EstadisticaComponent,
-    InfoCursosComponent
+    InfoCursosComponent,
+    AddTemplateComponent,
+    AddSeccionTemplateComponent,
+    ListSeccionTemplateComponent,
+    ListTemplateComponent,
+    EditTemplateComponent,
+    EditSeccionTemplateComponent
   ],
   imports: [
     BrowserModule,

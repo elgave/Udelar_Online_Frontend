@@ -70,4 +70,26 @@ export class CursoService {
   getTemplates() {
     return this.http.get<Response<Template[]>>(`${this.Url}/template`);
   }
+  addTemplate(template:any) {
+    return this.http.post<Response<Componente>>(`${this.Url}/template`, template, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+  addSeccionTemplate(seccion:any) {
+    return this.http.post<Response<Componente>>(`${this.Url}/template/seccion`, seccion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
+  deleteTemplate(id: number) {
+    return this.http.delete(`${this.Url}/template/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
+  deleteSeccionTemplate(id: number) {
+    return this.http.delete(`${this.Url}/template/seccion/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
+  editTemplate(id: number, template: any) {
+    return this.http.put(`${this.Url}/template/${id}`, template, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
+  editSeccionTemplate(id: number, seccion: any) {
+    return this.http.put(`${this.Url}/template/seccion/${id}`, seccion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
 }
