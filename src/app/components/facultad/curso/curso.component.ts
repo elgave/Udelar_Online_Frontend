@@ -14,6 +14,9 @@ import { RenombrarCursoComponent } from './editar/renombrar-curso/renombrar-curs
 import { Matricula } from 'src/app/Modelo/Matricula';
 import { AddDocenteComponent } from './editar/add-docente/add-docente.component';
 import { ListUsuariosComponent } from './list-usuarios/list-usuarios.component';
+import { ResponderEncuestaComponent } from '../encuesta/responder-encuesta/responder-encuesta.component';
+import { AddEncuestaComponent } from '../encuesta/add-encuesta/add-encuesta.component';
+import { RespuestasEncuestaComponent } from '../encuesta/respuestas-encuesta/respuestas-encuesta.component';
 
 @Component({
   selector: 'app-curso',
@@ -37,6 +40,7 @@ export class CursoComponent implements OnInit {
   ngOnInit(): void {
     this.cs.getCursoId(parseInt(this.route.snapshot.paramMap.get('cursoId'))).subscribe(r => {
       this.curso = r.data;
+      console.log(this.curso);
       this.isMatriculado = this.curso.usuarios.some(u => u.cedula == sessionStorage.getItem('cedula'));
       this.curso.secciones.sort((a, b) => a.indice > b.indice ? 1 : -1);
       this.curso.secciones.forEach(s => {
@@ -96,6 +100,37 @@ export class CursoComponent implements OnInit {
     });
   }
 
+  responderencuesta(encuestaId: number){
+    
+    let dialogRef = this.dialog.open(ResponderEncuestaComponent, {
+      width: '1040px',
+      maxHeight: '1000px',
+      data: { encuestaId: encuestaId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCurso();
+    });
+  }
+
+  verRespuestasEncuesta(encuestaId: number){
+    
+    let dialogRef = this.dialog.open(RespuestasEncuestaComponent, {
+      width: '1040px',
+      maxHeight: '1000px',
+      data: { encuestaId: encuestaId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCurso();
+    });
+  }
+
+  crearEncuesta(){
+    this.dialog.open(AddEncuestaComponent, {
+      width: '540px',
+      maxHeight: '600px'
+    });
+  }
+
   deleteSeccion(seccionId:number, seccionNombre:string) {
     let dialogRef = this.dialog.open(DeleteSeccionComponent, {
       width: '540px',
@@ -133,7 +168,7 @@ export class CursoComponent implements OnInit {
     let dialogRef = this.dialog.open(AddComponenteComponent, {
       width: '600px',
       maxHeight: '420px',
-      data: { seccionId: seccionId }
+      data: { seccionId: seccionId,cursoId: this.curso.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.loadCurso();

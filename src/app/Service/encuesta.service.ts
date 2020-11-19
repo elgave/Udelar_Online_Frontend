@@ -13,10 +13,16 @@ export class EncuestaService {
 
   Url=`${env.apiurl}/api/encuesta`;
 
+  getEncuesta(id:number){
+    return this.http.get<Response<Encuesta>>(`${this.Url}/${id}`)
+  }
   getencuestasXRol(rol:string){
     return this.http.get<Response<Encuesta[]>>(`${this.Url}/encuestasXRol/`+rol);
   }
   createEncuesta(encuesta:Encuesta){
     return this.http.post<Response<Encuesta[]>>(this.Url, encuesta, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+  obtenerEncuestaSinRespuestas(id: number){
+    return this.http.get<Response<Encuesta>>(`${this.Url}/encuestaSinRespuesta/`+id)
   }
 }

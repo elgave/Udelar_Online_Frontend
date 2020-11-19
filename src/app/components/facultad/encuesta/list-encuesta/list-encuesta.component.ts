@@ -3,6 +3,9 @@ import { Encuesta } from 'src/app/Modelo/Encuesta'
 import { EncuestaService } from 'src/app/Service/encuesta.service';
 import { Subscription } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from "@angular/material/dialog";
+import { RespuestasEncuestaComponent } from 'src/app/components/facultad/encuesta/respuestas-encuesta/respuestas-encuesta.component';
+
 
 @Component({
   selector: 'app-list-encuesta',
@@ -12,7 +15,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class ListEncuestaComponent implements OnInit {
   encuestas:Encuesta[];
   subRef$: Subscription;
-  constructor(private service:EncuestaService, private dialogRef: MatDialogRef<ListEncuestaComponent>) { }
+  constructor(private dialog: MatDialog,private service:EncuestaService, private dialogRef: MatDialogRef<ListEncuestaComponent>) { }
 
   ngOnInit(): void {
     this.service.getencuestasXRol(sessionStorage.getItem('rol'))
@@ -24,8 +27,16 @@ export class ListEncuestaComponent implements OnInit {
       });
   }
 
-  ver() {
+  verRespuestasEncuesta(encuestaId: number){
     
+    let dialogRef = this.dialog.open(RespuestasEncuestaComponent, {
+      width: '1040px',
+      maxHeight: '1000px',
+      data: { encuestaId: encuestaId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.Cerrar();
+    });
   }
 
   publicar() {

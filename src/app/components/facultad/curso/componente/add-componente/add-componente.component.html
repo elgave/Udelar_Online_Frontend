@@ -20,6 +20,11 @@
 
       <label *ngIf="componenteForm.get('tipo').value == 'texto'">Cuerpo:</label>
       <textarea *ngIf="componenteForm.get('tipo').value == 'texto'" type="text"  class="form-control" [(ngModel)]="componente.texto" name="texto" [ngClass]="{'is-invalid':componenteForm.get('texto').errors && componenteForm.get('texto').touched}" formControlName="texto" style="height: 100px;" minlength=50></textarea>
+      
+      <select *ngIf="componenteForm.get('tipo').value == 'encuesta'" [(ngModel)]="componente.encuestaId" [ngClass]="{'is-invalid':componenteForm.get('encuesta').errors && componenteForm.get('encuesta').touched}" placeholder="encuesta" class="form-control"  formControlName="encuesta" id="enc">
+            <option *ngFor="let encuesta of encuestas" [value]="encuesta.id">{{encuesta.titulo}}</option>
+      </select>
+
     </div>
     <button (click)="Guardar(componente)" class="btn btn-success" [disabled]="componenteForm.invalid || (componenteForm.get('tipo').value == 'texto' && componenteForm.get('texto').errors) || (['archivo','imagen'].includes(componenteForm.get('tipo').value) && componenteForm.get('file').errors)">Guardar</button>
   </form>

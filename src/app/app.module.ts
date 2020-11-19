@@ -52,6 +52,8 @@ import { ListSeccionTemplateComponent } from './components/facultad/admin-menu/l
 import { ListTemplateComponent } from './components/facultad/admin-menu/list-template/list-template.component';
 import { EditTemplateComponent } from './components/facultad/admin-menu/edit-template/edit-template.component';
 import { EditSeccionTemplateComponent } from './components/facultad/admin-menu/edit-seccion-template/edit-seccion-template.component';
+import { ResponderEncuestaComponent } from './components/facultad/encuesta/responder-encuesta/responder-encuesta.component';
+import { RespuestasEncuestaComponent } from './components/facultad/encuesta/respuestas-encuesta/respuestas-encuesta.component';
 
 
 @NgModule({
@@ -100,7 +102,9 @@ import { EditSeccionTemplateComponent } from './components/facultad/admin-menu/e
     ListSeccionTemplateComponent,
     ListTemplateComponent,
     EditTemplateComponent,
-    EditSeccionTemplateComponent
+    EditSeccionTemplateComponent,
+    ResponderEncuestaComponent,
+    RespuestasEncuestaComponent
   ],
   imports: [
     BrowserModule,
