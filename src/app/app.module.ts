@@ -54,6 +54,7 @@ import { EditTemplateComponent } from './components/facultad/admin-menu/edit-tem
 import { EditSeccionTemplateComponent } from './components/facultad/admin-menu/edit-seccion-template/edit-seccion-template.component';
 import { ResponderEncuestaComponent } from './components/facultad/encuesta/responder-encuesta/responder-encuesta.component';
 import { RespuestasEncuestaComponent } from './components/facultad/encuesta/respuestas-encuesta/respuestas-encuesta.component';
+import { PublicarEncuestaComponent } from './components/facultad/encuesta/publicar-encuesta/publicar-encuesta.component';
 
 
 @NgModule({
@@ -104,7 +105,8 @@ import { RespuestasEncuestaComponent } from './components/facultad/encuesta/resp
     EditTemplateComponent,
     EditSeccionTemplateComponent,
     ResponderEncuestaComponent,
-    RespuestasEncuestaComponent
+    RespuestasEncuestaComponent,
+    PublicarEncuestaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title class="titulo" style="text-align: center;">Publicar encuesta</h1>
+<mat-dialog-content class="contenedor">
+    <form [formGroup]="publicarForm">
+        <div class="form-group">
+            <label for="">Curso:</label>
+            <select [(ngModel)]="encuestaCurso.idCurso" [ngClass]="{'is-invalid':publicarForm.get('curso').errors && publicarForm.get('curso').touched}" placeholder="curso" class="form-control" formControlName="curso" id="cur" >
+                <option *ngFor="let curso of cursos" [value]="curso.id">{{curso.nombre}}</option>
+            </select>
+            <div class="col text-center">
+                <br>
+                <button (click)="publicar(encuestaCurso)" class="btn btn-success"   [disabled]="!publicarForm.valid">
+                    <span>Publicar</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+  

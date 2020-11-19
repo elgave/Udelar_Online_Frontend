@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialog } from "@angular/material/dialog";
 import { RespuestasEncuestaComponent } from 'src/app/components/facultad/encuesta/respuestas-encuesta/respuestas-encuesta.component';
+import { PublicarEncuestaComponent } from '../publicar-encuesta/publicar-encuesta.component';
 
 
 @Component({
@@ -35,12 +36,19 @@ export class ListEncuestaComponent implements OnInit {
       data: { encuestaId: encuestaId}
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.Cerrar();
+      
     });
   }
 
-  publicar() {
-
+  publicar(encuestaId: number) {
+    let dialogRef = this.dialog.open(PublicarEncuestaComponent, {
+      width: '540px',
+      maxHeight: '430px',
+      data: { encuestaId: encuestaId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
   }
 
   eliminar() {
@@ -50,4 +58,6 @@ export class ListEncuestaComponent implements OnInit {
   Cerrar() {
     this.dialogRef.close();
   }
+
+  
 }

@@ -5,7 +5,7 @@
         <tr *ngFor="let encuesta of encuestas" class="text-center">
             <td style="padding: 5px; padding-top: 15px; font-size:large">{{encuesta.titulo}}</td>
             <td style="padding: 5px">
-                <button (click)="publicar()" class="btn btn-dark" style="width: 90px; padding: 5px;">Publicar</button>
+                <button (click)="publicar(encuesta.id)" class="btn btn-dark" style="width: 90px; padding: 5px;">Publicar</button>
                 <button (click)="verRespuestasEncuesta(encuesta.id)" class="btn btn-success" style="margin-left: 10px; width: 90px; padding: 5px;">Respuestas</button>
                 <button (click)="eliminar()" class="btn btn-danger" style="margin-left: 10px; width: 90px; padding: 5px;">Eliminar</button>
             </td>
