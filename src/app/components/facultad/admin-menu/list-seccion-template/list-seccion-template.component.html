@@ -1,0 +1,19 @@
+<h1 mat-dialog-title style="text-align: center;">Secciones de plantilla</h1>
+<div>
+  <select [(ngModel)]="templateId" placeholder="templateId" class="form-control" id="tid" (click)="change(templateId)">
+    <option *ngFor="let t of templates" [value]="t.id">{{t.nombre}}</option>
+  </select>
+
+  <table class="table table-hover">
+    <tbody>
+      <tr *ngFor="let seccion of template.secciones" class="text-center">
+        <td style="padding: 5px; padding-top: 15px; font-size:large">{{seccion.indice}}</td>
+        <td style="padding: 5px; padding-top: 15px; font-size:large">{{seccion.titulo}}</td>
+        <td style="padding: 5px">
+          <button (click)="editar(seccion.id, seccion.titulo, seccion.indice, seccion.templateId)" class="btn btn-success" style="width: 90px; padding: 5px;">Editar</button>
+          <button (click)="eliminar(seccion.id)" class="btn btn-danger" style="margin-left: 10px; width: 90px; padding: 5px;">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title style="text-align: center;">Plantillas</h1>
+
+<table class="table table-hover">
+  <tbody>
+    <tr *ngFor="let t of templates" class="text-center">
+      <td style="padding: 5px; padding-top: 15px; font-size:large">{{t.nombre}}</td>
+      <td style="padding: 5px">
+        <button (click)="editar(t.id, t.nombre)" class="btn btn-dark" style="width: 90px; padding: 5px;">Editar</button>
+        <button (click)="eliminar(t.id)" class="btn btn-danger" style="margin-left: 10px; width: 90px; padding: 5px;">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
