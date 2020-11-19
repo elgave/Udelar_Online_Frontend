@@ -73,7 +73,7 @@ export class AddEncuestaComponent implements OnInit {
 
     let surveyQuestions = formData.surveyQuestions;
 
-    let encuesta = new Encuesta(Title, sessionStorage.getItem('rol') , preguntas);
+    let encuesta = new Encuesta(0,Title, sessionStorage.getItem('rol') , preguntas);
 
     surveyQuestions.forEach((question, index, array) => {
       let questionItem = {

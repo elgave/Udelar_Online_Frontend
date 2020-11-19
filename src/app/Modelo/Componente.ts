@@ -1,6 +1,7 @@
 import { Archivo } from './Archivo';
 import { ContenedorTarea } from './ContenedorTarea';
 import { Comunicado } from './Comunicado';
+import { Encuesta } from './Encuesta';
 
 export class Componente {
   id: number;
@@ -12,4 +13,7 @@ export class Componente {
   texto:string;
   ContenedorTarea:ContenedorTarea;
   Comunicado:Comunicado;
+  encuestaId:number;
+  cursoId:number;
+  encuesta:Encuesta;
 }

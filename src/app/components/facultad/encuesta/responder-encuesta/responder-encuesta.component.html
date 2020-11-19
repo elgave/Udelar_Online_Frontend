@@ -1,0 +1,21 @@
+<h1 mat-dialog-title style="text-align: center;">{{encuesta.titulo}}</h1>
+<mat-dialog-content class="contenedor">
+
+    <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" autocomplete="off">
+        <div>
+            <div *ngFor="let pregunta of encuesta.preguntas">
+                <br>
+                <h2 class="titulo">{{pregunta.texto}}</h2>
+                <br>
+                <textarea type="text" class="form-control"  name="respuestaTexto" [ngClass]="{'is-invalid':surveyForm.get('respuestaTexto').errors && surveyForm.get('respuestaTexto').touched}" formControlName="respuestaTexto" style="height: 100px;" minlength=2></textarea>
+            </div>
+        </div>
+        
+        <div class="col text-center">
+            <br>
+            <button class="btn btn-success"  type="submit" [disabled]="!surveyForm.valid">
+                <span>Enviar respuestas</span>
+            </button>
+        </div>
+    </form>
+</mat-dialog-content>

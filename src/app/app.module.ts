@@ -44,6 +44,8 @@ import { AgregarUsuarioComponent } from './components/usuarios/agregar-usuario/a
 import { AdminMenuComponent } from './components/facultad/admin-menu/admin-menu.component';
 import { CambiarColorComponent } from './components/facultad/admin-menu/cambiar-color/cambiar-color.component';
 import { ListUsuariosComponent } from './components/facultad/curso/list-usuarios/list-usuarios.component';
+import { ResponderEncuestaComponent } from './components/facultad/encuesta/responder-encuesta/responder-encuesta.component';
+import { RespuestasEncuestaComponent } from './components/facultad/encuesta/respuestas-encuesta/respuestas-encuesta.component';
 
 
 @NgModule({
@@ -84,7 +86,9 @@ import { ListUsuariosComponent } from './components/facultad/curso/list-usuarios
     AgregarUsuarioComponent,
     AdminMenuComponent,
     CambiarColorComponent,
-    ListUsuariosComponent
+    ListUsuariosComponent,
+    ResponderEncuestaComponent,
+    RespuestasEncuestaComponent
   ],
   imports: [
     BrowserModule,
