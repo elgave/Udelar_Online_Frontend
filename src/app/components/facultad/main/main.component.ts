@@ -20,8 +20,6 @@ export class MainFacultadComponent implements OnInit {
   fUrl: string = this.route.snapshot.paramMap.get('fUrl');
   rol: string;
   isCurso: boolean;
-  isAddEncuesta: boolean;
-  isListEncuesta:boolean;
   curso: Curso;
   ready: boolean;
   property: string;
@@ -64,19 +62,6 @@ export class MainFacultadComponent implements OnInit {
         this.isCurso = false;
       }
 
-      //! ---------------------------------------
-      if (this.route.snapshot.paramMap.get('accion') == "add"){
-        this.isAddEncuesta = true;
-      }else{
-        this.isAddEncuesta = false;
-      }
-
-      if (this.route.snapshot.paramMap.get('accion') == "list"){
-        this.isListEncuesta = true;
-      }else{
-        this.isListEncuesta = false;
-      }
-
       this.ready = true;
     });
   }
@@ -107,12 +92,6 @@ export class MainFacultadComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.loadFacultad();
     });
-  }
-
-  //!--------------------------------
-  change2() {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate(["/facultad/"+sessionStorage.getItem('facultadUrl')+"/encuesta/list"]));
   }
 
   home() {

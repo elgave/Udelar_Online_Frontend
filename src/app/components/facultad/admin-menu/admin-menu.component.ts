@@ -4,9 +4,13 @@ import { AgregarUsuarioComponent } from '../../usuarios/agregar-usuario/agregar-
 import { AgregarCursoComponent } from '../curso/editar/add-curso/add-curso.component';
 import { AddEncuestaComponent } from '../encuesta/add-encuesta/add-encuesta.component';
 import { ListEncuestaComponent } from '../encuesta/list-encuesta/list-encuesta.component';
+import { AddSeccionTemplateComponent } from './add-seccion-template/add-seccion-template.component';
+import { AddTemplateComponent } from './add-template/add-template.component';
 import { CambiarColorComponent } from './cambiar-color/cambiar-color.component';
 import { EstadisticaComponent } from './estadistica/estadistica.component';
 import { InfoCursosComponent } from './info-cursos/info-cursos.component';
+import { ListSeccionTemplateComponent } from './list-seccion-template/list-seccion-template.component';
+import { ListTemplateComponent } from './list-template/list-template.component';
 
 @Component({
   selector: 'app-admin-menu',
@@ -104,6 +108,34 @@ export class AdminMenuComponent implements OnInit {
       width: '700px',
       maxHeight: '600px',
       data: { facultadId: this.facultadId, facultad: this.facultad }
+    });
+  }
+
+  addTemplate() {
+    this.dialog.open(AddTemplateComponent, {
+      width: '540px',
+      maxHeight: '600px'
+    });
+  }
+
+  addSeccionTemplate() {
+    this.dialog.open(AddSeccionTemplateComponent, {
+      width: '540px',
+      maxHeight: '600px'
+    });
+  }
+
+  listTemplate() {
+    this.dialog.open(ListTemplateComponent, {
+      width: '700px',
+      maxHeight: '600px'
+    });
+  }
+
+  listSeccionTemplate() {
+    this.dialog.open(ListSeccionTemplateComponent, {
+      width: '700px',
+      maxHeight: '600px'
     });
   }
 

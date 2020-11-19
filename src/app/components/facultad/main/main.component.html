@@ -39,13 +39,22 @@
       <div *ngIf='isCurso'>
         <app-curso [cursoId]="cursoId"></app-curso>
       </div>
-      <div *ngIf='!isCurso && !isAddEncuesta && !isListEncuesta ' >
+      <div *ngIf='!isCurso' >
         <div>
           <h1 class="tituloFacultad">Bienvenido a {{facultad.nombre}}</h1>
           <button class="botonLinkGrandeBorde" style="border-color: {{facultad.color}};" *ngIf="rol=='administrador'" (click)="gestion();">Gestión</button>
           <h3>Identificado como: {{rol}}</h3>
           <h2>Novedades:</h2>
           <div *ngFor="let com of comunicados">
+            <!-- COSAS DE COMUNICADO -->
+            <!-- COSAS DE COMUNICADO -->
+            <!-- COSAS DE COMUNICADO -->
+            <!-- COSAS DE COMUNICADO -->
+            <!-- COSAS DE COMUNICADO -->
+            <!-- COSAS DE COMUNICADO -->
+            <!-- COSAS DE COMUNICADO -->
+            <!-- COSAS DE COMUNICADO -->
+            <!-- COSAS DE COMUNICADO -->
             <!-- COSAS DE COMUNICADO -->
           </div>
         </div>

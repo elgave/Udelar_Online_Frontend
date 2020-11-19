@@ -1,10 +1,11 @@
 <h1 mat-dialog-title style="text-align: center;">Gestionar {{facultad}}</h1>
-<mat-dialog-content class="contenedor" style="display: flex; flex-direction: column; align-items: center;">
+<div class="contenedor" style="display: flex; flex-direction: column; align-items: center;">
   <div>
     <button class="btn btn-dark" (click)="configColor()">Configurar color</button>
     <button class="btn btn-dark" (click)="addCurso()">Alta de curso</button>
-    <button class="btn btn-danger" >Alta de plantilla</button>
-    <button class="btn btn-danger" >Lista de plantillas</button>
+    <button class="btn btn-dark" (click)="infoCursos()">Información de cursos</button>
+    <button class="btn btn-dark" (click)="estadisticaCursos()">Estadística de cursos</button>
+
   </div>
   <div>
     <button class="btn btn-dark" (click)="addAdmin()">Alta de administrador</button>
@@ -19,9 +20,12 @@
     <button class="btn btn-danger" >Lista de comunicados</button>
   </div>
   <div>
-    <button class="btn btn-dark" (click)="infoCursos()">Información de cursos</button>
-    <button class="btn btn-dark" (click)="estadisticaCursos()">Estadística de cursos</button>
-    <button class="btn btn-danger" >sin usar</button>
-    <button class="btn btn-danger" >sin usar</button>
+    <button class="btn btn-dark" (click)="addTemplate()">Alta de plantilla</button>
+    <button class="btn btn-dark" (click)="listTemplate()">Lista de plantillas</button>
+    <button class="btn btn-dark" (click)="addSeccionTemplate()">+ Seccion a plantilla</button>
+    <button class="btn btn-dark" (click)="listSeccionTemplate()">Secciones de plantilla</button>
   </div>
-</mat-dialog-content>
+  <div>
+    <button class="btn btn-dark" (click)="Cerrar()">Cerrar</button>
+  </div>
+</div>
