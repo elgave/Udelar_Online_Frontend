@@ -54,8 +54,10 @@ export class AddComponenteComponent implements OnInit {
     this.fileUpload.append('indice', componente.indice.toString());
     this.fileUpload.append('tipo', componente.tipo);
     this.fileUpload.append('seccionCursoId', this.seccionId.toString());
+    if(componente.encuestaId){
     this.fileUpload.append('encuestaId',componente.encuestaId.toString());
     this.fileUpload.append('cursoId', this.cursoId.toString());
+    }
 
     this.cs.addComponente(this.fileUpload)
       .subscribe(data=>{
