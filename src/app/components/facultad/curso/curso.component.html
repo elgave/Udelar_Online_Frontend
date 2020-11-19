@@ -37,11 +37,13 @@
               <button *ngIf="isDocente" class="botonLink" (click)="editComponente(componente.id, componente.nombre, componente.indice)">Editar</button>
               
               <div *ngIf="componente.tipo == 'encuesta' && (isDocente || isAdmin)" class="componenteArchivo">
-                <h3 class="tituloComponente" (click)="verRespuestasEncuesta(componente.encuesta.idEncuesta)">{{componente.nombre}}</h3>
+                <img class="encuestaIcon" src="assets/tarea-completada.png">
+                <h3 class="botonEncuesta" (click)="verRespuestasEncuesta(componente.encuesta.idEncuesta)">{{componente.nombre}}</h3>
               </div>
               
               <div *ngIf="componente.tipo == 'encuesta' && isEstudiante" class="componenteArchivo">
-                <h3 class="tituloComponente" (click)="responderencuesta(componente.encuesta.idEncuesta)">{{componente.nombre}}</h3>
+                <img class="encuestaIcon" src="assets/tarea-completada.png">
+                <h3 class="botonEncuesta" (click)="responderencuesta(componente.encuesta.idEncuesta)">{{componente.nombre}}</h3>
               </div>
               <div *ngIf="componente.tipo == 'archivo'" class="componenteArchivo">
                 <img class="archivoIcon" src="assets/{{icon(componente.archivo.extension)}}">
@@ -56,9 +58,7 @@
                 <pre class="componenteBody">{{componente.texto}}</pre>
               </div>
 
-              <div *ngIf="componente.tipo == 'encuesta'" class="texto">
-                <pre class="componenteBody">{{componente.texto}}</pre>
-              </div>
+              
             </div>
           </div>
           <!-- /Componente -->

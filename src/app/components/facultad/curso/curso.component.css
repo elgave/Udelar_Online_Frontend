@@ -77,6 +77,25 @@
   margin-left: 20px;
 }
 
+.botonEncuesta {
+  
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-family: arial, sans-serif;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 50px;
+}
+
+.encuestaIcon {
+  float: left;
+  
+  width: 30px;
+  margin-right: 10px;
+}
+
 .botonLinkMediano {
   float: right;
   background: none!important;
