@@ -1,0 +1,17 @@
+<h2 mat-dialog-title style="text-align: center;">Agregar sección</h2>
+<mat-dialog-content class="contenedor">
+  <form [formGroup]="seccionForm">
+    <div class="form-group">
+      
+      <label for="">Titulo:</label>
+      <input type="text"  class="form-control" [(ngModel)]="titulo" name="titulo" [ngClass]="{'is-invalid':seccionForm.get('titulo').errors && seccionForm.get('titulo').touched}" formControlName="titulo">
+      <label for="">Indice:</label>
+      <input type="number"  class="form-control" [(ngModel)]="indice" name="indice" [ngClass]="{'is-invalid':seccionForm.get('indice').errors && seccionForm.get('indice').touched}" formControlName="indice">
+      <label for="">Plantilla:</label>
+      <select [(ngModel)]="templateId" [ngClass]="{'is-invalid':seccionForm.get('templateId').errors && seccionForm.get('templateId').touched}" placeholder="templateId" class="form-control" formControlName="templateId" id="tid">
+          <option *ngFor="let t of templates" [value]="t.id">{{t.nombre}}</option>
+      </select>
+    </div>
+    <button (click)="Guardar()" class="btn btn-success" [disabled]="seccionForm.invalid">Guardar</button>
+  </form>
+</mat-dialog-content>

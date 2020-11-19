@@ -1,0 +1,11 @@
+<h2 mat-dialog-title style="text-align: center;">Agregar nueva plantilla</h2>
+<mat-dialog-content class="contenedor">
+  <form [formGroup]="templateForm">
+    <div class="form-group">
+      
+      <label for="">Nombre:</label>
+      <input type="text"  class="form-control" [(ngModel)]="titulo" name="titulo" [ngClass]="{'is-invalid':templateForm.get('titulo').errors && templateForm.get('titulo').touched}" formControlName="titulo">
+    </div>
+    <button (click)="Guardar()" class="btn btn-success" [disabled]="templateForm.invalid">Guardar</button>
+  </form>
+</mat-dialog-content>
