@@ -6,6 +6,8 @@ import { FacultadService } from 'src/app/Service/facultad.service';
 import { Facultad } from 'src/app/Modelo/Facultad';
 import { Rol } from 'src/app/Modelo/Rol';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-usuario',
@@ -14,7 +16,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AddUsuarioComponent implements OnInit {
 
-  constructor(private router:Router,private service:UsuarioService, private fb: FormBuilder, private fs: FacultadService) { }
+  constructor(private router:Router,private service:UsuarioService, private fb: FormBuilder, private fs: FacultadService,private dialog: MatDialog) { }
  
   facultades: Array<Facultad>;
   usuario:Usuario = new Usuario();
@@ -46,8 +48,15 @@ export class AddUsuarioComponent implements OnInit {
     usuario.facultadId = parseInt(usuario.facultadId.toString())
     this.service.createUsuario(usuario)
     .subscribe(data=>{
-     alert("Se Agrego con éxito.");
-     this.router.navigate(["gestion/listarUsuarios"]);
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(["gestion/listarUsuarios"]);
+      });
+     
     })
   }
 }

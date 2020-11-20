@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 import { Template } from 'src/app/Modelo/Template';
 import { CursoService } from 'src/app/Service/curso.service';
 import { EditTemplateComponent } from '../edit-template/edit-template.component';
@@ -30,8 +31,12 @@ export class ListTemplateComponent implements OnInit {
   eliminar(id: number) {
     this.service.deleteTemplate(id)
     .subscribe(data=>{
-      this.templates = this.templates.filter(t => t.id != id);
-     alert("Se ha eliminado con éxito.");
+      this.templates.filter(t => t.id != id);
+      this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
     });
   }
 

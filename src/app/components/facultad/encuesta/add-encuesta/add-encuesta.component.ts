@@ -4,8 +4,9 @@ import { Encuesta } from 'src/app/Modelo/Encuesta';
 import { EncuestaService } from 'src/app/Service/encuesta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pregunta } from 'src/app/Modelo/Pregunta';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 @Component({
   selector: 'app-add-encuesta',
@@ -22,7 +23,7 @@ export class AddEncuestaComponent implements OnInit {
   isAdmin: boolean;
 
 
-  constructor(private es: EncuestaService, private dialogRef: MatDialogRef<AddEncuestaComponent>) { }
+  constructor(private es: EncuestaService, private dialogRef: MatDialogRef<AddEncuestaComponent>,private dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -85,8 +86,14 @@ export class AddEncuestaComponent implements OnInit {
 
     this.es.createEncuesta(encuesta)
     .subscribe(data=>{
-      alert("Se ha agregado con éxito.");
-      this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 

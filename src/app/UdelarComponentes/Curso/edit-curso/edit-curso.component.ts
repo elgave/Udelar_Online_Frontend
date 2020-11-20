@@ -5,6 +5,8 @@ import { Router } from '@angular/router'
 import { CursoService } from 'src/app/Service/curso.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FacultadService } from 'src/app/Service/facultad.service';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-curso',
@@ -17,7 +19,7 @@ export class EditCursoComponent implements OnInit {
   docente:Usuario;
   docenteid:string;
   docentes:Array<Usuario>;
-  constructor(private router:Router,private service:CursoService, private fb: FormBuilder, private fs: FacultadService) { }
+  constructor(private router:Router,private service:CursoService, private fb: FormBuilder, private fs: FacultadService,private dialog: MatDialog) { }
 
   cursoForm = this.fb.group({
     nombre: ["", Validators.required],
@@ -47,9 +49,14 @@ export class EditCursoComponent implements OnInit {
     curso.cantCreditos = parseInt(curso.cantCreditos.toString())
     this.service.updateCurso(curso)
     .subscribe(data=>{
-      this.curso = data.data;
-      alert("Se actualizo con éxito.");
-      this.router.navigate(["gestion/listarCursos"]);
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(["gestion/listarCursos"]);
+      });
     })
   }
 
@@ -57,8 +64,14 @@ export class EditCursoComponent implements OnInit {
     this.docente = this.docentes.find(d => d.cedula == this.docenteid);
     this.service.agregarDocente(this.curso.id, this.docente)
     .subscribe(r => {
-      alert(`Docente ${this.docente.nombre} agregado al curso ${r.data.nombre}`);
-      this.Editar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: r.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Editar();
+      });
     });
 
   }

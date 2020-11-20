@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 import { Template } from 'src/app/Modelo/Template';
 import { CursoService } from 'src/app/Service/curso.service';
 
@@ -15,7 +16,7 @@ export class AddSeccionTemplateComponent implements OnInit {
   titulo: string;
   templates: Template[];
 
-  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<AddSeccionTemplateComponent>) { }
+  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<AddSeccionTemplateComponent>,private dialog: MatDialog) { }
  
   seccionForm = this.fb.group({
     titulo: ["", Validators.required],
@@ -31,7 +32,11 @@ export class AddSeccionTemplateComponent implements OnInit {
     let seccion = {titulo: this.titulo, templateId: this.templateId, indice: this.indice};
     this.cs.addSeccionTemplate(seccion)
     .subscribe(data=>{
-     alert("Se ha agregado con éxito.");
+      this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
     })
   }
 

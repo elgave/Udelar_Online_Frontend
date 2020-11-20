@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 import { Template } from 'src/app/Modelo/Template';
 import { CursoService } from 'src/app/Service/curso.service';
 
@@ -12,7 +13,7 @@ import { CursoService } from 'src/app/Service/curso.service';
 export class AddTemplateComponent implements OnInit {
   titulo: string;
 
-  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<AddTemplateComponent>) { }
+  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<AddTemplateComponent>,private dialog: MatDialog) { }
  
   templateForm = this.fb.group({
     titulo: ["", Validators.required]
@@ -24,8 +25,14 @@ export class AddTemplateComponent implements OnInit {
     let template = { nombre: this.titulo };
     this.cs.addTemplate(template)
     .subscribe(data=>{
-     alert("Se ha agregado con éxito.");
-     this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 

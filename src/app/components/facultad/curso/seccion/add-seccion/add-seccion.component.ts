@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Curso } from 'src/app/Modelo/Curso';
 import { Seccion } from 'src/app/Modelo/Seccion';
 import { CursoService } from 'src/app/Service/curso.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from "@angular/material/dialog";
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 @Component({
   selector: 'app-add-seccion',
@@ -16,7 +17,7 @@ export class AddSeccionComponent implements OnInit {
   cursoId: number;
   seccion:Seccion = new Seccion();
 
-  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<AddSeccionComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<AddSeccionComponent>, @Inject(MAT_DIALOG_DATA) data,private dialog: MatDialog) {
     this.cursoId = data.cursoId;
   }
  
@@ -32,8 +33,14 @@ export class AddSeccionComponent implements OnInit {
     seccion.cursoId = this.cursoId;
     this.cs.addSeccion(seccion)
     .subscribe(data=>{
-     alert("Se Agrego con éxito.");
-     this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 

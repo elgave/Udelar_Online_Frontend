@@ -17,6 +17,7 @@ import { ListUsuariosComponent } from './list-usuarios/list-usuarios.component';
 import { ResponderEncuestaComponent } from '../encuesta/responder-encuesta/responder-encuesta.component';
 import { AddEncuestaComponent } from '../encuesta/add-encuesta/add-encuesta.component';
 import { RespuestasEncuestaComponent } from '../encuesta/respuestas-encuesta/respuestas-encuesta.component';
+import { AlertComponent } from '../../alert/alert.component';
 
 @Component({
   selector: 'app-curso',
@@ -199,8 +200,14 @@ export class CursoComponent implements OnInit {
   eliminarCurso() {
     this.cs.deleteCurso(this.curso)
     .subscribe(data=>{
-      alert("Curso eliminado con éxito.");
-      this.router.navigateByUrl('/');
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigateByUrl('/');
+      });
     })
   }
 
@@ -212,8 +219,14 @@ export class CursoComponent implements OnInit {
     this.cs.matricularse(matricula)
     .subscribe(data=>{
       if (data.result.data) {
-        alert("Matriculado con éxito.");
-        this.loadCurso();
+        let dialogRef = this.dialog.open(AlertComponent, {
+          maxWidth: '540px',
+          maxHeight: '350px',
+          data: { success: data.success }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          this.loadCurso();
+        });
       } else {
         alert(data.result.message);
       }

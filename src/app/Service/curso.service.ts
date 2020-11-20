@@ -79,19 +79,19 @@ export class CursoService {
   }
 
   deleteTemplate(id: number) {
-    return this.http.delete(`${this.Url}/template/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.delete<Response<any>>(`${this.Url}/template/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
   deleteSeccionTemplate(id: number) {
-    return this.http.delete(`${this.Url}/template/seccion/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.delete<Response<any>>(`${this.Url}/template/seccion/${id}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
   editTemplate(id: number, template: any) {
-    return this.http.put(`${this.Url}/template/${id}`, template, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.put<Response<any>>(`${this.Url}/template/${id}`, template, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
   editSeccionTemplate(id: number, seccion: any) {
-    return this.http.put(`${this.Url}/template/seccion/${id}`, seccion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+    return this.http.put<Response<any>>(`${this.Url}/template/seccion/${id}`, seccion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
   getCalificacionId(id:number){

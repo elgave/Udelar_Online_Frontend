@@ -4,6 +4,8 @@ import { UsuarioService } from 'src/app/Service/usuario.service';
 import { Router} from '@angular/router'
 import { HttpHeaders } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-listar-usuario',
@@ -14,7 +16,7 @@ export class ListarUsuarioComponent implements OnInit, OnDestroy {
 
   usuarios:Usuario[];
   subRef$: Subscription;
-  constructor(private service:UsuarioService,private router:Router) { }
+  constructor(private service:UsuarioService,private router:Router,private dialog: MatDialog) { }
 
   ngOnInit() {
     if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
@@ -37,7 +39,11 @@ export class ListarUsuarioComponent implements OnInit, OnDestroy {
     this.service.deleteUsuario(usuario)
     .subscribe(data=>{
       this.usuarios = this.usuarios.filter(u=> u!==usuario);
-      alert("Usuario eliminado con éxito.");
+      this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
     })
   }
   Nuevo(){

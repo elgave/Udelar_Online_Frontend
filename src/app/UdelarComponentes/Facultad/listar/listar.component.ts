@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import {FacultadService} from 'src/app/Service/facultad.service'
 import { Facultad } from "src/app/Modelo/Facultad";
 import * as env from 'src/env';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 @Component({
   selector: 'app-listar',
@@ -12,7 +14,7 @@ import * as env from 'src/env';
 export class ListarComponent implements OnInit {
   currentEnv = env;
   facultades:Facultad[];
-  constructor(private service:FacultadService,private router:Router) { }
+  constructor(private service:FacultadService,private router:Router,private dialog: MatDialog) { }
 
   ngOnInit() {
     if (!(sessionStorage.getItem('token') && sessionStorage.getItem('tipoSesion') == 'udelar')) this.router.navigateByUrl('gestion/login');
@@ -31,7 +33,11 @@ export class ListarComponent implements OnInit {
     this.service.deleteFacultad(facultad)
     .subscribe(data=>{
       this.facultades = this.facultades.filter(f=> f!==facultad);
-      alert("Facu eliminado con éxito.");
+      this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
     })
   }
   Nuevo(){

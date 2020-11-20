@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FacultadService } from 'src/app/Service/facultad.service';
 import { Facultad } from 'src/app/Modelo/Facultad';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit',
@@ -11,7 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class EditComponent implements OnInit {
   facultad:Facultad = new Facultad();
-  constructor(private router:Router,private service:FacultadService, private fb: FormBuilder) { }
+  constructor(private router:Router,private service:FacultadService, private fb: FormBuilder,private dialog: MatDialog) { }
 
   facultadForm = this.fb.group({
     nombre: ["", Validators.required],
@@ -37,9 +39,15 @@ export class EditComponent implements OnInit {
     this.service.updateFacultad(facultad)
     .subscribe(data=>{
       this.facultad = data.data;
-      alert("Se actualizo con éxito.");
-      this.router.navigate(["gestion/listarFacultades"]);
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(["gestion/listarFacultades"]);
+      });
     })
   }
-
 }
+

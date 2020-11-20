@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 import { Template } from 'src/app/Modelo/Template';
 import { CursoService } from 'src/app/Service/curso.service';
 import { EditSeccionTemplateComponent } from '../edit-seccion-template/edit-seccion-template.component';
@@ -40,8 +41,14 @@ export class ListSeccionTemplateComponent implements OnInit {
   eliminar(id: number) {
     this.service.deleteSeccionTemplate(id)
     .subscribe(data=>{
-      alert("Se ha eliminado con éxito.");
-      this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 
