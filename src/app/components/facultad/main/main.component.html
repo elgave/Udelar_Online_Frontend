@@ -57,6 +57,13 @@
             <!-- COSAS DE COMUNICADO -->
             <!-- COSAS DE COMUNICADO -->
           </div>
+
+          <div *ngFor="let encuesta of encuestas">
+            <h3 class="tituloEncuesta">{{encuesta.encuesta.titulo}}</h3>
+            <img class="encuestaIcon" src="assets/tarea-completada.png">
+            <button *ngIf="rol == 'estudiante'" class="botonLinkMediano" (click)="responderencuesta(encuesta.idEncuesta)" style="float:none">Responder</button>
+            <br>
+          </div>
         </div>
       </div>
     </main>

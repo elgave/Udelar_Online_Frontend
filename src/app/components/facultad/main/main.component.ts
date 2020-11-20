@@ -8,6 +8,10 @@ import { Curso } from 'src/app/Modelo/Curso';
 import { ViewportScroller } from '@angular/common';
 import { AdminMenuComponent } from '../admin-menu/admin-menu.component';
 import { Comunicado } from 'src/app/Modelo/Comunicado';
+import { EncuestaService } from 'src/app/Service/encuesta.service';
+import { GetEncuestasFacultad } from 'src/app/Modelo/GetEncuestasfacultad';
+import { ResponderEncuestaComponent } from '../encuesta/responder-encuesta/responder-encuesta.component';
+
 
 @Component({
   selector: 'app-home',
@@ -31,8 +35,9 @@ export class MainFacultadComponent implements OnInit {
   mainColor: string;
   facultadNombre: string;
   comunicados: Comunicado[];
+  encuestas: GetEncuestasFacultad[];
 
-  constructor(private router: Router, private route: ActivatedRoute, private fs: FacultadService, private scroll: ViewportScroller, private dialog: MatDialog) { }  
+  constructor(private es: EncuestaService, private router: Router, private route: ActivatedRoute, private fs: FacultadService, private scroll: ViewportScroller, private dialog: MatDialog) { }  
 
   ngOnInit(): void {
     this.facultadNombre = sessionStorage.getItem('facultadNombre');
@@ -64,11 +69,31 @@ export class MainFacultadComponent implements OnInit {
 
       this.ready = true;
     });
+
+    this.es.getEncuestasFacultad(parseInt(sessionStorage.getItem('facultadId'))).subscribe(r => {
+      this.encuestas = r.data;
+    });
+
+    
+
+
   }
 
   change(cursoId) {
     this.cursoId = cursoId;
     this.scroll.scrollToPosition([0,0]);
+  }
+
+  responderencuesta(encuestaId: number){
+    
+    let dialogRef = this.dialog.open(ResponderEncuestaComponent, {
+      width: '1040px',
+      maxHeight: '1000px',
+      data: { encuestaId: encuestaId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadFacultad();
+    });
   }
 
   toggleCursos() {

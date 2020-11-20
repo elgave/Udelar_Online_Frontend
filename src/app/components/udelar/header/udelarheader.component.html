@@ -33,6 +33,13 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Encuestas</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" (click)="addEncuesta()">Crear</a>
+                    <a class="dropdown-item" (click)="listEncuesta()">Lista de encuestas</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reportes</a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" [routerLink]="['/gestion/reportes/facultades']" routerLinkActive="router-link-active">Listado de facultades</a>

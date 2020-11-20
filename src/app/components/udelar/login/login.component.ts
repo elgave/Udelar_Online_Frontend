@@ -35,6 +35,7 @@ export class AdminLoginComponent implements OnInit, OnDestroy{
         if (res.data != null) {
           sessionStorage.setItem('token', res.data);
           sessionStorage.setItem('tipoSesion', 'udelar');
+          sessionStorage.setItem('rol', 'admin');
           this.router.navigateByUrl(`gestion`);
         } else {
           this.formLogin.controls['password'].setErrors({'incorrect': true});
