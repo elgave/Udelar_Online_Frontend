@@ -42,14 +42,12 @@ export class ListUsuariosComponent implements OnInit {
   }
 
   calificar(cedula: string, nombre: string, apellido: string) {
-    console.log("????")
     this.dialog.open(AddCalificacionComponent, {
       width: '640px',
       height: '350px', 
       data: { cedula: cedula,cursoId: this.cursoId, facultadId: this.facultadId, nombre: nombre, apellido: apellido},
     }).afterClosed().subscribe(result => {
       this.refresh();
-  
     });
   }
 
