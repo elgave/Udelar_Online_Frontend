@@ -8,6 +8,7 @@ import * as env from 'src/env';
 import { Seccion } from '../Modelo/Seccion';
 import { Componente } from '../Modelo/Componente';
 import { Template } from '../Modelo/Template';
+import { Calificacion } from '../Modelo/Calificacion';
 
 @Injectable({
   providedIn: 'root'
@@ -92,4 +93,13 @@ export class CursoService {
   editSeccionTemplate(id: number, seccion: any) {
     return this.http.put(`${this.Url}/template/seccion/${id}`, seccion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
+
+  getCalificacionId(id:number){
+    return this.http.get<Response<Curso>>(`${this.Url}/Calificacion/${id}`);
+  }
+
+  addCalificacion(calificacion:Calificacion){
+    return this.http.post<Response<Calificacion[]>>(`${this.Url}/Calificacion/`, calificacion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+ }
+
 }
