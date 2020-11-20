@@ -38,6 +38,7 @@
 
               <div *ngIf="componente.tipo == 'encuesta'" class="componenteArchivo">
                 <h3 class="tituloComponente">{{componente.nombre}}</h3>
+                <img class="encuestaIcon" src="assets/tarea-completada.png">
                 <button *ngIf="isDocente || isAdmin" class="botonLinkMediano" (click)="verRespuestasEncuesta(componente.encuesta.idEncuesta)" style="float:none">Ver respuestas</button>
                 <button *ngIf="isEstudiante" class="botonLinkMediano" (click)="responderencuesta(componente.encuesta.idEncuesta)" style="float:none">Responder</button>            
               </div>

@@ -187,7 +187,7 @@ export class CursoComponent implements OnInit {
 
   listUsuarios() {
     let dialogRef = this.dialog.open(ListUsuariosComponent, {
-      width: '600px',
+      width: '900px',
       maxHeight: '1080px',
       data: { curso: JSON.stringify(this.curso), facultadId: this.curso.facultadId }
     });

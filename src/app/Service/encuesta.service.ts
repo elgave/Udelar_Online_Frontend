@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http'
 import * as env from 'src/env';
 import {Encuesta} from 'src/app/Modelo/Encuesta';
 import { Response } from '../Modelo/Response';
+import { EncuestaCurso } from '../Modelo/EncuestaCurso';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,9 @@ export class EncuestaService {
   }
   obtenerEncuestaSinRespuestas(id: number){
     return this.http.get<Response<Encuesta>>(`${this.Url}/encuestaSinRespuesta/`+id)
+  }
+  
+  publicarEncuestaCurso(encuestaCurso: EncuestaCurso){
+    return this.http.post<Response<Encuesta[]>>(`${this.Url}/addEncuestaCurso`, encuestaCurso, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}})
   }
 }
