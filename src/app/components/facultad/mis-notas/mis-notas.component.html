@@ -1,0 +1,19 @@
+<h2 mat-dialog-title style="text-align: center;">Lista de usuarios matriculados</h2>
+<mat-dialog-content class="contenedor">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="text-left">Curso</th>
+        <th class="text-center">Nota</th>
+        <th class="text-center">Comentarios</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of calificaciones" class="text-center">
+        <td class="text-left" style="padding: 5px; padding-top: 15px; font-size:large; width: 50%">{{u.cursoNombre}}</td>
+        <td style="padding: 5px; padding-top: 15px; font-size:large; width: 5%">{{u.nota}}</td>
+        <td style="padding: 5px; padding-top: 15px; font-size:large; width: 45%">{{u.comentario}}</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-dialog-content>

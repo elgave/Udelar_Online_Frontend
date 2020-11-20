@@ -4,6 +4,7 @@ import { Usuario } from '../Modelo/Usuario';
 import { Response } from '../Modelo/Response';
 import * as env from 'src/env';
 import { LoginUser } from '../Modelo/LoginUser';
+import { Calificacion } from '../Modelo/Calificacion';
 
 
 @Injectable({
@@ -47,5 +48,9 @@ export class UsuarioService {
 
   adminLogin(usuarioLogin) {
     return this.http.post<Response<string>>(`${this.UrlAdmin}/login`, usuarioLogin);
+  }
+
+  misNotas(cedula: string, facultadId: number) {
+    return this.http.get<Response<Calificacion[]>>(`${this.Url}/calificacion/${facultadId}/${cedula}`);
   }
 }

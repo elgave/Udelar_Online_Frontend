@@ -8,6 +8,7 @@ import { Curso } from 'src/app/Modelo/Curso';
 import { ViewportScroller } from '@angular/common';
 import { AdminMenuComponent } from '../admin-menu/admin-menu.component';
 import { Comunicado } from 'src/app/Modelo/Comunicado';
+import { MisNotasComponent } from '../mis-notas/mis-notas.component';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ import { Comunicado } from 'src/app/Modelo/Comunicado';
 })
 export class MainFacultadComponent implements OnInit {
   currentEnv = env;
+  cedula: string;
   facultad: Facultad;
   fUrl: string = this.route.snapshot.paramMap.get('fUrl');
   rol: string;
@@ -35,6 +37,7 @@ export class MainFacultadComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private fs: FacultadService, private scroll: ViewportScroller, private dialog: MatDialog) { }  
 
   ngOnInit(): void {
+    this.cedula = sessionStorage.getItem('cedula');
     this.facultadNombre = sessionStorage.getItem('facultadNombre');
     this.isMisCursos = false;
     this.botonTexto = "Mis cursos";
@@ -91,6 +94,14 @@ export class MainFacultadComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.loadFacultad();
+    });
+  }
+
+  misCalifiaciones(cedula: string, facultad: Facultad) {
+    this.dialog.open(MisNotasComponent, {
+      width: '600px',
+      maxHeight: '600px',
+      data: { facultadId: facultad.id, cedula: cedula }
     });
   }
 

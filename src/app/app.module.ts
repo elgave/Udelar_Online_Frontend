@@ -56,6 +56,7 @@ import { ResponderEncuestaComponent } from './components/facultad/encuesta/respo
 import { RespuestasEncuestaComponent } from './components/facultad/encuesta/respuestas-encuesta/respuestas-encuesta.component';
 import { PublicarEncuestaComponent } from './components/facultad/encuesta/publicar-encuesta/publicar-encuesta.component';
 import { AddCalificacionComponent } from './components/facultad/curso/add-calificacion/add-calificacion.component';
+import { MisNotasComponent } from './components/facultad/mis-notas/mis-notas.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { AddCalificacionComponent } from './components/facultad/curso/add-califi
     ResponderEncuestaComponent,
     RespuestasEncuestaComponent,
     PublicarEncuestaComponent,
-    AddCalificacionComponent
+    AddCalificacionComponent,
+    MisNotasComponent
   ],
   imports: [
     BrowserModule,
