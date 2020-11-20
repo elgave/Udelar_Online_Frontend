@@ -27,8 +27,6 @@ export class ResponderEncuestaComponent implements OnInit {
   ngOnInit(): void {
     this.es.obtenerEncuestaSinRespuestas(this.encuestaId).subscribe(r => {
       this.encuesta = r.data;
-
-      console.log(this.encuesta);
     })
   }
 

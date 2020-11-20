@@ -1,5 +1,6 @@
+import { Respuesta } from './Respuesta';
+
 export class Pregunta{
-    constructor(
-    public texto: string
-    ){}
+  texto: string;
+  respuestas: Array<Respuesta>
 }

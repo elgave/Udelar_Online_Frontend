@@ -5,6 +5,7 @@ import { EncuestaService } from 'src/app/Service/encuesta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Pregunta } from 'src/app/Modelo/Pregunta';
 
 @Component({
   selector: 'app-add-encuesta',
@@ -69,16 +70,15 @@ export class AddEncuestaComponent implements OnInit {
     let formData = this.surveyForm.value;
     let Title = formData.surveyTitle;
 
-    let preguntas = [];
+    let preguntas: Pregunta[] = [];
 
     let surveyQuestions = formData.surveyQuestions;
 
     let encuesta = new Encuesta(0,Title, sessionStorage.getItem('rol') , preguntas);
 
     surveyQuestions.forEach((question, index, array) => {
-      let questionItem = {
-        "texto": question.questionTitle        
-      }
+      let questionItem = new Pregunta();
+      questionItem.texto = question.questionTitle;
 
       encuesta.preguntas.push(questionItem)
     });

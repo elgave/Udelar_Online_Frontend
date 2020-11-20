@@ -20,8 +20,6 @@ export class RespuestasEncuestaComponent implements OnInit {
   ngOnInit(): void {
     this.es.getEncuesta(this.encuestaId).subscribe(r => {
       this.encuesta = r.data;
-
-      console.log(this.encuesta);
     })
   }
 

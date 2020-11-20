@@ -40,7 +40,6 @@ export class CursoComponent implements OnInit {
   ngOnInit(): void {
     this.cs.getCursoId(parseInt(this.route.snapshot.paramMap.get('cursoId'))).subscribe(r => {
       this.curso = r.data;
-      console.log(this.curso);
       this.isMatriculado = this.curso.usuarios.some(u => u.cedula == sessionStorage.getItem('cedula'));
       this.curso.secciones.sort((a, b) => a.indice > b.indice ? 1 : -1);
       this.curso.secciones.forEach(s => {

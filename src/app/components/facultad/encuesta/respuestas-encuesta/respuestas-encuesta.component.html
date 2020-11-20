@@ -1,15 +1,15 @@
 <h1 mat-dialog-title style="text-align: center;">Respuestas de encuesta: {{encuesta.titulo}}</h1>
 <mat-dialog-content class="contenedor">
-    <div>
-        <div *ngFor="let pregunta of encuesta.preguntas">
+	<div>
+		<div *ngFor="let pregunta of encuesta.preguntas">
+      <h3 class="pregunta">{{encuesta.preguntas.indexOf(pregunta) + 1}}. {{pregunta.texto}}</h3>
+      <div class="respuestas">
+          <h4 *ngIf="pregunta.respuestas?.length == 0">No hay respuestas</h4>
+          <div *ngFor="let respuesta of pregunta.respuestas">
+            <pre class="respuesta">— {{respuesta.texto}}</pre>
             <br>
-            <h2 class="pregunta">• {{pregunta.texto}}</h2>
-            <br>
-            <h2 *ngIf="pregunta.respuestas?.length == 0" class="titulo">No hay respuestas</h2>
-            <div *ngFor="let respuesta of pregunta.respuestas">
-                <h4 class="respuesta" style="margin-left: 20px;">- {{respuesta.texto}}</h4>
-                <br>
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
+		</div>
+	</div>
 </mat-dialog-content>

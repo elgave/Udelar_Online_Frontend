@@ -34,7 +34,6 @@ export class ListUsuariosComponent implements OnInit {
     matricula.cedula = cedula;
     matricula.idCurso = cursoId;
     matricula.idFacultad = facultadId;
-    console.log(matricula);
     this.cs.bajaMatricula(matricula)
     .subscribe(data=>{
       alert("Se ha dado de baja con éxito.");
