@@ -45,17 +45,9 @@
           <button class="botonLinkGrandeBorde" style="border-color: {{facultad.color}};" *ngIf="rol=='administrador'" (click)="gestion();">Gestión</button>
           <h3>Identificado como: {{rol}}</h3>
           <h2>Novedades:</h2>
-          <div *ngFor="let com of comunicados">
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
+          <div class="novedadWrap" *ngFor="let nov of novedades">
+            <h4 style="font-weight: bold">{{nov.titulo}}</h4>
+            <pre class="novedad">{{nov.texto}}</pre>
           </div>
         </div>
       </div>

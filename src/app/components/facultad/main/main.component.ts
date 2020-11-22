@@ -33,6 +33,7 @@ export class MainFacultadComponent implements OnInit {
   mainColor: string;
   facultadNombre: string;
   comunicados: Comunicado[];
+  novedades: any[];
 
   constructor(private router: Router, private route: ActivatedRoute, private fs: FacultadService, private scroll: ViewportScroller, private dialog: MatDialog) { }  
 
@@ -67,6 +68,7 @@ export class MainFacultadComponent implements OnInit {
 
       this.ready = true;
     });
+    this.fs.getNovedades(parseInt(sessionStorage.getItem('facultadId'))).subscribe(r => this.novedades = r.data);
   }
 
   change(cursoId) {

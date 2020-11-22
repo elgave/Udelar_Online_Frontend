@@ -58,6 +58,7 @@ import { PublicarEncuestaComponent } from './components/facultad/encuesta/public
 import { AddCalificacionComponent } from './components/facultad/curso/add-calificacion/add-calificacion.component';
 import { MisNotasComponent } from './components/facultad/mis-notas/mis-notas.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { AddNovedadComponent } from './components/facultad/add-novedad/add-novedad.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { AlertComponent } from './components/alert/alert.component';
     PublicarEncuestaComponent,
     AddCalificacionComponent,
     MisNotasComponent,
-    AlertComponent
+    AlertComponent,
+    AddNovedadComponent
   ],
   imports: [
     BrowserModule,
