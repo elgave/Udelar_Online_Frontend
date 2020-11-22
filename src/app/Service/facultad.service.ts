@@ -16,7 +16,11 @@ export class FacultadService {
   getFacultades(){
     return this.http.get<Response<Facultad[]>>(this.Url);
   }
+  
 
+  getSoloFacultades(){
+    return this.http.get<Response<Facultad[]>>(this.Url+"/soloFacultad");
+  }
   createFacultad(datos:FormData){
     return this.http.post<Response<Facultad>>(this.Url, datos, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
