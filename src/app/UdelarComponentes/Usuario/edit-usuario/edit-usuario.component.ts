@@ -3,6 +3,8 @@ import { Router } from '@angular/router'
 import { Usuario } from 'src/app/Modelo/Usuario'
 import { UsuarioService } from 'src/app/Service/usuario.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-usuario',
@@ -12,7 +14,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class EditUsuarioComponent implements OnInit {
 
   usuario:Usuario = new Usuario();
-  constructor(private router:Router,private service:UsuarioService, private fb: FormBuilder) { }
+  constructor(private router:Router,private service:UsuarioService, private fb: FormBuilder,private dialog: MatDialog) { }
 
   userForm = this.fb.group({
     nombre: ["", Validators.required],
@@ -39,8 +41,15 @@ export class EditUsuarioComponent implements OnInit {
     this.service.updateUsuario(usuario)
     .subscribe(data=>{
       this.usuario = data.data;
-      alert("Se actualizo con éxito.");
-      this.router.navigate(["gestion/listarUsuarios"]);
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(["gestion/listarUsuarios"]);
+      });
+      
     })
   }
 }

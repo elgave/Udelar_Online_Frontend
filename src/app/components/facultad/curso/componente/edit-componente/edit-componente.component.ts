@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 import { Componente } from 'src/app/Modelo/Componente';
 import { CursoService } from 'src/app/Service/curso.service';
 import { AddSeccionComponent } from '../../seccion/add-seccion/add-seccion.component';
@@ -14,7 +15,7 @@ export class EditComponenteComponent implements OnInit {
   componenteId: number;
   componente: Componente = new Componente();
 
-  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<AddSeccionComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private fb: FormBuilder,private dialog: MatDialog, private cs: CursoService, private dialogRef: MatDialogRef<AddSeccionComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.componenteId = data.componenteId;
     this.componente.id = this.componenteId;
     this.componente.nombre = data.componenteNombre;
@@ -32,8 +33,14 @@ export class EditComponenteComponent implements OnInit {
 
   Guardar(componente:Componente){
     this.cs.editComponente(this.componenteId, componente).subscribe(data=>{
-      alert("Se ha editado con éxito.");
-      this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 

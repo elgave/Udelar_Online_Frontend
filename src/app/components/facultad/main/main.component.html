@@ -3,34 +3,34 @@
 <body>
   <div>
   <!--no es responsive-->
-    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: {{mainColor}}">
-      <a class="navbar-brand"><img (click)="home()" src="{{currentEnv.s3url}}/facultadIcon/{{fUrl}}.png" alt="No Icon" class="img-fluid" style="width: 80px"></a>
-      <h1 style="color: {{textColor}}; width: 100%;">{{facultadNombre}}</h1>
-      <div>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: {{textColor}};">Cuenta</a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink" style="float:left;">
-              <!--<a class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active">Opción placeholder 1</a>-->
-              <button type="button" class="dropdown-item danger-color" style="color: white" (click)="logout()" [routerLink]="['/']">Salir</button>
-            </div>
-          </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: {{mainColor}}">
+      <a class="navbar-brand"><img (click)="home()" src="{{currentEnv.s3url}}/facultadIcon/{{fUrl}}.png" alt="No Icon" class="img-fluid" style="width: 64px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand nombreFacultad" href="" style="color: {{textColor == 'black' ? 'white' : 'black'}}; text-shadow: 2px 2px 0 {{textColor}}; -webkit-text-stroke-color: {{textColor}};">{{facultadNombre}}</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+        <form class="form-inline my-2 my-lg-0">
+          <button type="button" class="btn btn-danger btn-sm my-2 my-sm-0" style="color: white" (click)="logout()" [routerLink]="['/']">Salir</button>
+        </form>
       </div>
     </nav>
+
     <!-- sidebar. mover a facultad/sidebar (app-facultadsidebar) si se vuelve mas compleja-->
     <div class="sidebar" style="border-color: {{facultad.color}};">
       <div class="card">
         <div class="card-body" id="sidebarbody">
           <div class="topdiv">
             <h3 style="display: inline-block;">Cursos</h3> 
-            <button *ngIf="rol == 'estudiante'" type="button" class="btn btn-primary btn-sm" style="float: right;" (click)="toggleCursos()">{{botonTexto}}</button>
+            <button *ngIf="rol == 'estudiante'" type="button" class="botonLink2" style="float: right;" (click)="toggleCursos()">{{botonTexto}}</button>
           </div>
           <div *ngFor="let curso of mostrarCursos">
             <div class="cursolink">
               <a routerLink="/facultad/{{facultad.url}}/curso/{{curso.id}}" (click)="change(curso.id)">{{curso.nombre}}</a>
             </div>
           </div>
+          <button *ngIf="isMisCursos" class="btn btn-primary btn-sm" style="width: 100%" (click)="misCalifiaciones(cedula, facultad)">Mis calificaciones</button>
         </div>
       </div>
     </div>
@@ -45,17 +45,9 @@
           <button class="botonLinkGrandeBorde" style="border-color: {{facultad.color}};" *ngIf="rol=='administrador'" (click)="gestion();">Gestión</button>
           <h3>Identificado como: {{rol}}</h3>
           <h2>Novedades:</h2>
-          <div *ngFor="let com of comunicados">
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
-            <!-- COSAS DE COMUNICADO -->
+          <div class="novedadWrap" *ngFor="let nov of novedades">
+            <h4 style="font-weight: bold">{{nov.titulo}}</h4>
+            <pre class="novedad">{{nov.texto}}</pre>
           </div>
 
           <div *ngFor="let encuesta of encuestas">

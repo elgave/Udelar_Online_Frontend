@@ -3,6 +3,8 @@ import { Curso } from 'src/app/Modelo/Curso';
 import { CursoService } from 'src/app/Service/curso.service';
 import {Router} from '@angular/router'
 import { Matricula } from 'src/app/Modelo/Matricula';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-listar-curso',
@@ -12,7 +14,7 @@ import { Matricula } from 'src/app/Modelo/Matricula';
 export class ListarCursoComponent implements OnInit {
 
   cursos:Curso[];
-  constructor(private service:CursoService,private router:Router) { }
+  constructor(private service:CursoService,private router:Router,private dialog: MatDialog) { }
 
   matricula:Matricula = new Matricula();
 
@@ -33,7 +35,11 @@ export class ListarCursoComponent implements OnInit {
     this.service.deleteCurso(curso)
     .subscribe(data=>{
       this.cursos = this.cursos.filter(c=> c!==curso);
-      alert("Curso eliminado con éxito.");
+      this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
     })
   }
   Nuevo(){

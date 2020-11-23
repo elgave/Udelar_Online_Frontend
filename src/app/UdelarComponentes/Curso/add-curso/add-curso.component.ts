@@ -5,6 +5,8 @@ import { Facultad } from 'src/app/Modelo/Facultad';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CursoService } from 'src/app/Service/curso.service';
 import { Curso } from 'src/app/Modelo/Curso';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-curso',
@@ -13,7 +15,7 @@ import { Curso } from 'src/app/Modelo/Curso';
 })
 export class AddCursoComponent implements OnInit {
 
-  constructor(private router:Router,private service: CursoService,  private fb: FormBuilder, private fs: FacultadService) { }
+  constructor(private router:Router,private service: CursoService,  private fb: FormBuilder, private fs: FacultadService,private dialog: MatDialog) { }
 
   facultades: Array<Facultad>;
   cursoForm = this.fb.group({
@@ -35,8 +37,14 @@ export class AddCursoComponent implements OnInit {
     curso.facultadId = parseInt(curso.facultadId.toString());
     this.service.createCurso(this.curso)
     .subscribe(data=>{
-      alert("Se Agrego con éxito.");
-      this.router.navigate(["gestion/listarCursos"]);
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(["gestion/listarCursos"]);
+      });
     })
   }
 }

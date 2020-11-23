@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 import { CursoService } from 'src/app/Service/curso.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class EditTemplateComponent implements OnInit {
   nombre: string;
   id: number;
 
-  constructor(private service:CursoService, private dialogRef: MatDialogRef<EditTemplateComponent>, @Inject(MAT_DIALOG_DATA) data, private fb: FormBuilder) {
+  constructor(private service:CursoService,private dialog: MatDialog, private dialogRef: MatDialogRef<EditTemplateComponent>, @Inject(MAT_DIALOG_DATA) data, private fb: FormBuilder) {
     this.nombre = data.nombre;
     this.id = data.id;
   }
@@ -27,8 +28,14 @@ export class EditTemplateComponent implements OnInit {
     let temp = {id: this.id, nombre: this.nombre}
     this.service.editTemplate(this.id, temp)
     .subscribe(data=>{
-      alert("Se ha editado con éxito.");
-      this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     });
   }
 

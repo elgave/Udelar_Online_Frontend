@@ -7,6 +7,7 @@ import { Calificacion } from '../../../../Modelo/Calificacion';
 import { AddCalificacionComponent } from '../add-calificacion/add-calificacion.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Output } from '@angular/core';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 @Component({
   selector: 'app-list-usuarios',
@@ -58,8 +59,14 @@ export class ListUsuariosComponent implements OnInit {
     matricula.idFacultad = this.facultadId;
     this.cs.bajaMatricula(matricula)
     .subscribe(data=>{
-      alert("Se ha dado de baja con éxito.");
-      this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     });
   }
 

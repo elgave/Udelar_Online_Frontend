@@ -6,5 +6,6 @@ export class Calificacion {
     apellido:string;
     nota:number;
     comentario:string;
+    cursoNombre:string;
 }
 

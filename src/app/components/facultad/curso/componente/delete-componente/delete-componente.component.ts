@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 import { CursoService } from 'src/app/Service/curso.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class DeleteComponenteComponent implements OnInit {
   componenteNombre: string;
   componenteId: number;
 
-  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<DeleteComponenteComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private fb: FormBuilder,private dialog: MatDialog, private cs: CursoService, private dialogRef: MatDialogRef<DeleteComponenteComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.seccionNombre = data.seccionNombre;
     this.componenteNombre = data.componenteNombre;
     this.componenteId = data.componenteId;
@@ -29,8 +30,14 @@ export class DeleteComponenteComponent implements OnInit {
   Guardar(){
     this.cs.deleteComponente(this.componenteId)
     .subscribe(data=>{
-     alert("Se ha eliminado con éxito.");
-     this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 

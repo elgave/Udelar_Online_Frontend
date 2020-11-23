@@ -1,10 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { CursoService } from 'src/app/Service/curso.service';
 import {Curso} from 'src/app/Modelo/Curso'
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EncuestaCurso } from 'src/app/Modelo/EncuestaCurso';
 import { EncuestaService } from 'src/app/Service/encuesta.service';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 import { FacultadService } from 'src/app/Service/facultad.service';
 import { Facultad } from 'src/app/Modelo/Facultad';
 import { EncuestaFacultad } from 'src/app/Modelo/EncuestaFacultad';
@@ -21,7 +22,7 @@ export class PublicarEncuestaComponent implements OnInit {
   
   encuestaCurso = new EncuestaCurso();
   encuestaFacultad = new EncuestaFacultad();
-  constructor(private fs: FacultadService, private dialogRef: MatDialogRef<PublicarEncuestaComponent>,private ec: EncuestaService, private cs: CursoService, @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder) { 
+  constructor(private fs: FacultadService, private dialog: MatDialog, private dialogRef: MatDialogRef<PublicarEncuestaComponent>,private ec: EncuestaService, private cs: CursoService, @Inject(MAT_DIALOG_DATA) data,private fb: FormBuilder) { 
     this.encuestaCurso.idEncuesta = data.encuestaId;
 
     this.encuestaFacultad.idEncuesta = data.encuestaId;
@@ -47,18 +48,22 @@ export class PublicarEncuestaComponent implements OnInit {
   }
 
   publicar(encuestaCurso: EncuestaCurso){
-
+    let subs;
     if(this.rol != 'admin'){
-      this.ec.publicarEncuestaCurso(encuestaCurso).subscribe(data=>{
-        alert("Se Agrego con éxito.");
-        this.Cerrar();
-      })
+      subs = this.ec.publicarEncuestaCurso(encuestaCurso);
     }else{
-      this.ec.publicarEncuestaFacultad(this.encuestaFacultad).subscribe(data=>{
-        alert("Se Agrego con éxito.");
-        this.Cerrar();
-      })
+      subs = this.ec.publicarEncuestaFacultad(this.encuestaFacultad);
     }
+    subs.subscribe(data=>{
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
+    })
   }
 
   Cerrar() {

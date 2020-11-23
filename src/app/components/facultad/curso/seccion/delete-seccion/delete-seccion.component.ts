@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Curso } from 'src/app/Modelo/Curso';
 import { Seccion } from 'src/app/Modelo/Seccion';
 import { CursoService } from 'src/app/Service/curso.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from "@angular/material/dialog";
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 @Component({
   selector: 'app-delete-seccion',
@@ -17,7 +18,7 @@ export class DeleteSeccionComponent implements OnInit {
   seccionNombre: string;
   cursoNombre: string;
 
-  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<DeleteSeccionComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private fb: FormBuilder, private cs: CursoService, private dialogRef: MatDialogRef<DeleteSeccionComponent>,private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) data) {
     this.seccionId = data.seccionId;
     this.seccionNombre = data.seccionNombre;
     this.cursoNombre = data.cursoNombre;
@@ -33,8 +34,14 @@ export class DeleteSeccionComponent implements OnInit {
   Guardar(){
     this.cs.deleteSeccion(this.seccionId)
     .subscribe(data=>{
-     alert("Se ha eliminado con éxito.");
-     this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 

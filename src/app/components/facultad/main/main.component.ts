@@ -8,6 +8,7 @@ import { Curso } from 'src/app/Modelo/Curso';
 import { ViewportScroller } from '@angular/common';
 import { AdminMenuComponent } from '../admin-menu/admin-menu.component';
 import { Comunicado } from 'src/app/Modelo/Comunicado';
+import { MisNotasComponent } from '../mis-notas/mis-notas.component';
 import { EncuestaService } from 'src/app/Service/encuesta.service';
 import { GetEncuestasFacultad } from 'src/app/Modelo/GetEncuestasfacultad';
 import { ResponderEncuestaComponent } from '../encuesta/responder-encuesta/responder-encuesta.component';
@@ -20,6 +21,7 @@ import { ResponderEncuestaComponent } from '../encuesta/responder-encuesta/respo
 })
 export class MainFacultadComponent implements OnInit {
   currentEnv = env;
+  cedula: string;
   facultad: Facultad;
   fUrl: string = this.route.snapshot.paramMap.get('fUrl');
   rol: string;
@@ -35,11 +37,13 @@ export class MainFacultadComponent implements OnInit {
   mainColor: string;
   facultadNombre: string;
   comunicados: Comunicado[];
+  novedades: any[];
   encuestas: GetEncuestasFacultad[];
 
   constructor(private es: EncuestaService, private router: Router, private route: ActivatedRoute, private fs: FacultadService, private scroll: ViewportScroller, private dialog: MatDialog) { }  
 
   ngOnInit(): void {
+    this.cedula = sessionStorage.getItem('cedula');
     this.facultadNombre = sessionStorage.getItem('facultadNombre');
     this.isMisCursos = false;
     this.botonTexto = "Mis cursos";
@@ -69,14 +73,11 @@ export class MainFacultadComponent implements OnInit {
 
       this.ready = true;
     });
+    this.fs.getNovedades(parseInt(sessionStorage.getItem('facultadId'))).subscribe(r => this.novedades = r.data);
 
     this.es.getEncuestasFacultad(parseInt(sessionStorage.getItem('facultadId'))).subscribe(r => {
       this.encuestas = r.data;
     });
-
-    
-
-
   }
 
   change(cursoId) {
@@ -116,6 +117,14 @@ export class MainFacultadComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.loadFacultad();
+    });
+  }
+
+  misCalifiaciones(cedula: string, facultad: Facultad) {
+    this.dialog.open(MisNotasComponent, {
+      width: '600px',
+      maxHeight: '600px',
+      data: { facultadId: facultad.id, cedula: cedula }
     });
   }
 

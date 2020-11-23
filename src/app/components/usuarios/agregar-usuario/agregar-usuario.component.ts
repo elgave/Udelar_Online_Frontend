@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Usuario } from 'src/app/Modelo/Usuario';
 import { UsuarioService } from 'src/app/Service/usuario.service';
+import { AlertComponent } from '../../alert/alert.component';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -17,7 +18,7 @@ export class AgregarUsuarioComponent implements OnInit {
   rol: string;
   add:boolean;
 
-  constructor(private service:UsuarioService, private fb: FormBuilder,  private dialogRef: MatDialogRef<AgregarUsuarioComponent>,@Inject(MAT_DIALOG_DATA) data) {
+  constructor(private service:UsuarioService, private fb: FormBuilder,  private dialogRef: MatDialogRef<AgregarUsuarioComponent>,@Inject(MAT_DIALOG_DATA) data,private dialog: MatDialog) {
     this.facultadId = data.facultadId;
     this.facultad = data.facultad;
     this.rol = data.rol;
@@ -38,8 +39,14 @@ export class AgregarUsuarioComponent implements OnInit {
     else usuario.roles = usuario.roles.filter(r => r.descripcion != this.rol);
     this.service.updateUsuario(usuario)
     .subscribe(data=>{
-      alert("Se ha agregado el rol con éxito.");
-      this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 

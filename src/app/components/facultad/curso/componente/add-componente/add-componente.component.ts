@@ -1,10 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Componente } from 'src/app/Modelo/Componente';
 import { CursoService } from 'src/app/Service/curso.service';
 import { EncuestaService } from 'src/app/Service/encuesta.service';
 import {Encuesta} from 'src/app/Modelo/Encuesta'
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 @Component({
   selector: 'app-add-componente',
@@ -18,7 +19,7 @@ export class AddComponenteComponent implements OnInit {
   fileUpload: FormData = new FormData();
   encuestas:Encuesta[];
 
-  constructor(private fb: FormBuilder,private es:EncuestaService, private cs: CursoService, private dialogRef: MatDialogRef<AddComponenteComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private fb: FormBuilder,private dialog: MatDialog,private es:EncuestaService, private cs: CursoService, private dialogRef: MatDialogRef<AddComponenteComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.seccionId = data.seccionId;
     this.cursoId = data.cursoId;
   }
@@ -59,8 +60,14 @@ export class AddComponenteComponent implements OnInit {
 
     this.cs.addComponente(this.fileUpload)
       .subscribe(data=>{
-        alert("Se Agrego con éxito.");
-        this.Cerrar();
+        let dialogRef = this.dialog.open(AlertComponent, {
+          maxWidth: '540px',
+          maxHeight: '350px',
+          data: { success: data.success }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          this.Cerrar();
+        });
     })
   }
 

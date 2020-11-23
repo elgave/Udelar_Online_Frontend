@@ -2,8 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CursoService } from 'src/app/Service/curso.service';
 import { Curso } from 'src/app/Modelo/Curso';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Template } from 'src/app/Modelo/Template';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 @Component({
   selector: 'app-add-curso',
@@ -16,7 +17,7 @@ export class AgregarCursoComponent implements OnInit {
   curso:any = new Curso();
   templates: Template[];
   
-  constructor(private service: CursoService,  private fb: FormBuilder, private dialogRef: MatDialogRef<AgregarCursoComponent>,@Inject(MAT_DIALOG_DATA) data) {
+  constructor(private service: CursoService,  private fb: FormBuilder,private dialog: MatDialog, private dialogRef: MatDialogRef<AgregarCursoComponent>,@Inject(MAT_DIALOG_DATA) data) {
     this.curso.facultadId = data.facultadId;
     this.facultad = data.facultad;
   }
@@ -38,8 +39,14 @@ export class AgregarCursoComponent implements OnInit {
     curso.facultadId = parseInt(curso.facultadId.toString());
     this.service.createCurso(this.curso)
     .subscribe(data=>{
-      alert("Se Agrego con éxito.");
-      this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     })
   }
 

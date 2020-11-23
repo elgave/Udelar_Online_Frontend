@@ -36,4 +36,11 @@ export class FacultadService {
   getUsuariosXFacultad(){
     return this.http.get<Response<UsuarioXFacultad[]>>(this.Url+'/usuariosXFacultad');
   }
-}
+
+  publicarNovedad(novedad:any) {
+    return this.http.post<Response<any>>(`${this.Url}/novedad/`, novedad, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+  getNovedades(id:number){
+    return this.http.get<Response<any[]>>(`${this.Url}/novedad/${id}`);
+  }
+ }
