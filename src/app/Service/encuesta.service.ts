@@ -6,6 +6,7 @@ import { Response } from '../Modelo/Response';
 import { EncuestaCurso } from '../Modelo/EncuestaCurso';
 import { EncuestaFacultad } from '../Modelo/EncuestaFacultad';
 import { GetEncuestasFacultad } from '../Modelo/GetEncuestasfacultad';
+import { RespuestaEncuesta } from '../Modelo/RespuestaEncuesta';
 
 @Injectable({
   providedIn: 'root'
@@ -40,4 +41,9 @@ export class EncuestaService {
   publicarEncuestaFacultad(encuestaFacultad: EncuestaFacultad){
     return this.http.post<Response<Encuesta[]>>(`${this.Url}/addEncuestaFacultad`, encuestaFacultad, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}})
   }
+
+  responderEncuesta(respuestaEncuesta: RespuestaEncuesta){
+    return this.http.post<Response<RespuestaEncuesta>>(`${this.Url}/responderEncuesta`, respuestaEncuesta, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}})
+  }
+  
 }

@@ -3,17 +3,20 @@
 
     <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" autocomplete="off">
         <div>
-            <div *ngFor="let pregunta of encuesta.preguntas">
+            <div *ngFor="let pregunta of encuesta.preguntas; let i = index">
                 <br>
                 <h2 class="titulo">{{pregunta.texto}}</h2>
                 <br>
-                <textarea type="text" class="form-control"  name="respuestaTexto" [ngClass]="{'is-invalid':surveyForm.get('respuestaTexto').errors && surveyForm.get('respuestaTexto').touched}" formControlName="respuestaTexto" style="height: 100px;" minlength=2></textarea>
+                <div class="poll-options">
+                    <textarea type="text" class="form-control"  name= "{{i}}" formControlName="{{i}}" style="height: 100px;" minlength=2></textarea>
+                    
+                </div>
             </div>
         </div>
         
         <div class="col text-center">
             <br>
-            <button class="btn btn-success"  type="submit" [disabled]="!surveyForm.valid">
+            <button class="btn btn-success"  type="submit" >
                 <span>Enviar respuestas</span>
             </button>
         </div>
