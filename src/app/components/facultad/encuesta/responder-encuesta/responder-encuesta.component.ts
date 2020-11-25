@@ -1,11 +1,11 @@
 import { Component,Inject, OnInit } from '@angular/core';
-import { CursoService } from 'src/app/Service/curso.service'
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EncuestaService } from 'src/app/Service/encuesta.service';
 import { Encuesta } from 'src/app/Modelo/Encuesta';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Respuesta } from 'src/app/Modelo/Respuesta';
 import { RespuestaEncuesta } from 'src/app/Modelo/RespuestaEncuesta';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 
 @Component({
@@ -23,12 +23,9 @@ export class ResponderEncuestaComponent implements OnInit {
   indice: string;
   
 
-  constructor(private fb: FormBuilder,private es: EncuestaService, @Inject(MAT_DIALOG_DATA) data,private dialogRef: MatDialogRef<ResponderEncuestaComponent>) {
+  constructor(private es: EncuestaService, @Inject(MAT_DIALOG_DATA) data,private dialogRef: MatDialogRef<ResponderEncuestaComponent>,private dialog: MatDialog) {
     this.encuestaId = data.encuestaId;
    }
-
-
-   
 
   ngOnInit(): void {
 
@@ -71,8 +68,14 @@ export class ResponderEncuestaComponent implements OnInit {
     this.respuestaEncuesta.respuestas = this.respuestas;
 
     this.es.responderEncuesta(this.respuestaEncuesta).subscribe(data=>{
-      alert("Se han enviado tus respuestas con éxito.");
-      this.Cerrar();
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
     });
     
   }
