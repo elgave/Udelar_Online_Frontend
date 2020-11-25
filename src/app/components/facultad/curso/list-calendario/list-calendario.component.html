@@ -1,0 +1,11 @@
+<h1 mat-dialog-title class="titulo" style="text-align: center;">
+    Actividades: {{calendario.titulo}}</h1>
+<mat-dialog-content class="contenedor">
+    <div>
+        <div *ngFor="let c of calendario.fechasCalendario">
+            <h3 class="pregunta"> Fecha: {{c.fecha}} Actividad: {{c.texto}}</h3>
+
+
+        </div>
+    </div>
+</mat-dialog-content>

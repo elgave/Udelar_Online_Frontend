@@ -4,8 +4,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Componente } from 'src/app/Modelo/Componente';
 import { CursoService } from 'src/app/Service/curso.service';
 import { EncuestaService } from 'src/app/Service/encuesta.service';
-import {Encuesta} from 'src/app/Modelo/Encuesta'
+import {Encuesta} from 'src/app/Modelo/Encuesta';
 import { AlertComponent } from 'src/app/components/alert/alert.component';
+
+
 
 @Component({
   selector: 'app-add-componente',

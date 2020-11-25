@@ -9,6 +9,8 @@ import { Seccion } from '../Modelo/Seccion';
 import { Componente } from '../Modelo/Componente';
 import { Template } from '../Modelo/Template';
 import { Calificacion } from '../Modelo/Calificacion';
+import { FechaCalendario } from '../Modelo/FechaCalendario';
+import { Calendario } from '../Modelo/Calendario';
 
 @Injectable({
   providedIn: 'root'
@@ -102,4 +104,13 @@ export class CursoService {
     return this.http.post<Response<Calificacion[]>>(`${this.Url}/Calificacion/`, calificacion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
+  addFechaCalendario(fechaC:FechaCalendario){
+    return this.http.post<Response<FechaCalendario[]>>(`${this.Url}/Calendario/`, fechaC, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
+  getCalendario(id:number){
+    return this.http.get<Response<Calendario>>(`${this.Url}/Calendario/${id}`);
+  }
+
 }
+

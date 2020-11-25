@@ -59,6 +59,11 @@ import { AddCalificacionComponent } from './components/facultad/curso/add-califi
 import { MisNotasComponent } from './components/facultad/mis-notas/mis-notas.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { AddNovedadComponent } from './components/facultad/add-novedad/add-novedad.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AddFechaCalendarioComponent } from './components/facultad/curso/add-fecha-calendario/add-fecha-calendario.component';
+import { ListCalendarioComponent } from './components/facultad/curso/list-calendario/list-calendario.component';
+
 
 @NgModule({
   declarations: [
@@ -113,7 +118,10 @@ import { AddNovedadComponent } from './components/facultad/add-novedad/add-noved
     AddCalificacionComponent,
     MisNotasComponent,
     AlertComponent,
-    AddNovedadComponent
+    AddNovedadComponent,
+    AddFechaCalendarioComponent,
+    ListCalendarioComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -122,9 +130,11 @@ import { AddNovedadComponent } from './components/facultad/add-novedad/add-noved
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule
   ],
-  providers: [FacultadService],
+  providers: [FacultadService,
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
