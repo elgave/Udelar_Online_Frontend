@@ -31,8 +31,8 @@ export class AddFechaCalendarioComponent implements OnInit {
   }
 
   GuardarFecha(fecha:string, texto: string){
-    this.fechaCalenario.Fecha = fecha;
-    this.fechaCalenario.Texto = texto;
+    this.fechaCalenario.fecha = fecha;
+    this.fechaCalenario.texto = texto;
     this.cs.addFechaCalendario(this.fechaCalenario).subscribe(data=>{
       let dialogRef = this.dialog.open(AlertComponent, {
         maxWidth: '540px',

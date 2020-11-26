@@ -60,6 +60,7 @@ export class AddComponenteComponent implements OnInit {
     if (componente.tipo == 'encuesta') this.fileUpload.append('encuestaId',componente.encuestaId.toString());
     this.fileUpload.append('cursoId', this.cursoId.toString());
 
+    console.log(this.fileUpload);
     this.cs.addComponente(this.fileUpload)
       .subscribe(data=>{
         let dialogRef = this.dialog.open(AlertComponent, {

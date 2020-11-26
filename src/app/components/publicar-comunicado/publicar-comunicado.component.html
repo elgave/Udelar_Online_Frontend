@@ -1,0 +1,18 @@
+<h2 mat-dialog-title style="text-align: center;">
+
+  Publicar comunicado a curso</h2>
+<mat-dialog-content class="contenedor">
+  <form [formGroup]="componenteForm">
+      <div class="form-group">
+          <select (click)="loadCurso()" [(ngModel)]="cursoid" [ngClass]="{'is-invalid':componenteForm.get('cursoid').errors && componenteForm.get('cursoid').touched}" placeholder="cursoid" class="form-control" formControlName="cursoid" id="cid">
+            <option *ngFor="let curso of cursos" [value]="curso.id">{{curso.nombre}}</option>
+          </select>
+          <label for="">Titulo:</label>
+          <input type="text" class="form-control" [(ngModel)]="titulo" name="nombre" [ngClass]="{'is-invalid':componenteForm.get('nombre').errors && componenteForm.get('nombre').touched}" formControlName="nombre">
+          <br>
+          <label>Cuerpo:</label>
+          <textarea type="text" class="form-control" [(ngModel)]="cuerpo" name="texto" [ngClass]="{'is-invalid':componenteForm.get('texto').errors && componenteForm.get('texto').touched}" formControlName="texto" style="height: 100px;" minlength=10></textarea>
+      </div>
+      <button (click)="Guardar()" class="btn btn-success" [disabled]="componenteForm.invalid">Guardar</button>
+  </form>
+</mat-dialog-content>

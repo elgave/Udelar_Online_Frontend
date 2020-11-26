@@ -63,6 +63,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AddFechaCalendarioComponent } from './components/facultad/curso/add-fecha-calendario/add-fecha-calendario.component';
 import { ListCalendarioComponent } from './components/facultad/curso/list-calendario/list-calendario.component';
+import { PublicarComunicadoComponent } from './components/publicar-comunicado/publicar-comunicado.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { ListCalendarioComponent } from './components/facultad/curso/list-calend
     AddNovedadComponent,
     AddFechaCalendarioComponent,
     ListCalendarioComponent,
+    PublicarComunicadoComponent,
     
   ],
   imports: [

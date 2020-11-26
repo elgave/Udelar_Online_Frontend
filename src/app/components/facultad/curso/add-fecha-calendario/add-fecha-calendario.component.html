@@ -5,15 +5,15 @@
 
 
             <label>Fecha:</label>
-            <input type="date" class="form-control" [(ngModel)]="fechaCalenario.Fecha" name="fecha" [ngClass]="{'is-invalid':componenteForm.get('fecha').errors && componenteForm.get('fecha').touched}" formControlName="fecha">
+            <input type="date" class="form-control" [(ngModel)]="fechaCalenario.fecha" name="fecha" [ngClass]="{'is-invalid':componenteForm.get('fecha').errors && componenteForm.get('fecha').touched}" formControlName="fecha">
 
             <br>
 
             <label>Texto:</label>
-            <textarea type="text" class="form-control" [(ngModel)]="fechaCalenario.Texto" name="texto" [ngClass]="{'is-invalid':componenteForm.get('texto').errors && componenteForm.get('texto').touched}" formControlName="texto" style="height: 100px;" minlength=10></textarea>
+            <textarea type="text" class="form-control" [(ngModel)]="fechaCalenario.texto" name="texto" [ngClass]="{'is-invalid':componenteForm.get('texto').errors && componenteForm.get('texto').touched}" formControlName="texto" style="height: 100px;" minlength=10></textarea>
 
 
         </div>
-        <button (click)="GuardarFecha(fechaCalenario.Fecha,fechaCalenario.Texto)" class="btn btn-success" [disabled]="componenteForm.invalid">Guardar</button>
+        <button (click)="GuardarFecha(fechaCalenario.fecha,fechaCalenario.texto)" class="btn btn-success" [disabled]="componenteForm.invalid">Guardar</button>
     </form>
 </mat-dialog-content>

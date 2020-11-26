@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PublicarComunicadoComponent } from '../../publicar-comunicado/publicar-comunicado.component';
 import { AgregarUsuarioComponent } from '../../usuarios/agregar-usuario/agregar-usuario.component';
 import { AddNovedadComponent } from '../add-novedad/add-novedad.component';
 import { AgregarCursoComponent } from '../curso/editar/add-curso/add-curso.component';
@@ -149,7 +150,11 @@ export class AdminMenuComponent implements OnInit {
   }
 
   publicarComunicadoCurso() {
-    
+    this.dialog.open(PublicarComunicadoComponent, {
+      width: '540px',
+      maxHeight: '600px',
+      data: { facultadId: this.facultadId }
+    });
   }
 
   Cerrar() {

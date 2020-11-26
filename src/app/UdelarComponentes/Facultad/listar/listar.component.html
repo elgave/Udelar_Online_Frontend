@@ -24,7 +24,8 @@
             <td><svg width="20" height="20"><rect width="30" height="30" style="fill:{{facultad.color}};stroke-width:3;stroke:rgb(0,0,0)" /></svg></td>
             <td><img src="{{currentEnv.s3url}}/facultadIcon/{{facultad.url}}.png" alt="No Icon" style="width: 80px"></td>
             <td>
-              <button (click)="Editar(facultad)" class="btn btn-warning">Editar</button>
+              <button (click)="publicarComunicadoCurso(facultad.id)" class="btn btn-dark">Comunicado</button>
+              <button (click)="Editar(facultad)" class="btn btn-warning"style="margin-left: 10px;">Editar</button>
               <button (click)="Delete(facultad)" class="btn btn-danger" style="margin-left: 10px;">Eliminar</button>
             </td>
           </tr>
