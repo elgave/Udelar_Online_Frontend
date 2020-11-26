@@ -18,5 +18,5 @@ Donde:
 * `API URL` es la URL de accesso de su API. Por defecto, visual studio utiliza `http://localhost:54403`, pero asegúrese de que sea su caso.
 * `BUCKET URL` es la URL de acceso de su bucket de AWS S3. Tiene el formato `https://[nombre del bucket].s3.amazonaws.com`.
 
-### Ejecute el proyecto de forma local.
+### Ejecute el proyecto de forma local
 Ejecute el comando `ng serve` para iniciar un servidor local. El sitio web estará disponible en `http://localhost:4200/`. 
