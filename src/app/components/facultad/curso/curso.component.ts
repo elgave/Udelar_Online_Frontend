@@ -18,6 +18,7 @@ import { ResponderEncuestaComponent } from '../encuesta/responder-encuesta/respo
 import { AddEncuestaComponent } from '../encuesta/add-encuesta/add-encuesta.component';
 import { RespuestasEncuestaComponent } from '../encuesta/respuestas-encuesta/respuestas-encuesta.component';
 import { AlertComponent } from '../../alert/alert.component';
+import { AddEntregaTareaComponent } from './entregaTarea/add-entrega-tarea/add-entrega-tarea.component';
 
 @Component({
   selector: 'app-curso',
@@ -33,22 +34,29 @@ export class CursoComponent implements OnInit {
   isEstudiante: boolean;
   isMatriculado: boolean;
   curso: Curso;
+  
 
   @Input() cursoId: number;
   currentEnv = env;
   constructor(private router: Router, private route: ActivatedRoute, private cs: CursoService, private dialog: MatDialog) { }  
 
   ngOnInit(): void {
+    var dateDay = new Date();
     this.cs.getCursoId(parseInt(this.route.snapshot.paramMap.get('cursoId'))).subscribe(r => {
       this.curso = r.data;
       this.isMatriculado = this.curso.usuarios.some(u => u.cedula == sessionStorage.getItem('cedula'));
       this.curso.secciones.sort((a, b) => a.indice > b.indice ? 1 : -1);
       this.curso.secciones.forEach(s => {
         s.componentes.sort((a, b) => a.indice > b.indice ? 1 : -1);
+        console.log(s.componentes);
       })
     });
     this.isAdmin = sessionStorage.getItem('rol') == 'administrador';
     this.isEstudiante = sessionStorage.getItem('rol') == 'estudiante';
+    
+
+    console.log(dateDay);
+    
   }
 
   loadCurso() {
@@ -106,6 +114,18 @@ export class CursoComponent implements OnInit {
       width: '1040px',
       maxHeight: '1000px',
       data: { encuestaId: encuestaId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCurso();
+    });
+  }
+
+  entregarTarea(contenedorId: number, nombreContenedor:string, fechaCierre:Date){
+    
+    let dialogRef = this.dialog.open(AddEntregaTareaComponent, {
+      width: '1040px',
+      maxHeight: '1000px',
+      data: { contenedorId: contenedorId, nombreContenedor:nombreContenedor, fechaCierre:fechaCierre}
     });
     dialogRef.afterClosed().subscribe(result => {
       this.loadCurso();

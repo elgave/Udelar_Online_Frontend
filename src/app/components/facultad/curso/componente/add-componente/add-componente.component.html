@@ -25,6 +25,8 @@
             <option *ngFor="let encuesta of encuestas" [value]="encuesta.id">{{encuesta.titulo}}</option>
       </select>
 
+      <label *ngIf="componenteForm.get('tipo').value == 'contenedor'">Fecha de cierre:</label>
+      <input *ngIf="componenteForm.get('tipo').value == 'contenedor'" id="fechaCierre" type= "date" name="fechaCierre" [(ngModel)]="componente.fechaCierre" [ngClass]="{'is-invalid':componenteForm.get('fechaCierre').errors && componenteForm.get('fechaCierre').touched}" class="form-control"  formControlName="fechaCierre" id="fecha">
     </div>
     <button (click)="Guardar(componente)" class="btn btn-success" [disabled]="componenteForm.invalid || (componenteForm.get('tipo').value == 'texto' && componenteForm.get('texto').errors) || (['archivo','imagen'].includes(componenteForm.get('tipo').value) && componenteForm.get('file').errors)">Guardar</button>
   </form>

@@ -59,6 +59,7 @@ import { AddCalificacionComponent } from './components/facultad/curso/add-califi
 import { MisNotasComponent } from './components/facultad/mis-notas/mis-notas.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { AddNovedadComponent } from './components/facultad/add-novedad/add-novedad.component';
+import { AddEntregaTareaComponent } from './components/facultad/curso/entregaTarea/add-entrega-tarea/add-entrega-tarea.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +114,8 @@ import { AddNovedadComponent } from './components/facultad/add-novedad/add-noved
     AddCalificacionComponent,
     MisNotasComponent,
     AlertComponent,
-    AddNovedadComponent
+    AddNovedadComponent,
+    AddEntregaTareaComponent
   ],
   imports: [
     BrowserModule,

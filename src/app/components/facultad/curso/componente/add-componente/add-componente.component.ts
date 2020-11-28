@@ -6,6 +6,7 @@ import { CursoService } from 'src/app/Service/curso.service';
 import { EncuestaService } from 'src/app/Service/encuesta.service';
 import {Encuesta} from 'src/app/Modelo/Encuesta'
 import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { ContenedorTarea } from 'src/app/Modelo/ContenedorTarea';
 
 @Component({
   selector: 'app-add-componente',
@@ -16,6 +17,7 @@ export class AddComponenteComponent implements OnInit {
   seccionId: number;
   cursoId: number;
   componente:Componente = new Componente();
+  
   fileUpload: FormData = new FormData();
   encuestas:Encuesta[];
 
@@ -30,7 +32,8 @@ export class AddComponenteComponent implements OnInit {
     indice: ["", Validators.required],
     file: [""],
     texto: [""],
-    encuesta: [""]
+    encuesta: [""],
+    fechaCierre: [""]
   });
 
   ngOnInit(): void {
@@ -57,7 +60,9 @@ export class AddComponenteComponent implements OnInit {
     this.fileUpload.append('seccionCursoId', this.seccionId.toString());
     if (componente.tipo == 'encuesta') this.fileUpload.append('encuestaId',componente.encuestaId.toString());
     this.fileUpload.append('cursoId', this.cursoId.toString());
+    if(componente.tipo == 'contenedor') this.fileUpload.append('fechaCierre', componente.fechaCierre.toString());
 
+    console.log(this.fileUpload)
     this.cs.addComponente(this.fileUpload)
       .subscribe(data=>{
         let dialogRef = this.dialog.open(AlertComponent, {

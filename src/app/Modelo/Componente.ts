@@ -11,9 +11,10 @@ export class Componente {
   indice:number;
   archivo:Archivo;
   texto:string;
-  ContenedorTarea:ContenedorTarea;
+  contenedorTarea:ContenedorTarea;
   Comunicado:Comunicado;
   encuestaId:number;
   cursoId:number;
   encuesta:EncuestaCurso;
+  fechaCierre:Date;
 }
