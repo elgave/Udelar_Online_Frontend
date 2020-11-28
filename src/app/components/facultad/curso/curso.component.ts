@@ -116,7 +116,7 @@ export class CursoComponent implements OnInit {
   responderencuesta(encuestaId: number){
     
     let dialogRef = this.dialog.open(ResponderEncuestaComponent, {
-      width: '1040px',
+      width: '800px',
       maxHeight: '1000px',
       data: { encuestaId: encuestaId}
     });
@@ -128,7 +128,7 @@ export class CursoComponent implements OnInit {
   entregarTarea(contenedorId: number, nombreContenedor:string, fechaCierre:Date){
     
     let dialogRef = this.dialog.open(AddEntregaTareaComponent, {
-      width: '1040px',
+      width: '540px',
       maxHeight: '1000px',
       data: { contenedorId: contenedorId, nombreContenedor:nombreContenedor, fechaCierre:fechaCierre}
     });

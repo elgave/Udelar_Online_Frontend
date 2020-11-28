@@ -43,16 +43,19 @@
         <div>
           <h1 class="tituloFacultad">Bienvenido a {{facultad.nombre}}</h1>
           <button class="botonLinkGrandeBorde" style="border-color: {{facultad.color}};" *ngIf="rol=='administrador'" (click)="gestion();">Gestión</button>
-          <h3>Identificado como: {{rol}}</h3>
+          <hr>
           <h2>Novedades:</h2>
           <div class="novedadWrap" *ngFor="let nov of novedades">
             <h4 style="font-weight: bold">{{nov.titulo}}</h4>
             <pre class="novedad">{{nov.texto}}</pre>
           </div>
+          <hr>
 
-          <div *ngFor="let encuesta of encuestas">
+          <h2>Encuestas:</h2>
+          <div class="novedadWrap" *ngFor="let encuesta of encuestas">
             <h3 class="tituloEncuesta">{{encuesta.encuesta.titulo}}</h3>
             <img class="encuestaIcon" src="assets/tarea-completada.png">
+            <button *ngIf="rol != 'estudiante'" class="botonLinkMedianoGris" disabled style="float:none">Responder</button>
             <button *ngIf="rol == 'estudiante'" class="botonLinkMediano" (click)="responderencuesta(encuesta.idEncuesta)" style="float:none">Responder</button>
             <br>
           </div>

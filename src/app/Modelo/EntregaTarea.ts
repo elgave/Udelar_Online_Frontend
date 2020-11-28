@@ -8,7 +8,7 @@ export class EntregaTarea {
   facultadId:number;
   contenedorTareaId:number;
   estado:string;
-  calificacion:string;
+  calificacion:number;
   fechaEntrega:Date;
   nombreArchivo:string;
   extensionArchivo:string;
