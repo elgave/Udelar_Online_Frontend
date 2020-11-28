@@ -2,14 +2,15 @@
 <mat-dialog-content class="contenedor">
     <form [formGroup]="califacionForm">
         <div class="form-group">
-            <label for="">Comentario:</label>
-            <input type="text" class="form-control" [(ngModel)]="calificacion.comentario" name="comentario" [ngClass]="{'is-invalid':califacionForm.get('comentario').errors && califacionForm.get('comentario').touched}" formControlName="comentario">
+            <label *ngIf="!isTarea" for="">Comentario:</label>
+            <input *ngIf="!isTarea" type="text" class="form-control" [(ngModel)]="calificacion.comentario" name="comentario" [ngClass]="{'is-invalid':califacionForm.get('comentario').errors && califacionForm.get('comentario').touched}" formControlName="comentario">
             <label>Nota:</label>
             <input type="number" class="form-control" [(ngModel)]="calificacion.nota" name="nota" [ngClass]="{'is-invalid':(califacionForm.get('nota').errors && califacionForm.get('nota').touched) || califacionForm.get('nota').value<1}" formControlName="nota" required
                 maxlength=3>
 
         </div>
-        <button (click)="GuardarCalifcacion(calificacion.nota,calificacion.comentario)" class="btn btn-dark" style="width: 90px; padding: 5px;" [disabled]="califacionForm.invalid">Guardar</button>
+        <button *ngIf="!isTarea" (click)="GuardarCalifcacion(calificacion.nota,calificacion.comentario)" class="btn btn-dark" style="width: 90px; padding: 5px;" [disabled]="califacionForm.invalid">Guardar</button>
+        <button *ngIf="isTarea" (click)="calificarTarea(calificacion.nota)" class="btn btn-dark" style="width: 90px; padding: 5px;" [disabled]="califacionForm.invalid">Guardar</button>
         <button (click)="Cerrar()" class="btn btn-danger" style="margin-left: 10px; width: 90px; padding: 5px;">Cancelar</button>
     </form>
 </mat-dialog-content>

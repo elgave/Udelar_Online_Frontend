@@ -20,6 +20,8 @@ export class AddCalificacionComponent implements OnInit {
   facultadId: number;
   nota: number;
   comentario: string;
+  isTarea: boolean;
+  tareaId: number;
 
   constructor(private service: CursoService,private dialog: MatDialog,  private fb: FormBuilder, private dialogRef: MatDialogRef<AddCalificacionComponent>,@Inject(MAT_DIALOG_DATA) data) {
     //this.cursoId = JSON.parse(data.curso).id;
@@ -28,7 +30,9 @@ export class AddCalificacionComponent implements OnInit {
     this.calificacion.cedula = data.cedula;
     this.calificacion.facultadId = data.facultadId;
     this.calificacion.cursoId = data.cursoId;
-       
+
+    this.isTarea = data.isTarea;
+    this.tareaId = data.tareaId;
     
     this.calificacion.nombre = data.nombre;
     this.calificacion.apellido = data.apellido;
@@ -36,13 +40,26 @@ export class AddCalificacionComponent implements OnInit {
 
   califacionForm = this.fb.group({
     nota: ["", Validators.required],
-    comentario: ["", Validators.required],
+    comentario: [""],
     confirmar: [""]
   });
 
   ngOnInit(): void {
+    
   }
 
+  calificarTarea(nota:number){
+    this.service.addNotaTarea(this.tareaId,nota).subscribe(data=>{
+      let dialogRef = this.dialog.open(AlertComponent, {
+        maxWidth: '540px',
+        maxHeight: '350px',
+        data: { success: data.success }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.Cerrar();
+      });
+     }) 
+  }
 
   GuardarCalifcacion(nota: number, comentario: string){
     

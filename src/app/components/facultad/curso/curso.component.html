@@ -68,7 +68,7 @@
                                   <button *ngIf="isDocente" class="botonLink" style="color:rgb(231, 18, 18);" (click)="deleteComponente(componente.id, seccion.titulo, componente.nombre)">Eliminar</button>
                                   <button *ngIf="isDocente" class="botonLink" (click)="editComponente(componente.id, componente.nombre, componente.indice)">Editar</button>
                                   <img class="encuestaIcon" src="assets/tarea.png">
-                                  <h3 *ngIf="isDocente" class="botonEncuesta">{{componente.nombre}}</h3>  
+                                  <h3 *ngIf="isDocente" (click)="verEntregas(componente.contenedorTarea.id)" class="botonEncuesta">{{componente.nombre}}</h3>  
                                   <h3 *ngIf="isEstudiante" (click)="entregarTarea(componente.contenedorTarea.id, componente.nombre, componente.contenedorTarea.fechaCierre)" class="botonEncuesta">{{componente.nombre}}</h3>           
                                 </div>
                             </div>

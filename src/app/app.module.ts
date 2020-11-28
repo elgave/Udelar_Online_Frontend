@@ -65,6 +65,7 @@ import { AddFechaCalendarioComponent } from './components/facultad/curso/add-fec
 import { ListCalendarioComponent } from './components/facultad/curso/list-calendario/list-calendario.component';
 import { PublicarComunicadoComponent } from './components/publicar-comunicado/publicar-comunicado.component';
 import { AddEntregaTareaComponent } from './components/facultad/curso/entregaTarea/add-entrega-tarea/add-entrega-tarea.component';
+import { ListEntregaTareaComponent } from './components/facultad/curso/entregaTarea/list-entrega-tarea/list-entrega-tarea.component';
 
 
 @NgModule({
@@ -124,7 +125,8 @@ import { AddEntregaTareaComponent } from './components/facultad/curso/entregaTar
     AddFechaCalendarioComponent,
     ListCalendarioComponent,
     PublicarComunicadoComponent,
-    AddEntregaTareaComponent
+    AddEntregaTareaComponent,
+    ListEntregaTareaComponent
     
   ],
   imports: [

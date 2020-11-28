@@ -4,13 +4,14 @@
 		<div *ngIf="entregaTarea != null">
             <h3 class="pregunta">Estado de la entrega: {{entregaTarea.estado}}</h3>
             <h3 *ngIf="entregaTarea.calificacion > 0 "class="pregunta">Calificacion: {{entregaTarea.calificacion}}</h3>
+            <h3 *ngIf="entregaTarea.calificacion == 0 "class="pregunta">Calificacion: Sin calificar</h3>
             <h3 class="pregunta">Fecha limite de entrega: {{fechaCierre}}</h3>
 
             <img class="archivoIcon" src="assets/{{icon(entregaTarea.archivoEntrega.extension)}}">
             <a href="{{currentEnv.s3url}}/{{entregaTarea.archivoEntrega.ubicacion}}" target="_blank" download>{{entregaTarea.archivoEntrega.nombre}}.{{entregaTarea.archivoEntrega.extension}}</a>
             <br>
             <br>
-            <input *ngIf="fechaCierreDate  >= dateDay" type="file" #file placeholder="Subir Archivo" (change)="subirArchivo(file.files)">
+            <input *ngIf="fechaCierreDate  >= dateDay && entregaTarea.calificacion == 0 " type="file" #file placeholder="Subir Archivo" (change)="subirArchivo(file.files)">
         </div>
         <div *ngIf="entregaTarea == null">
             <h3 class="pregunta">Estado de la entrega: No entregado</h3>

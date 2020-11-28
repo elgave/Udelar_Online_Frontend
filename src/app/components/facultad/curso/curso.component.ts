@@ -23,6 +23,7 @@ import { Calendario } from '../../../Modelo/Calendario';
 import { ListCalendarioComponent } from './list-calendario/list-calendario.component';
 import { Componente } from 'src/app/Modelo/Componente';
 import { AddEntregaTareaComponent } from './entregaTarea/add-entrega-tarea/add-entrega-tarea.component';
+import { ListEntregaTareaComponent } from './entregaTarea/list-entrega-tarea/list-entrega-tarea.component';
 
 @Component({
   selector: 'app-curso',
@@ -130,6 +131,17 @@ export class CursoComponent implements OnInit {
       width: '1040px',
       maxHeight: '1000px',
       data: { contenedorId: contenedorId, nombreContenedor:nombreContenedor, fechaCierre:fechaCierre}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCurso();
+    });
+  }
+  verEntregas(contenedorTareaId: number){
+    
+    let dialogRef = this.dialog.open(ListEntregaTareaComponent, {
+      width: '1040px',
+      maxHeight: '1000px',
+      data: { contenedorTareaId: contenedorTareaId}
     });
     dialogRef.afterClosed().subscribe(result => {
       this.loadCurso();

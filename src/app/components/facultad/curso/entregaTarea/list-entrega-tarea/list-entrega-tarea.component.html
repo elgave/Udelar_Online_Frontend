@@ -1,0 +1,32 @@
+<h2 mat-dialog-title style="text-align: center;">Lista de tareas entregadas</h2>
+<mat-dialog-content class="contenedor">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="text-center">Cedula</th>
+                <th class="text-left">Nombre</th>
+                <th class="text-left">Archivo</th>
+                <th class="text-center">Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of tareas" class="text-center">
+
+                <td style="padding: 5px; padding-top: 15px; font-size:large; width: 15%">{{t.usuarioId}}</td>
+                <td class="text-left" style="padding: 5px; padding-top: 15px; font-size:large; width: 20%">{{t.nombreUsuario}} {{t.apellidoUsuario}}</td>
+                
+
+                <td class="text-left" style="padding: 5px; padding-top: 15px; font-size:large; width: 50%">
+                    <img class="archivoIcon" src="assets/{{icon(t.extensionArchivo)}}">
+                    <a href="{{currentEnv.s3url}}/{{t.ubicacionArchivo}}" target="_blank" download>{{t.nombreArchivo}}.{{t.extensionArchivo}}</a>
+                </td>
+
+                <td style="padding: 5px; padding-top: 15px; font-size:large; width: 5%">{{t.calificacion}}</td>
+                
+                <td class="text-center" style="padding: 5px; width: 10%">
+                    <button (click)="calificar(t.id,t.nombreUsuario, t.apellidoUsuario)"  class="btn btn-dark" style="width: 90px; padding: 5px;">Calificar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-dialog-content>

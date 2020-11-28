@@ -121,5 +121,13 @@ export class CursoService {
     return this.http.post<Response<EntregaTarea>>(`${this.Url}/entregaTarea`, entregaTarea, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
+  getTareaUsuarios(contenedorTareaId:number){
+    return this.http.get<Response<EntregaTarea[]>>(`${this.Url}/EntregaTarea/${contenedorTareaId}`, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
+  addNotaTarea(entregaTareaId:number, nota:number){
+    return this.http.put<Response<EntregaTarea>>(`${this.Url}/EntregaTarea/${entregaTareaId}/${nota}`,{headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
 }
 
