@@ -22,6 +22,7 @@ import { AddFechaCalendarioComponent } from './add-fecha-calendario/add-fecha-ca
 import { Calendario } from '../../../Modelo/Calendario';
 import { ListCalendarioComponent } from './list-calendario/list-calendario.component';
 import { Componente } from 'src/app/Modelo/Componente';
+import { AddEntregaTareaComponent } from './entregaTarea/add-entrega-tarea/add-entrega-tarea.component';
 
 @Component({
   selector: 'app-curso',
@@ -278,6 +279,8 @@ export class CursoComponent implements OnInit {
       this.loadCurso();
     });
   }
+
+  
 
   icon(ext:string) {
     switch (ext) {

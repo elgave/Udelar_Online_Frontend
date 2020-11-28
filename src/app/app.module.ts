@@ -64,6 +64,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AddFechaCalendarioComponent } from './components/facultad/curso/add-fecha-calendario/add-fecha-calendario.component';
 import { ListCalendarioComponent } from './components/facultad/curso/list-calendario/list-calendario.component';
 import { PublicarComunicadoComponent } from './components/publicar-comunicado/publicar-comunicado.component';
+import { AddEntregaTareaComponent } from './components/facultad/curso/entregaTarea/add-entrega-tarea/add-entrega-tarea.component';
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import { PublicarComunicadoComponent } from './components/publicar-comunicado/pu
     AddFechaCalendarioComponent,
     ListCalendarioComponent,
     PublicarComunicadoComponent,
+    AddEntregaTareaComponent
     
   ],
   imports: [

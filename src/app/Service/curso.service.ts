@@ -11,6 +11,7 @@ import { Template } from '../Modelo/Template';
 import { Calificacion } from '../Modelo/Calificacion';
 import { FechaCalendario } from '../Modelo/FechaCalendario';
 import { Calendario } from '../Modelo/Calendario';
+import { EntregaTarea } from '../Modelo/EntregaTarea';
 
 @Injectable({
   providedIn: 'root'
@@ -110,6 +111,14 @@ export class CursoService {
 
   getCalendario(id:number){
     return this.http.get<Response<Calendario>>(`${this.Url}/Calendario/${id}`);
+  }
+
+  getTareaUsuario(cedula:string,facultadId:number,contenedorTareaId:number){
+    return this.http.get<Response<EntregaTarea>>(`${this.Url}/EntregaTarea/${cedula}/${facultadId}/${contenedorTareaId}`,{headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  }
+
+  addEntregaTarea(entregaTarea:FormData) {
+    return this.http.post<Response<EntregaTarea>>(`${this.Url}/entregaTarea`, entregaTarea, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
 }

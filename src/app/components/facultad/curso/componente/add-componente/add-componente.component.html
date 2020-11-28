@@ -34,7 +34,8 @@
 
 
 
-
+            <label *ngIf="componenteForm.get('tipo').value == 'contenedor'">Fecha de cierre:</label>
+            <input *ngIf="componenteForm.get('tipo').value == 'contenedor'" id="fechaCierre" type= "date" name="fechaCierre" [(ngModel)]="componente.fechaCierre" [ngClass]="{'is-invalid':componenteForm.get('fechaCierre').errors && componenteForm.get('fechaCierre').touched}" class="form-control"  formControlName="fechaCierre" id="fecha">
 
             <select *ngIf="componenteForm.get('tipo').value == 'encuesta'" [(ngModel)]="componente.encuestaId" [ngClass]="{'is-invalid':componenteForm.get('encuesta').errors && componenteForm.get('encuesta').touched}" placeholder="encuesta" class="form-control" formControlName="encuesta"
                 id="enc">
