@@ -1,0 +1,19 @@
+<h2 mat-dialog-title style="text-align: center;">Nueva Activiad</h2>
+<mat-dialog-content class="contenedor">
+    <form [formGroup]="componenteForm">
+        <div class="form-group">
+
+
+            <label>Fecha:</label>
+            <input type="date" class="form-control" [(ngModel)]="fechaCalenario.fecha" name="fecha" [ngClass]="{'is-invalid':componenteForm.get('fecha').errors && componenteForm.get('fecha').touched}" formControlName="fecha">
+
+            <br>
+
+            <label>Texto:</label>
+            <textarea type="text" class="form-control" [(ngModel)]="fechaCalenario.texto" name="texto" [ngClass]="{'is-invalid':componenteForm.get('texto').errors && componenteForm.get('texto').touched}" formControlName="texto" style="height: 100px;" minlength=10></textarea>
+
+
+        </div>
+        <button (click)="GuardarFecha(fechaCalenario.fecha,fechaCalenario.texto)" class="btn btn-success" [disabled]="componenteForm.invalid">Guardar</button>
+    </form>
+</mat-dialog-content>

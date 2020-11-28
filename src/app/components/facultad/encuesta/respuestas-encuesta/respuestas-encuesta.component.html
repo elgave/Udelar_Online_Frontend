@@ -6,7 +6,7 @@
             <div class="respuestas">
                 <h4 *ngIf="pregunta.respuestas?.length == 0">No hay respuestas</h4>
                 <div *ngFor="let respuesta of pregunta.respuestas">
-                <pre class="respuesta">— {{respuesta.texto}}</pre>
+                <pre class="respuestaBody">— {{respuesta.texto}}</pre>
                 <br>
                 </div>
             </div>

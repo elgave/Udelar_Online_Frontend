@@ -5,6 +5,7 @@ import { Facultad } from "src/app/Modelo/Facultad";
 import * as env from 'src/env';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { PublicarComunicadoComponent } from 'src/app/components/publicar-comunicado/publicar-comunicado.component';
 
 @Component({
   selector: 'app-listar',
@@ -44,4 +45,11 @@ export class ListarComponent implements OnInit {
     this.router.navigate(["gestion/addFacultad"]);
   }
 
+  publicarComunicadoCurso(facultadId) {
+    this.dialog.open(PublicarComunicadoComponent, {
+      width: '540px',
+      maxHeight: '600px',
+      data: { facultadId: facultadId }
+    });
+  }
 }

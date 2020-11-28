@@ -9,7 +9,8 @@ import { Seccion } from '../Modelo/Seccion';
 import { Componente } from '../Modelo/Componente';
 import { Template } from '../Modelo/Template';
 import { Calificacion } from '../Modelo/Calificacion';
-import { EntregaTarea } from '../Modelo/EntregaTarea';
+import { FechaCalendario } from '../Modelo/FechaCalendario';
+import { Calendario } from '../Modelo/Calendario';
 
 @Injectable({
   providedIn: 'root'
@@ -103,12 +104,13 @@ export class CursoService {
     return this.http.post<Response<Calificacion[]>>(`${this.Url}/Calificacion/`, calificacion, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
-  getTareaUsuario(cedula:string,facultadId:number,contenedorTareaId:number){
-    return this.http.get<Response<EntregaTarea>>(`${this.Url}/EntregaTarea/${cedula}/${facultadId}/${contenedorTareaId}`,{headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  addFechaCalendario(fechaC:FechaCalendario){
+    return this.http.post<Response<FechaCalendario[]>>(`${this.Url}/Calendario/`, fechaC, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
   }
 
-  addEntregaTarea(entregaTarea:FormData) {
-    return this.http.post<Response<EntregaTarea>>(`${this.Url}/entregaTarea`, entregaTarea, {headers: {'Authorization': ` Bearer ${sessionStorage.getItem('token')}`}});
+  getCalendario(id:number){
+    return this.http.get<Response<Calendario>>(`${this.Url}/Calendario/${id}`);
   }
 
 }
+

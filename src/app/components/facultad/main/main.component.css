@@ -154,8 +154,8 @@
 }
 
 #footer {
-  float: left;
   position: fixed;
+  float: left;
   bottom:0;
   width:100%;
 }

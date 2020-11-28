@@ -18,7 +18,10 @@ import { ResponderEncuestaComponent } from '../encuesta/responder-encuesta/respo
 import { AddEncuestaComponent } from '../encuesta/add-encuesta/add-encuesta.component';
 import { RespuestasEncuestaComponent } from '../encuesta/respuestas-encuesta/respuestas-encuesta.component';
 import { AlertComponent } from '../../alert/alert.component';
-import { AddEntregaTareaComponent } from './entregaTarea/add-entrega-tarea/add-entrega-tarea.component';
+import { AddFechaCalendarioComponent } from './add-fecha-calendario/add-fecha-calendario.component';
+import { Calendario } from '../../../Modelo/Calendario';
+import { ListCalendarioComponent } from './list-calendario/list-calendario.component';
+import { Componente } from 'src/app/Modelo/Componente';
 
 @Component({
   selector: 'app-curso',
@@ -251,6 +254,29 @@ export class CursoComponent implements OnInit {
         alert(data.result.message);
       }
     })
+  }
+
+  addFecha(componente: Componente) {
+    let dialogRef = this.dialog.open(AddFechaCalendarioComponent, {
+      width: '540px',
+      maxHeight: '350px',
+      data: { componente: componente }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCurso();
+    });
+  }
+
+  verCalendario(componente: Component){
+    
+    let dialogRef = this.dialog.open(ListCalendarioComponent, {
+      width: '540px',
+      maxHeight: '350px',
+      data: { componente: componente}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCurso();
+    });
   }
 
   icon(ext:string) {
