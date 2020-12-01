@@ -58,15 +58,15 @@
                             </div>
 
                             <div *ngIf="componente.tipo == 'calendario'" class="componenteArchivo">
-
-                                <button class="botonLinkMediano" (click)="verCalendario(componente)" style="float:none">
-                                 Ver actividades   <span class="material-icons"> event_note</span> </button>
+                                <img class="archivoIcon" src="assets/event_note.png">
+                                <button class="botonLinkMediano" (click)="verCalendario(componente)" style="float:none">Ver actividades</button>
                             </div>
                             <div class="componenteArchivo" *ngIf="componente.tipo == 'contenedor'">
                                 <button *ngIf="isDocente" class="botonLink" style="color:rgb(231, 18, 18);" (click)="deleteComponente(componente.id, seccion.titulo, componente.nombre)">Eliminar</button>
                                 <button *ngIf="isDocente" class="botonLink" (click)="editComponente(componente.id, componente.nombre, componente.indice)">Editar</button>
                                 <img class="encuestaIcon" src="assets/tarea.png">
                                 <h3 *ngIf="isDocente" (click)="verEntregas(componente.contenedorTarea.id)" class="botonEncuesta">Ver entregas</h3>  
+                                <h3 *ngIf="isAdmin" class="botonEncuesta">Ver entregas</h3>  
                                 <h3 *ngIf="isEstudiante" (click)="entregarTarea(componente.contenedorTarea.id, componente.nombre, componente.contenedorTarea.fechaCierre)" class="botonEncuesta">Espacio de entrega</h3>           
                             </div>
 

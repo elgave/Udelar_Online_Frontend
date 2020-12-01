@@ -141,7 +141,8 @@
   padding: 20px;
   height: 100%;
   overflow: auto;
-  margin-left: 2%
+  margin-left: 2%;
+  margin-bottom: 35px;
 }
 
 .sidebar {

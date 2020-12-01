@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./alert.component.css']
 })
 export class AlertComponent implements OnInit {
-  success: boolean;
+  success: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) data) {
     this.success = data.success;

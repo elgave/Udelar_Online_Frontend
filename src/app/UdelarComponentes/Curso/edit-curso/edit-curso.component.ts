@@ -52,7 +52,7 @@ export class EditCursoComponent implements OnInit {
       let dialogRef = this.dialog.open(AlertComponent, {
         maxWidth: '540px',
         maxHeight: '350px',
-        data: { success: data.success }
+        data: { success: "Se ha actualizado correctamente." }
       });
       dialogRef.afterClosed().subscribe(result => {
         this.router.navigate(["gestion/listarCursos"]);
@@ -67,7 +67,7 @@ export class EditCursoComponent implements OnInit {
       let dialogRef = this.dialog.open(AlertComponent, {
         maxWidth: '540px',
         maxHeight: '350px',
-        data: { success: r.success }
+        data: { success: "Se ha agregado correctamente." }
       });
       dialogRef.afterClosed().subscribe(result => {
         this.Editar();

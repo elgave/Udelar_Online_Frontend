@@ -60,7 +60,7 @@ export class PublicarComunicadoComponent implements OnInit {
               let dialogRef = this.dialog.open(AlertComponent, {
                 maxWidth: '540px',
                 maxHeight: '350px',
-                data: { success: data.success }
+                data: { success: "Se ha publicado correctamente." }
               });
               dialogRef.afterClosed().subscribe(result => {
                 this.Cerrar();
@@ -77,7 +77,7 @@ export class PublicarComunicadoComponent implements OnInit {
           let dialogRef = this.dialog.open(AlertComponent, {
             maxWidth: '540px',
             maxHeight: '350px',
-            data: { success: data.success }
+            data: { success: "Se ha publicado correctamente." }
           });
           dialogRef.afterClosed().subscribe(result => {
             this.Cerrar();

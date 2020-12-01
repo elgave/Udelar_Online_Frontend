@@ -53,7 +53,7 @@ export class AddCalificacionComponent implements OnInit {
       let dialogRef = this.dialog.open(AlertComponent, {
         maxWidth: '540px',
         maxHeight: '350px',
-        data: { success: data.success }
+        data: { success: "Se ha calificado correctamente." }
       });
       dialogRef.afterClosed().subscribe(result => {
         this.Cerrar();
@@ -62,7 +62,6 @@ export class AddCalificacionComponent implements OnInit {
   }
 
   GuardarCalifcacion(nota: number, comentario: string){
-    
     this.calificacion.comentario = comentario;
     this.calificacion.nota = nota; 
 
@@ -70,7 +69,7 @@ export class AddCalificacionComponent implements OnInit {
       let dialogRef = this.dialog.open(AlertComponent, {
         maxWidth: '540px',
         maxHeight: '350px',
-        data: { success: data.success }
+        data: { success: "Se ha calificado correctamente." }
       });
       dialogRef.afterClosed().subscribe(result => {
         this.Cerrar();

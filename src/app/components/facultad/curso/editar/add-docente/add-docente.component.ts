@@ -45,7 +45,7 @@ export class AddDocenteComponent implements OnInit {
       let dialogRef = this.dialog.open(AlertComponent, {
         maxWidth: '540px',
         maxHeight: '350px',
-        data: { success: r.success }
+        data: { success: "Se ha agregado correctamente." }
       });
       dialogRef.afterClosed().subscribe(result => {
         this.Cerrar();

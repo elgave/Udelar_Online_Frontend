@@ -37,7 +37,7 @@ export class ListarComponent implements OnInit {
       this.dialog.open(AlertComponent, {
         maxWidth: '540px',
         maxHeight: '350px',
-        data: { success: data.success }
+        data: { success: "Se ha eliminado correctamente." }
       });
     })
   }
