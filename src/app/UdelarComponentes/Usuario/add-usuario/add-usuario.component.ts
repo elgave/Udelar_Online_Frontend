@@ -27,7 +27,12 @@ export class AddUsuarioComponent implements OnInit {
   userForm = this.fb.group({
     nombre: ["", Validators.required],
     apellido: ["", Validators.required],
-    cedula: ["", Validators.required],
+    cedula: ["",Validators.compose([
+      Validators.required,
+      Validators.minLength(7),
+      Validators.maxLength(8),
+      Validators.pattern(/^[1-9]\d{7,8}$/)
+  ])],
     mail: ["", Validators.required],
     password: ["", Validators.required],
     facultadid: ["", Validators.required],
